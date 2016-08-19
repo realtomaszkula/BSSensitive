@@ -1,4 +1,3 @@
-
 type Suit = 'spade' | 'club' | 'diamond' | 'hearts'
 
 enum CardValue {
@@ -113,7 +112,7 @@ class Hand {
   }
 }
 
-class Pair extends Hand{
+class Pair extends Hand {
 
   private _pair: [Card, Card]
   private _kickers: [Card, Card, Card]
@@ -153,7 +152,7 @@ class Pair extends Hand{
   }  
 }
 
-class TwoPair extends Hand{
+class TwoPair extends Hand {
 
   private _higherPair: [Card, Card]
   private _lowerPair: [Card, Card]
@@ -194,10 +193,9 @@ class TwoPair extends Hand{
 
     (this.higherPair.value > other.higherPair.value) ? 1 : 0
   }  
-  }
 }
 
-class Trips extends Hand{
+class Trips extends Hand {
 
   private _trips: [Card, Card, Card]
   private _kickers: [Card, Card]
@@ -215,7 +213,7 @@ class Trips extends Hand{
   }
 }
 
-class Straight extends Hand{
+class Straight extends Hand {
 
   private _highestCard: Card
 
@@ -232,7 +230,7 @@ class Straight extends Hand{
   }
 }
 
-class Flush extends Hand{
+class Flush extends Hand {
 
   private _kickers: [Card, Card, Card, Card, Card]
   private _suit: Suit
@@ -259,7 +257,7 @@ class Flush extends Hand{
 
 }
 
-class FullHouse extends Hand{
+class FullHouse extends Hand {
 
   private _trips: [Card, Card, Card]
   private _pair: [Card, Card]
@@ -289,7 +287,7 @@ class FullHouse extends Hand{
   }
 }
 
-class Quads extends Hand{
+class Quads extends Hand {
 
   private _quads: [Card, Card, Card, Card]
   private _kicker: Card
@@ -307,7 +305,7 @@ class Quads extends Hand{
   }
 }
 
-class StraightFlush extends Hand{
+class StraightFlush extends Hand {
 
   private _highestCard: Card
   private _suit: Suit
