@@ -101,6 +101,16 @@ class Hand {
   get rank () {
     return this._rank;  
   }
+
+  protected compare(first:Card, second:Card): number {
+    if (first.value > second.value) {
+      return 1
+    } else if ( second.value > first.value) {
+      return -1
+    } else {
+      return 0
+    }
+  }
 }
 
 class Pair extends Hand{
@@ -110,6 +120,36 @@ class Pair extends Hand{
 
   constructor( params:HandParams ) {
     super(params)
+  }
+
+  get pair(): Card {
+    return this._pair[0];
+  }
+
+  get kickers(): [Card, Card, Card] {
+    return this._kickers;
+  }
+
+
+  private checkKickers(other:Pair) {
+    let hisKickers =  other.kickers
+    let myKickers = this.kickers
+
+    let result: number;
+    for( let kicker in myKickers) {
+      let r = this.compare(myKickers[kicker], hisKickers[kicker])
+      if ( r == 1 || r == -1 ) return r;
+    }
+
+   return result;
+  }
+
+  resolveConflict(other:Pair): number {
+    if (this.pair.value === other.pair.value) { 
+      return this.checkKickers(other)   
+    } 
+
+    (this.pair.value > other.pair.value) ? 1 : 0
   }  
 }
 
@@ -121,6 +161,39 @@ class TwoPair extends Hand{
 
   constructor( params:HandParams ) {
     super(params)
+  }
+
+  get higherPair(): Card {
+    return this._higherPair[0]
+  }
+
+  get lowerPair(): Card {
+    return this._lowerPair[0]
+  }
+
+  get kicker(): Card {
+    return this._kicker
+  }
+
+  private checkKickers(other: TwoPair) {
+    return this.compare(this.kicker, other.kicker)
+  }
+
+  private checkLowerPair(other: TwoPair) {
+    if (this.lowerPair.value === other.lowerPair.value) { 
+      return this.checkKickers(other)   
+    } 
+
+    (this.lowerPair.value > other.lowerPair.value) ? 1 : 0
+  }
+
+  resolveConflict(other: TwoPair): number {
+    if (this.higherPair.value === other.higherPair.value) { 
+      return this.checkLowerPair(other)   
+    } 
+
+    (this.higherPair.value > other.higherPair.value) ? 1 : 0
+  }  
   }
 }
 
