@@ -36,14 +36,15 @@ enum HandRank {
 
 
 class HandRankSearch {
-  private _handRank: HandRank;
+  private _handRank: Pair | TwoPair | Trips | Straight | Flush | FullHouse | Quads | StraightFlush;
   private _sortedValues: CardValue[];
 
-  sta
-
   constructor( private _cards: Card[] ) { 
-    this.sortValues();
     this.figureOutHandRank();
+  }
+
+  get handRank(): Pair | TwoPair | Trips | Straight | Flush | FullHouse | Quads | StraightFlush {
+    return this._handRank;
   }
 
   private sortValues() {
@@ -51,20 +52,55 @@ class HandRankSearch {
   }
 
   private figureOutHandRank() {
-    this.checkForStraight()
+    this.sortValues();
+
   }
 
-
-  private checkForStraight() {
-    this._handRank = HandRank.straight
+  private isStraighFlush(): boolean {
+    return true
   }
 
+  private isQuads(): boolean {
+    return true
+  }
+  private isFullHouse(): boolean {
+    return true
+  }
+  private isFlush(): boolean {
+    return true
+  }
+  private isStraight(): boolean {
+    return true
+  }
+  private isTrips(): boolean {
+    return true
+  }
+  private isTwoPair(): boolean {
+    return true
+  }
+  private isPair(): boolean {
+    return true
+  }
 
 
 }
 
+interface HandParams {
+   cards: Card[], 
+   rank: HandRank
+}
+
 class Hand {
-  constructor( private _cards: Card[] ){}
+  private _rank: HandRank;
+  private _cards: [Card, Card, Card, Card, Card] 
+
+  constructor( params:HandParams ){
+    this._rank = params.rank
+  }
+
+  get rank () {
+    return this._rank;  
+  }
 }
 
 class Pair extends Hand{
@@ -72,8 +108,8 @@ class Pair extends Hand{
   private _pair: [Card, Card]
   private _kickers: [Card, Card, Card]
 
-  constructor(_cards: Card[]) {
-    super(_cards)
+  constructor( params:HandParams ) {
+    super(params)
   }  
 }
 
@@ -83,61 +119,67 @@ class TwoPair extends Hand{
   private _lowerPair: [Card, Card]
   private _kicker: Card
 
-  constructor( _cards: Card[]) {
-    super(_cards)
+  constructor( params:HandParams ) {
+    super(params)
   }
 }
 
 class Trips extends Hand{
+
   private _trips: [Card, Card, Card]
   private _kickers: [Card, Card]
 
-  constructor( _cards: Card[]) {
-    super(_cards)
+  constructor( params:HandParams ) {
+    super(params)
   }
 }
 
 class Straight extends Hand{
+
   private _highestCard: Card
 
-  constructor( _cards: Card[]) {
-    super(_cards)
+  constructor( params:HandParams ) {
+    super(params)
   }
 }
 
 class Flush extends Hand{
+
   private _highToLow: [Card, Card, Card, Card, Card]
   private _suit: Suit
 
-  constructor( _cards: Card[]) {
-    super(_cards)
+  constructor( params:HandParams ) {
+    super(params)
   }
 }
 
 class FullHouse extends Hand{
+
   private _trips: [Card, Card, Card]
   private _pair: [Card, Card]
 
-  constructor( _cards: Card[]) {
-    super(_cards)
+  constructor( params:HandParams ) {
+    super(params)
   }
 }
 
 class Quads extends Hand{
+
   private _quads: [Card, Card, Card, Card]
   private _kicker: Card
 
-  constructor( _cards: Card[]) {
-    super(_cards)
+  constructor( params:HandParams ) {
+    super(params)
   }
 }
 
 class StraightFlush extends Hand{
+
   private _highestCard: Card
   private _suit: Suit
 
-  constructor( _cards: Card[]) {
-    super(_cards)
+  constructor( params:HandParams ) {
+    super(params)
   }
 }
 
