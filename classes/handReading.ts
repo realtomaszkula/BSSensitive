@@ -102,10 +102,10 @@ class Hand {
     return this._rank;  
   }
 
-  protected compare(first:Card, second:Card): number {
-    if (first.value > second.value) {
+  protected compare(params: { my: Card, other: Card }): number {
+    if (params.my.value > params.other.value) {
       return 1
-    } else if ( second.value > first.value) {
+    } else if ( params.other.value > params.my.value) {
       return -1
     } else {
       return 0
@@ -137,7 +137,7 @@ class Pair extends Hand{
 
     let result: number;
     for( let kicker in myKickers) {
-      let r = this.compare(myKickers[kicker], hisKickers[kicker])
+      let r = this.compare({ my: myKickers[kicker], other: hisKickers[kicker]} )
       if ( r == 1 || r == -1 ) return r;
     }
 
@@ -176,7 +176,7 @@ class TwoPair extends Hand{
   }
 
   private checkKickers(other: TwoPair) {
-    return this.compare(this.kicker, other.kicker)
+    return this.compare({my: this.kicker, other: other.kicker})
   }
 
   private checkLowerPair(other: TwoPair) {
@@ -205,6 +205,14 @@ class Trips extends Hand{
   constructor( params:HandParams ) {
     super(params)
   }
+
+  get trips (): Card {
+    return this._trips[0];
+  }
+
+  resolveConflict(other: Trips): number {
+    return this.compare({ my: this.trips, other: other.trips })
+  }
 }
 
 class Straight extends Hand{
@@ -214,16 +222,41 @@ class Straight extends Hand{
   constructor( params:HandParams ) {
     super(params)
   }
+
+  get highestCard() {
+    return this._highestCard;
+  }
+
+  resolveConflice(other: Straight): number {
+    return this.compare( {my: this.highestCard, other: other.highestCard} )
+  }
 }
 
 class Flush extends Hand{
 
-  private _highToLow: [Card, Card, Card, Card, Card]
+  private _kickers: [Card, Card, Card, Card, Card]
   private _suit: Suit
 
   constructor( params:HandParams ) {
     super(params)
   }
+
+  get kickers(): [Card, Card, Card, Card, Card] {
+    return this._kickers;
+  }
+
+  resolveConflict(other: Flush) {
+    let hisKickers =  other.kickers
+    let myKickers = this.kickers
+
+    let result: number;
+    for( let kicker in myKickers) {
+      let r = this.compare({ my: myKickers[kicker], other: hisKickers[kicker]} )
+      if ( r == 1 || r == -1 ) return r;
+    }
+   return result;
+  }
+
 }
 
 class FullHouse extends Hand{
@@ -233,6 +266,26 @@ class FullHouse extends Hand{
 
   constructor( params:HandParams ) {
     super(params)
+  }
+
+  get trips(): Card {
+    return this._trips[0]
+  }
+
+  get pair(): Card {
+    return this._pair[0]
+  }
+
+  private checkPair(other: FullHouse) :number {
+    return this.compare({ my: this.pair, other: other.pair})
+  }
+
+  resolveConlict(other: FullHouse) {
+    if (this.trips.value === other.trips.value) { 
+      return this.checkPair(other)   
+    } 
+
+    (this.trips.value > other.trips.value) ? 1 : 0
   }
 }
 
@@ -244,6 +297,14 @@ class Quads extends Hand{
   constructor( params:HandParams ) {
     super(params)
   }
+
+  get quads(): Card {
+    return this._quads[0]
+  }
+
+  resolveConflict(other: Quads): number {
+    return this.compare( { my: this.quads, other: other.quads } )
+  }
 }
 
 class StraightFlush extends Hand{
@@ -253,6 +314,14 @@ class StraightFlush extends Hand{
 
   constructor( params:HandParams ) {
     super(params)
+  }
+
+  get highestCard(): Card {
+    return this._highestCard;
+  }
+
+  resolveConflice(other: StraightFlush): number {
+    return this.compare( { my: this.highestCard, other: other.highestCard })
   }
 }
 
