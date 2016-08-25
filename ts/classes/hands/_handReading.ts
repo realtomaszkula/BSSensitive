@@ -15,7 +15,7 @@ export class HandRankSearch {
     this.figureOutHandRank();
   }
 
-  get handRank(): HandRank {
+  get result(): HandRank {
     return this._handRank;
   }
 
