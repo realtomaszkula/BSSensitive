@@ -1,4 +1,7 @@
-class FullHouse extends Hand {
+import { Card, HandRank, HandParams,  Suit, CardValue } from './_interfaces'
+import { Hand } from './_hand'
+
+export class FullHouse extends Hand {
 
   private _trips: [Card, Card, Card]
   private _pair: [Card, Card]

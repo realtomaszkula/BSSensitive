@@ -1,6 +1,7 @@
 import { Card, HandRank, HandParams,  Suit, CardValue } from './_interfaces'
+import { Hand } from './_hand'
 
-class StraightFlush extends Hand {
+export class StraightFlush extends Hand {
 
   private _highestCard: Card
   private _suit: Suit

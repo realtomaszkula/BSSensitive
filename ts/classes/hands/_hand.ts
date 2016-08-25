@@ -1,6 +1,6 @@
 import { Card, HandRank, HandParams,  Suit, CardValue } from './_interfaces'
 
-class Hand {
+export class Hand {
   private _rank: HandRank;
   private _cards: [Card, Card, Card, Card, Card] 
 
@@ -22,3 +22,4 @@ class Hand {
     }
   }
 }
+

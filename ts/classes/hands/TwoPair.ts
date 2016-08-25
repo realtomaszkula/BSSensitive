@@ -1,6 +1,7 @@
 import { Card, HandRank, HandParams,  Suit, CardValue } from './_interfaces'
+import { Hand } from './_hand'
 
-class TwoPair extends Hand {
+export class TwoPair extends Hand {
 
   private _higherPair: [Card, Card]
   private _lowerPair: [Card, Card]

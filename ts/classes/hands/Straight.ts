@@ -1,7 +1,7 @@
 import { Card, HandRank, HandParams,  Suit, CardValue } from './_interfaces'
+import { Hand } from './_hand'
 
-
-class Straight extends Hand {
+export class Straight extends Hand {
 
   private _highestCard: Card
 

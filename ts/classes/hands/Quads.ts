@@ -1,6 +1,7 @@
+import { Card, HandRank, HandParams,  Suit, CardValue } from './_interfaces'
+import { Hand } from './_hand'
 
-
-class Quads extends Hand {
+export class Quads extends Hand {
 
   private _quads: [Card, Card, Card, Card]
   private _kicker: Card
