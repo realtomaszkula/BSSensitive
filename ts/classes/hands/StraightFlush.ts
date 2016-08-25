@@ -1,3 +1,5 @@
+import { Card, HandRank, HandParams,  Suit, CardValue } from './_interfaces'
+
 class StraightFlush extends Hand {
 
   private _highestCard: Card

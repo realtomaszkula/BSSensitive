@@ -1,3 +1,5 @@
+import { Card, HandRank, HandParams,  Suit, CardValue } from './_interfaces'
+
 class Hand {
   private _rank: HandRank;
   private _cards: [Card, Card, Card, Card, Card] 

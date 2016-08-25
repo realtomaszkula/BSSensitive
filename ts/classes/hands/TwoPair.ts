@@ -1,4 +1,4 @@
-import { Card, HandRank, Suit, CardValue } from './_interfaces'
+import { Card, HandRank, HandParams,  Suit, CardValue } from './_interfaces'
 
 class TwoPair extends Hand {
 

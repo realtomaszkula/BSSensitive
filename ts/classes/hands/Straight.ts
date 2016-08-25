@@ -1,3 +1,6 @@
+import { Card, HandRank, HandParams,  Suit, CardValue } from './_interfaces'
+
+
 class Straight extends Hand {
 
   private _highestCard: Card

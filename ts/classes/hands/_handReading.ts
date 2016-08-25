@@ -1,14 +1,14 @@
 import { Card, HandRank, HandParams,  Suit, CardValue } from './_interfaces'
 
 class HandRankSearch {
-  private _handRank: Pair | TwoPair | Trips | Straight | Flush | FullHouse | Quads | StraightFlush;
+  private _handRank: HandRank;
   private _sortedValues: CardValue[];
 
   constructor( private _cards: Card[] ) { 
     this.figureOutHandRank();
   }
 
-  get handRank(): Pair | TwoPair | Trips | Straight | Flush | FullHouse | Quads | StraightFlush {
+  get handRank(): HandRank {
     return this._handRank;
   }
 
@@ -19,7 +19,7 @@ class HandRankSearch {
   private figureOutHandRank() {
     this.sortValues();
   }
-  
+
   private isStraighFlush(): boolean {
     return true
   }

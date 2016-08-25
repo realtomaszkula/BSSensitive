@@ -1,4 +1,17 @@
 type Suit = 'spade' | 'club' | 'diamond' | 'hearts'
+type HandRank = Pair | TwoPair | Trips | Straight | Flush | FullHouse | Quads | StraightFlush
+
+enum HandStrength {
+  nopair,
+  pair,
+  twoPair,
+  trips,
+  straight,
+  flush,
+  fullHouse,
+  quads,
+  straightFlush
+}
 
 enum CardValue {
   duce,
@@ -21,21 +34,9 @@ interface Card {
   suit: Suit
 }
 
-enum HandRank {
-  nopair,
-  pair,
-  twoPair,
-  trips,
-  straight,
-  flush,
-  fullHouse,
-  quads,
-  straightFlush
-}
-
 interface HandParams {
    cards: Card[], 
    rank: HandRank
 }
 
-export { Card, HandRank, HandParams,  Suit, CardValue }
+export { Card, HandRank, HandStrength, HandParams,  Suit, CardValue }
