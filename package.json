@@ -1,0 +1,26 @@
+{
+  "name": "bssensitive",
+  "version": "1.0.0",
+  "description": "bet size and hand str detection for poker hands",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zetsnotdead/BSSensitive.git"
+  },
+  "keywords": [
+    "poker",
+    "betsize"
+  ],
+  "author": "Tomasz Kula",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zetsnotdead/BSSensitive/issues"
+  },
+  "homepage": "https://github.com/zetsnotdead/BSSensitive#readme",
+  "devDependencies": {
+    "jasmine": "^2.4.1"
+  }
+}

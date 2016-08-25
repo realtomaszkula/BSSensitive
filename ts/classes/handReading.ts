@@ -323,3 +323,4 @@ class StraightFlush extends Hand {
   }
 }
 
+export { Pair, TwoPair, Trips, Straight, Flush, FullHouse, Quads, StraightFlush, HandRankSearch }
