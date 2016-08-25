@@ -1,6 +1,13 @@
-import { Card, HandRank, HandParams,  Suit, CardValue } from './_interfaces'
+import { Card, HandRank, HandParams, Suit, CardValue } from './_interfaces'
+import { Pair } from './Pair'
+import { TwoPair } from './TwoPair'
+import { Trips } from './Trips'
+import { Straight } from './Straight'
+import { Flush } from './Flush'
+import { Quads } from './Quads'
+import { StraightFlush } from './StraightFlush'
 
-class HandRankSearch {
+export class HandRankSearch {
   private _handRank: HandRank;
   private _sortedValues: CardValue[];
 
