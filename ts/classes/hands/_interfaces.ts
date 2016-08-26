@@ -44,13 +44,13 @@ interface Card {
 }
 
 interface Search {
-  found: boolean
+  found: boolean,  
+  className: 'Pair' | 'TwoPair' | 'Trips' | 'Straight' | 'Flush' | 'FullHouse' | 'Quads' | 'StraightFlush'
 }
 
-interface HandParams extends Search {
+interface HandParams {
   cards: [Card, Card, Card, Card, Card],
   handStrength: HandStrength,
-  className: 'Pair' | 'TwoPair' | 'Trips' | 'Straight' | 'Flush' | 'FullHouse' | 'Quads' | 'StraightFlush'
 }
 
 interface PairParams extends HandParams {
