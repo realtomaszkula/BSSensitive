@@ -162,8 +162,33 @@ export class HandRankSearch {
       } else {
         return { found: false }
       }
-    }
+    },
 
+    isFullHouse(): CardClassParams {
+    // if full house I want to have trips in first arr [[111][22]]
+      this._paired.sort( (a: number[], b: number[]) => {
+        if (a.length > b.length) return -1;
+        if (a.length < b.length) return 1;
+        return 0;
+      })
+
+      let isFullHouse: boolean = this.isUniqueDoubleRep && this._paired[0][0].length
+
+      if (isFullHouse) {
+        return {
+          found: true,
+          params: {
+            className: 'FullHouse',
+            trips: this._paired[0][0],
+            pair: this._paired[1][0]
+          }
+        } 
+      } else {
+        return {
+          found: false
+        }
+      }
+    }
 }
 
   private classBuilder =  {
