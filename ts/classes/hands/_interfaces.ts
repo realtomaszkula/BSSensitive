@@ -43,63 +43,68 @@ interface Card {
   suit: Suit
 }
 
-interface HandParams {
+interface Search {
+  found: boolean
+}
+
+interface HandParams extends Search {
+  cards: [Card, Card, Card, Card, Card]
+}
+
+interface PairParams extends HandParams {
   params: {
-    cards: Card[], 
-    rank: HandRank
-  }
-}
-
-interface CardClassParams {
-  found: boolean,
-}
-
-interface PairParams extends CardClassParams {
-  params?: {
+    handStrength: HandStrength,
     className: 'Pair',
     pair: HandRank
   }
 }
-interface TwoPairParams extends CardClassParams {
-  params?: {
+interface TwoPairParams extends HandParams {
+  params: {
+    handStrength: HandStrength,
     className: 'TwoPair',
     lowerPair: HandRank,
     higherPair: HandRank
   }
 }
-interface TripsParams extends CardClassParams {
-  params?: {
+interface TripsParams extends HandParams {
+  params: {
+    handStrength: HandStrength,
     className: 'Trips',
     trips: HandRank
   }
 }
-interface StraightParams extends CardClassParams {
-  params?: {
+interface StraightParams extends HandParams {
+  params: {
+    handStrength: HandStrength,
     className: 'Straight',
     highestCard: HandRank
   }
 }
-interface FlushParams extends CardClassParams {
-  params?: {
+interface FlushParams extends HandParams {
+  params: {
+    handStrength: HandStrength,
     className: 'Flush',
     highestCard: HandRank
   }
 }
-interface FullHouseParams extends CardClassParams {
-  params?: {
+interface FullHouseParams extends HandParams {
+  params: {
+    handStrength: HandStrength,
     className: 'FullHouse',
     trips: HandRank,
     pair: HandRank
   }
 }
-interface QuadsParams extends CardClassParams {
-  params?: {
+interface QuadsParams extends HandParams {
+  params: {
+    handStrength: HandStrength,
     className: 'Quads',
     quads: HandRank
   }
 }
-interface StraightFlushParams extends CardClassParams {
-  params?: {
+interface StraightFlushParams extends HandParams {
+  params: {
+    handStrength: HandStrength,
     className: 'StraightFlush',
     highestCard: HandRank
   }
@@ -107,5 +112,5 @@ interface StraightFlushParams extends CardClassParams {
 
 
 
-export { Card, HandRank, HandStrength, HandParams,  Suit, CardValue, CardClassParams,
-  PairParams, TwoPairParams, TripsParams, StraightParams, FlushParams, FullHouseParams, QuadsParams, StraightFlushParams }
+export { Card, HandRank, HandStrength, HandParams,  Suit, CardValue, 
+  Search, PairParams, TwoPairParams, TripsParams, StraightParams, FlushParams, FullHouseParams, QuadsParams, StraightFlushParams }

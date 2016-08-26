@@ -1,4 +1,4 @@
-import { Card, HandRank, HandParams,  Suit, CardValue } from './_interfaces'
+import { Card, HandRank,  Suit, CardValue, FlushParams } from './_interfaces'
 import { Hand } from './_hand'
 
 export class Flush extends Hand {
@@ -6,7 +6,7 @@ export class Flush extends Hand {
   private _kickers: [Card, Card, Card, Card, Card]
   private _suit: Suit
 
-  constructor( params:HandParams ) {
+  constructor( params: FlushParams ) {
     super(params)
   }
 

@@ -1,4 +1,4 @@
-import { Card, HandRank, HandParams,  Suit, CardValue } from './_interfaces'
+import { Card, HandRank, HandParams,  Suit, CardValue, TwoPairParams } from './_interfaces'
 import { Hand } from './_hand'
 
 export class TwoPair extends Hand {
@@ -7,7 +7,7 @@ export class TwoPair extends Hand {
   private _lowerPair: [Card, Card]
   private _kicker: Card
 
-  constructor( params:HandParams ) {
+  constructor( params: TwoPairParams ) {
     super(params)
   }
 

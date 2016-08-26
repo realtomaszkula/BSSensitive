@@ -1,4 +1,4 @@
-import { Card, HandRank, HandParams,  Suit, CardValue } from './_interfaces'
+import { Card, HandRank, HandParams,  Suit, CardValue, StraightFlushParams } from './_interfaces'
 import { Hand } from './_hand'
 
 export class StraightFlush extends Hand {
@@ -6,7 +6,7 @@ export class StraightFlush extends Hand {
   private _highestCard: Card
   private _suit: Suit
 
-  constructor( params:HandParams ) {
+  constructor( params: StraightFlushParams ) {
     super(params)
   }
 
