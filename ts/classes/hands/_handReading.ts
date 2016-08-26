@@ -85,9 +85,9 @@ export class HandRankSearch {
         return {
           found: true,
           cards: this._cards,
+          handStrength: HandStrength.flush,
+          className: 'Flush',
           params: {
-            className: 'Flush',
-            handStrength: HandStrength.flush,
             highestCard: this._cards[4]
           }
         }
@@ -111,9 +111,9 @@ export class HandRankSearch {
         return {
           found: true,
           cards: this._cards,
+          handStrength: HandStrength.straight,
+          className: 'Straight',
           params: {
-            className: 'Straight',
-            handStrength: HandStrength.straight,
             highestCard: this._cards[4]
           }
         }
@@ -130,9 +130,9 @@ export class HandRankSearch {
         return {
           found: true,
           cards: this._cards,
+          handStrength: HandStrength.quads,
+          className: 'Quads',
           params: {
-            className: 'Quads',
-            handStrength: HandStrength.quads,
             quads: this._paired[0][0]
           }
         }
@@ -147,9 +147,9 @@ export class HandRankSearch {
         return {
           found: true,
           cards: this._cards,
+          handStrength: HandStrength.trips,
+          className: 'Trips',
           params: {
-            className: 'Trips',
-            handStrength: HandStrength.trips,
             trips: this._paired[0][0]
           }
         }
@@ -164,9 +164,9 @@ export class HandRankSearch {
         return {
           found: true,
           cards: this._cards,
+          handStrength: HandStrength.pair,
+          className: 'Pair',
           params: {
-            className: 'Pair',
-            handStrength: HandStrength.pair,
             pair: this._paired[0][0]
           }
         }
@@ -189,9 +189,9 @@ export class HandRankSearch {
         return {
           found: true,
           cards: this._cards,
+          handStrength: HandStrength.fullHouse,
+          className: 'FullHouse',
           params: {
-            className: 'FullHouse',
-            handStrength: HandStrength.fullHouse,
             trips: this._paired[0][0],
             pair: this._paired[1][0]
           }
@@ -203,7 +203,7 @@ export class HandRankSearch {
       }
     },
 
-    isTwoPair(): TwoPairParams | Search{
+    isTwoPair(): TwoPairParams | Search {
       // want to have higher pair first
       this._paired.sort( (a: number[], b: number[] ) => {
         if (a[0] > b[0]) return -1
@@ -217,9 +217,9 @@ export class HandRankSearch {
         return {
           found: true,
           cards: this._cards,
+          handStrength: HandStrength.twoPair,
+          className: 'TwoPair',
           params: {
-            className: 'TwoPair',
-            handStrength: HandStrength.twoPair,
             lowerPair: this._paired[1][0],
             higherPair: this._paired[0][0]
           }

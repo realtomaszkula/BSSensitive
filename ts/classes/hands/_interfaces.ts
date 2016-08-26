@@ -48,64 +48,50 @@ interface Search {
 }
 
 interface HandParams extends Search {
-  cards: [Card, Card, Card, Card, Card]
+  cards: [Card, Card, Card, Card, Card],
+  handStrength: HandStrength,
+  className: 'Pair' | 'TwoPair' | 'Trips' | 'Straight' | 'Flush' | 'FullHouse' | 'Quads' | 'StraightFlush'
 }
 
 interface PairParams extends HandParams {
   params: {
-    handStrength: HandStrength,
-    className: 'Pair',
     pair: HandRank
   }
 }
 interface TwoPairParams extends HandParams {
   params: {
-    handStrength: HandStrength,
-    className: 'TwoPair',
     lowerPair: HandRank,
     higherPair: HandRank
   }
 }
 interface TripsParams extends HandParams {
   params: {
-    handStrength: HandStrength,
-    className: 'Trips',
     trips: HandRank
   }
 }
 interface StraightParams extends HandParams {
   params: {
-    handStrength: HandStrength,
-    className: 'Straight',
     highestCard: HandRank
   }
 }
 interface FlushParams extends HandParams {
   params: {
-    handStrength: HandStrength,
-    className: 'Flush',
     highestCard: HandRank
   }
 }
 interface FullHouseParams extends HandParams {
   params: {
-    handStrength: HandStrength,
-    className: 'FullHouse',
     trips: HandRank,
     pair: HandRank
   }
 }
 interface QuadsParams extends HandParams {
   params: {
-    handStrength: HandStrength,
-    className: 'Quads',
     quads: HandRank
   }
 }
 interface StraightFlushParams extends HandParams {
   params: {
-    handStrength: HandStrength,
-    className: 'StraightFlush',
     highestCard: HandRank
   }
 }
