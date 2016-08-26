@@ -172,7 +172,7 @@ export class HandRankSearch {
         return 0;
       })
 
-      let isFullHouse: boolean = this.isUniqueDoubleRep && this._paired[0][0].length
+      let isFullHouse: boolean = this.isUniqueDoubleRep && this._paired[0].length === 2 && this._paired[1].length === 1
 
       if (isFullHouse) {
         return {
@@ -183,6 +183,32 @@ export class HandRankSearch {
             pair: this._paired[1][0]
           }
         } 
+      } else {
+        return {
+          found: false
+        }
+      }
+    },
+
+    isTwoPair(): CardClassParams {
+      // want to have higher pair first
+      this._paired.sort( (a: number[], b: number[] ) => {
+        if (a[0] > b[0]) return -1
+        if (a[0] < b[0]) return 1
+        return 0;
+      })
+
+      let isTwoPair: boolean = this.isUniqueDoubleRep && this._paired[0].length === 1 && this._paired[1].length === 1
+
+      if (isTwoPair) {
+        return {
+          found: true,
+          params: {
+            className: 'TwoPair',
+            lowerPair: this._paired[1][0],
+            higherPair: this._paired[0][0]
+          }
+        }
       } else {
         return {
           found: false
