@@ -10,9 +10,11 @@ import { StraightFlush } from './StraightFlush'
 
 export class HandRankSearch {
   private _handRank: HandRank;
-  private _sortedValues: CardValue[];
+  private _sortedValues: number[];
+  private _suits: Suit[];
 
   constructor( private _cards: Card[] ) { 
+    this.sortValues();
     this._handRank = this.figureOutHandRank();
   }
 
@@ -20,34 +22,36 @@ export class HandRankSearch {
     return this._handRank;
   }
 
-  private sortValues() {
-    this._sortedValues = this._cards.map( card =>  card.value  ).sort()
+  private sortValues(): void {
+    this._sortedValues = this._cards.map( card =>  card.value  )
+                            .sort()
+  }
+
+  private suits(): void {
+    this._suits = this._cards.map( card => card.suit )
   }
 
   private searchRanks =  {
-    isStraighFlush(): boolean {
-      return true
-    },
-
-    isQuads(): boolean {
-      return true
-    },
-    isFullHouse(): boolean {
-      return true
-    },
     isFlush(): boolean {
-      return true
+      let result = this._suits.find( (_e, i, a) => {
+        if ( i > 0 ) {
+          return a[i-1] !== a[i]
+        }
+        })
+      return !result;
     },
     isStraight(): boolean {
-      return true
+      let result = this._sortedValues.find( (_e, i, a) => {
+        if (i > 0) {
+          return a[i-1] + 1 != a[i]
+        } else {
+          return false
+        }
+      })
+      return !result
     },
-    isTrips(): boolean {
-      return true
-    },
-    isTwoPair(): boolean {
-      return true
-    },
-    isPair(): boolean {
+
+    isPaired(): boolean {
       return true
     }
   }
@@ -80,10 +84,8 @@ export class HandRankSearch {
   }
 
   private figureOutHandRank() {
-    let classes = ['Pair', 'TwoPair', 'Trips', 'Straight', 'Flush', 'FullHouse', 'Quads', 'StraightFlush']
-    for (let className of classes) {
-      let { found, params } =  this.searchRanks['is' + [className]]
-      if( found ) return this.classBuilder[className](params)
+      let {params, className } =  this.searchRanks()
+      return this.classBuilder[className](params)
     }
   }
 
