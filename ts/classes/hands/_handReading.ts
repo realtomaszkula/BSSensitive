@@ -65,16 +65,16 @@ export class HandRankSearch {
 
   // pair, trips, quads ex. [[111]]
   get isUniqueSingleRep(): boolean {
-    return this._paired.length === 2
+    return this._paired.length === 1
   }
 
   // two pair or full house ex. [ [111], [22] ]
   get isUniqueDoubleRep(): boolean {
-    return this._paired.length === 1
+    return this._paired.length === 2
   }
 
   private searchRanks =  {
-    isFlush():  Search {
+    isFlush: (): Search =>  {
       let result = this._suits.find( (_e, i, a) => {
         if ( i > 0 ) {
           return a[i-1] !== a[i]
@@ -84,7 +84,7 @@ export class HandRankSearch {
       let isFlush =  !result;
       return { found: isFlush }
     },
-    isStraight(): Search {
+    isStraight: (): Search => {
       let result = this._sortedValues.find( (_e, i, a) => {
         if (i > 0) {
           return a[i-1] + 1 != a[i]
@@ -96,22 +96,22 @@ export class HandRankSearch {
       return { found: isStraight }
     },
 
-    isQuads(): Search {
+    isQuads: (): Search => {
       let isQuads: boolean = this.isUniqueSingleRep && this._paired[0].length === 3
       return { found: isQuads }
     },
 
-    isTrips(): Search{
+    isTrips: (): Search => {
       let isTrips: boolean = this.isUniqueSingleRep && this._paired[0].length === 2
       return { found: isTrips }
     },
 
-    isPair(): Search {
+    isPair: (): Search => {
       let isPair: boolean = this.isUniqueSingleRep && this._paired[0].length === 1
       return { found: isPair }
     },
 
-    isFullHouse(): Search {
+    isFullHouse: (): Search => {
     // if full house I want to have trips in first arr [[111][22]]
       this._paired.sort( (a: number[], b: number[]) => {
         if (a.length > b.length) return -1;
@@ -119,11 +119,11 @@ export class HandRankSearch {
         return 0;
       })
 
-      let isFullHouse: boolean = this.isUniqueDoubleRep && this._paired[0].length === 2 && this._paired[1].length === 1
+      let isFullHouse: boolean = this.isUniqueDoubleRep && this._paired[0].length === 2 && this._paired[1] && this._paired[1].length === 1
       return { found: isFullHouse }
     },
 
-    isTwoPair(): Search {
+    isTwoPair: (): Search => {
       // want to have higher pair first
       this._paired.sort( (a: number[], b: number[] ) => {
         if (a[0] > b[0]) return -1
@@ -131,7 +131,7 @@ export class HandRankSearch {
         return 0;
       })
 
-      let isTwoPair: boolean = this.isUniqueDoubleRep && this._paired[0].length === 1 && this._paired[1].length === 1
+      let isTwoPair: boolean = this.isUniqueDoubleRep && this._paired[0].length === 1 && this._paired[1] &&  this._paired[1].length === 1
       return { found: isTwoPair }
     }
 }
@@ -140,7 +140,7 @@ export class HandRankSearch {
     StraighFlush(params: StraightFlushParams): StraightFlush {
       return new StraightFlush(params)
     },
-    Quads(): Quads {
+    Quads: (): Quads => {
       let params: QuadsParams = {
         cards: this._cards,
         handStrength: HandStrength.quads,
@@ -150,7 +150,7 @@ export class HandRankSearch {
       }
       return new Quads(params)
     },
-    FullHouse(): FullHouse  {
+    FullHouse: (): FullHouse => {
       let params: FullHouseParams = {
         cards: this._cards,
         handStrength: HandStrength.fullHouse,
@@ -161,7 +161,7 @@ export class HandRankSearch {
       }
       return new FullHouse(params)
     },
-    Flush(): Flush {
+    Flush: (): Flush => {
       let params: FlushParams = {
           cards: this._cards,
           handStrength: HandStrength.flush,
@@ -171,7 +171,7 @@ export class HandRankSearch {
       }
       return new Flush(params)
     },
-    Straight(): Straight  {
+    Straight: (): Straight => {
       let params: StraightParams = {
         cards: this._cards,
         handStrength: HandStrength.straight,
@@ -182,7 +182,7 @@ export class HandRankSearch {
 
       return new Straight(params)
     },
-    Trips(): Trips  {
+    Trips: (): Trips => {
       let params: TripsParams = {
         cards: this._cards,
         handStrength: HandStrength.trips,
@@ -192,7 +192,7 @@ export class HandRankSearch {
       }
       return new Trips(params)
     },
-    TwoPair(): TwoPair  {
+    TwoPair: (): TwoPair =>  {
        let params: TwoPairParams = {
           cards: this._cards,
           handStrength: HandStrength.twoPair,
@@ -203,7 +203,7 @@ export class HandRankSearch {
        } 
       return new TwoPair(params)
     },
-    Pair(): Pair  {
+    Pair: (): Pair => {
       let params: PairParams = {
         cards: this._cards,
         handStrength: HandStrength.pair,
@@ -216,14 +216,14 @@ export class HandRankSearch {
   }
 
   private figureOutHandRank() {
-    let classNames = ["StraightFlush", "Quads", "FullHouse", "Flush", "Straight", "Trips", "TwoPair", "Pair"]
+    let classNames = ["Quads", "FullHouse", "Flush", "Straight", "Trips", "TwoPair", "Pair"]
     for (let className of classNames) {
-      let { found } =  this.searchRanks['is' + className]()
+      let found =  this.searchRanks['is' + className]().found
       if( found ) return this.classBuilder[className]()
     }
   }
-
 }
+
 
 
 

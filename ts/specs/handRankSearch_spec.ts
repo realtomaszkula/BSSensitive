@@ -28,8 +28,6 @@ describe('HandRankSearch', function() {
       expect(hand.result instanceof Pair ).toBe(true)
     });
 
-      
   });
     
 });
-  

@@ -1,11 +1,13 @@
-import { Card, HandRank, HandParams,  Suit, CardValue } from './_interfaces'
+import { Card, HandRank, HandParams, HandStrength,  Suit, CardValue } from './_interfaces'
 
 export class Hand {
   private _rank: HandRank;
+  private _handStrength: HandStrength;
   private _cards: [Card, Card, Card, Card, Card] 
 
   constructor( params: HandParams ){
-    this._rank = params.rank
+    this._cards = params.cards;
+    this._handStrength = params.handStrength;
   }
 
   get rank () {

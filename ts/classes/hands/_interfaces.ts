@@ -54,44 +54,44 @@ interface HandParams {
 
 interface PairParams extends HandParams {
   params: {
-    pair: HandRank
+    pair: HandStrength
   }
 }
 interface TwoPairParams extends HandParams {
   params: {
-    lowerPair: HandRank,
-    higherPair: HandRank
+    lowerPair: HandStrength,
+    higherPair: HandStrength
   }
 }
 interface TripsParams extends HandParams {
   params: {
-    trips: HandRank
+    trips: HandStrength
   }
 }
 interface StraightParams extends HandParams {
   params: {
-    highestCard: HandRank
+    highestCard: HandStrength
   }
 }
 interface FlushParams extends HandParams {
   params: {
-    highestCard: HandRank
+    highestCard: HandStrength
   }
 }
 interface FullHouseParams extends HandParams {
   params: {
-    trips: HandRank,
-    pair: HandRank
+    trips: HandStrength,
+    pair: HandStrength
   }
 }
 interface QuadsParams extends HandParams {
   params: {
-    quads: HandRank
+    quads: HandStrength
   }
 }
 interface StraightFlushParams extends HandParams {
   params: {
-    highestCard: HandRank
+    highestCard: HandStrength
   }
 }
 
