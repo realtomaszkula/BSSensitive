@@ -1,4 +1,4 @@
-import { Card, HandRank, HandParams, Suit, CardValue } from './_interfaces'
+import { Card, HandRank, HandParams, Suit, CardValue, CardClassParams } from './_interfaces'
 import { Pair } from './Pair'
 import { TwoPair } from './TwoPair'
 import { Trips } from './Trips'
@@ -11,6 +11,7 @@ import { StraightFlush } from './StraightFlush'
 export class HandRankSearch {
   private _handRank: HandRank;
   private _sortedValues: number[];
+  private _paired: number[][];
   private _suits: Suit[];
 
   constructor( private _cards: Card[] ) { 
@@ -29,6 +30,34 @@ export class HandRankSearch {
 
   private suits(): void {
     this._suits = this._cards.map( card => card.suit )
+  }
+
+  private pairSort(): void {
+    let repeatedCards: number[];
+    
+    // collecting repeated cards => [22111]
+    repeatedCards = this._sortedValues.filter( (v, i, a) => a[i-1] == a[i] )
+    
+    // spliting repeated cards in two arrs if more than one repeats [[22][111]]
+    let idx = repeatedCards.findIndex( (v, i, a) =>  i > 0 && a[i-1] != a[i] )
+    let repeat: number[][] = []
+    
+    if (idx != -1) { 
+      repeat.push( repeatedCards.slice(idx) )  
+      repeat.push( repeatedCards.slice(0, idx) )
+    } else {
+      repeat.push( repeatedCards )
+    }
+    
+    // if full house I want to have trips in first arr [[111][22]]
+    repeat.sort( (a, b) => {
+      if (a.length > b.length) return -1;
+      if (a.length < b.length) return 1;
+      return 0;
+    })
+
+    this._paired = repeat;
+    
   }
 
   private searchRanks =  {
@@ -51,7 +80,8 @@ export class HandRankSearch {
       return !result
     },
 
-    isPaired(): boolean {
+    isQuads(): { found: boolean, params?: { quads: number[] }} {
+      this._paired.length === 2 && this._paired[0].length === 3
       return true
     }
   }
