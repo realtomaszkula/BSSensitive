@@ -71,15 +71,30 @@ export class HandRankSearch {
   }
 
   private searchRanks =  {
-    isFlush(): boolean {
+    isFlush(): CardClassParams {
       let result = this._suits.find( (_e, i, a) => {
         if ( i > 0 ) {
           return a[i-1] !== a[i]
         }
         })
-      return !result;
+
+      let isFlush =  !result;
+
+      if(isFlush) {
+        return {
+          found: true,
+          params: {
+            className: 'Flush',
+            highestCard: this._cards[4]
+          }
+        }
+      } else {
+        return {
+          found: false
+        }
+      }
     },
-    isStraight(): boolean {
+    isStraight(): CardClassParams {
       let result = this._sortedValues.find( (_e, i, a) => {
         if (i > 0) {
           return a[i-1] + 1 != a[i]
@@ -87,7 +102,21 @@ export class HandRankSearch {
           return false
         }
       })
-      return !result
+      let isStraight =  !result;
+
+      if(isStraight) {
+        return {
+          found: true,
+          params: {
+            className: 'Straight',
+            highestCard: this._cards[4]
+          }
+        }
+      } else {
+        return {
+          found: false
+        }
+      }
     },
 
     isQuads(): CardClassParams {
