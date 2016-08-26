@@ -1,4 +1,5 @@
-import { Card, HandRank, HandParams, Suit, CardValue, CardClassParams } from './_interfaces'
+import { Card, HandRank, HandStrength, HandParams,  Suit, CardValue, CardClassParams,
+  PairParams, TwoPairParams, TripsParams, StraightParams, FlushParams, FullHouseParams, QuadsParams, StraightFlushParams } from './_interfaces'
 import { Pair } from './Pair'
 import { TwoPair } from './TwoPair'
 import { Trips } from './Trips'
@@ -71,7 +72,7 @@ export class HandRankSearch {
   }
 
   private searchRanks =  {
-    isFlush(): CardClassParams {
+    isFlush(): FlushParams {
       let result = this._suits.find( (_e, i, a) => {
         if ( i > 0 ) {
           return a[i-1] !== a[i]
@@ -94,7 +95,7 @@ export class HandRankSearch {
         }
       }
     },
-    isStraight(): CardClassParams {
+    isStraight(): StraightParams {
       let result = this._sortedValues.find( (_e, i, a) => {
         if (i > 0) {
           return a[i-1] + 1 != a[i]
@@ -119,7 +120,7 @@ export class HandRankSearch {
       }
     },
 
-    isQuads(): CardClassParams {
+    isQuads(): QuadsParams {
       let isQuads: boolean = this.isUniqueSingleRep && this._paired[0].length === 3
       if (isQuads) {
         return {
@@ -134,7 +135,7 @@ export class HandRankSearch {
       }
     },
 
-    isTrips(): CardClassParams {
+    isTrips(): TripsParams {
       let isTrips: boolean = this.isUniqueSingleRep && this._paired[0].length === 2
       if (isTrips) {
         return {
@@ -149,7 +150,7 @@ export class HandRankSearch {
       }
     },
 
-    isPair(): CardClassParams {
+    isPair(): PairParams {
       let isPair: boolean = this.isUniqueSingleRep && this._paired[0].length === 1
       if (isPair) {
         return {
@@ -164,7 +165,7 @@ export class HandRankSearch {
       }
     },
 
-    isFullHouse(): CardClassParams {
+    isFullHouse(): FullHouseParams {
     // if full house I want to have trips in first arr [[111][22]]
       this._paired.sort( (a: number[], b: number[]) => {
         if (a.length > b.length) return -1;
@@ -190,7 +191,7 @@ export class HandRankSearch {
       }
     },
 
-    isTwoPair(): CardClassParams {
+    isTwoPair(): TwoPairParams {
       // want to have higher pair first
       this._paired.sort( (a: number[], b: number[] ) => {
         if (a[0] > b[0]) return -1
@@ -218,28 +219,28 @@ export class HandRankSearch {
 }
 
   private classBuilder =  {
-    StraighFlush(params): StraightFlush {
+    StraighFlush(params): StraightFlushParams {
       return new StraightFlush()
     },
     Quads(params): Quads {
       return new Quads()
     },
-    FullHouse(params): FullHouse {
+    FullHouse(params): FullHouseParams {
       return new FullHouse()
     },
-    Flush(params): Flush {
+    Flush(params): FlushParams {
       return new Flush()
     },
-    Straight(params): Straight {
+    Straight(params): StraightParams {
       return new Straight()
     },
-    Trips(params): Trips {
+    Trips(params): TripsParams {
       return new Trips()
     },
-    TwoPair(params): TwoPair {
+    TwoPair(params): TwoPairParams {
       return new TwoPair()
     },
-    Pair(params): Pair {
+    Pair(params): PairParams {
       return new Pair()
     }
   }
