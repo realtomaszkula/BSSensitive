@@ -60,6 +60,16 @@ export class HandRankSearch {
     
   }
 
+  // pair, trips, quads ex. [[111]]
+  get isUniqueSingleRep(): boolean {
+    return this._paired.length === 2
+  }
+
+  // two pair or full house ex. [ [111], [22] ]
+  get isUniqueDoubleRep(): boolean {
+    return this._paired.length === 1
+  }
+
   private searchRanks =  {
     isFlush(): boolean {
       let result = this._suits.find( (_e, i, a) => {
@@ -80,11 +90,52 @@ export class HandRankSearch {
       return !result
     },
 
-    isQuads(): { found: boolean, params?: { quads: number[] }} {
-      this._paired.length === 2 && this._paired[0].length === 3
-      return true
+    isQuads(): CardClassParams {
+      let isQuads: boolean = this.isUniqueSingleRep && this._paired[0].length === 3
+      if (isQuads) {
+        return {
+          found: true,
+          params: {
+            className: 'Quads',
+            quads: this._paired[0][0]
+          }
+        }
+      } else {
+        return { found: false }
+      }
+    },
+
+    isTrips(): CardClassParams {
+      let isTrips: boolean = this.isUniqueSingleRep && this._paired[0].length === 2
+      if (isTrips) {
+        return {
+          found: true,
+          params: {
+            className: 'Trips',
+            trips: this._paired[0][0]
+          }
+        }
+      } else {
+        return { found: false }
+      }
+    },
+
+    isPair(): CardClassParams {
+      let isPair: boolean = this.isUniqueSingleRep && this._paired[0].length === 1
+      if (isPair) {
+        return {
+          found: true,
+          params: {
+            className: 'Pair',
+            pair: this._paired[0][0]
+          }
+        }
+      } else {
+        return { found: false }
+      }
     }
-  }
+
+}
 
   private classBuilder =  {
     StraighFlush(params): StraightFlush {
