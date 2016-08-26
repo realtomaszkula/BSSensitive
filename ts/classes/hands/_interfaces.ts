@@ -44,8 +44,7 @@ interface Card {
 }
 
 interface Search {
-  found: boolean,  
-  className: 'Pair' | 'TwoPair' | 'Trips' | 'Straight' | 'Flush' | 'FullHouse' | 'Quads' | 'StraightFlush'
+  found: boolean
 }
 
 interface HandParams {

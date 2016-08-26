@@ -1,11 +1,11 @@
-import { Card, HandRank, HandParams,  Suit, CardValue } from './_interfaces'
+import { Card, HandRank, HandParams,  Suit, CardValue, StraightParams } from './_interfaces'
 import { Hand } from './_hand'
 
 export class Straight extends Hand {
 
   private _highestCard: Card
 
-  constructor( params:HandParams ) {
+  constructor( params: StraightParams ) {
     super(params)
   }
 

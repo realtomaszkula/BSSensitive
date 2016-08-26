@@ -4,7 +4,7 @@ export class Hand {
   private _rank: HandRank;
   private _cards: [Card, Card, Card, Card, Card] 
 
-  constructor( params:HandParams ){
+  constructor( params: HandParams ){
     this._rank = params.rank
   }
 
