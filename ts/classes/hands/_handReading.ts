@@ -172,9 +172,7 @@ export class HandRankSearch {
       let params: StraightFlushParams = {
         cards: this._cards,
         handStrength: HandStrength.straightFlush,
-        params: {
-          highestCard: this._cards[4].value
-        }
+        highestCard: this._cards[4].value
       }
       return new StraightFlush(params)
     },
@@ -182,9 +180,7 @@ export class HandRankSearch {
       let params: QuadsParams = {
         cards: this._cards,
         handStrength: HandStrength.quads,
-        params: {
-          quads: this._paired[0][0]
-        }
+        quads: this._paired[0][0]
       }
       return new Quads(params)
     },
@@ -192,10 +188,8 @@ export class HandRankSearch {
       let params: FullHouseParams = {
         cards: this._cards,
         handStrength: HandStrength.fullHouse,
-        params: {
-          trips: this._paired[0][0],
-          pair: this._paired[1][0]
-        }
+        trips: this._paired[0][0],
+        pair: this._paired[1][0]
       }
       return new FullHouse(params)
     },
@@ -203,9 +197,7 @@ export class HandRankSearch {
       let params: FlushParams = {
           cards: this._cards,
           handStrength: HandStrength.flush,
-          params: {
-            highestCard: this._cards[4].value
-          }
+          highestCard: this._cards[4].value
       }
       return new Flush(params)
     },
@@ -213,9 +205,7 @@ export class HandRankSearch {
       let params: StraightParams = {
         cards: this._cards,
         handStrength: HandStrength.straight,
-        params: {
-          highestCard: this._cards[4].value
-        }
+        highestCard: this._cards[4].value
       }
 
       return new Straight(params)
@@ -224,9 +214,7 @@ export class HandRankSearch {
       let params: TripsParams = {
         cards: this._cards,
         handStrength: HandStrength.trips,
-        params: {
-          trips: this._paired[0][0]
-        }
+        trips: this._paired[0][0]
       }
       return new Trips(params)
     },
@@ -234,10 +222,8 @@ export class HandRankSearch {
        let params: TwoPairParams = {
           cards: this._cards,
           handStrength: HandStrength.twoPair,
-          params: {
-            lowerPair: this._paired[1][0],
-            higherPair: this._paired[0][0]
-          }
+          lowerPair: this._paired[1][0],
+          higherPair: this._paired[0][0]
        } 
       return new TwoPair(params)
     },
@@ -245,9 +231,7 @@ export class HandRankSearch {
       let params: PairParams = {
         cards: this._cards,
         handStrength: HandStrength.pair,
-        params: {
-          pair: this._paired[0][0]
-        }
+        pair: this._paired[0][0]
       }
       return new Pair(params)
     }

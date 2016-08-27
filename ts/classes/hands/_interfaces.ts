@@ -53,46 +53,30 @@ interface HandParams {
 }
 
 interface PairParams extends HandParams {
-  params: {
-    pair: CardValue
-  }
+  pair: CardValue
 }
 interface TwoPairParams extends HandParams {
-  params: {
-    lowerPair: CardValue,
-    higherPair: CardValue
-  }
+  lowerPair: CardValue,
+  higherPair: CardValue
 }
 interface TripsParams extends HandParams {
-  params: {
-    trips: CardValue
-  }
+  trips: CardValue
 }
 interface StraightParams extends HandParams {
-  params: {
-    highestCard: CardValue
-  }
+  highestCard: CardValue
 }
 interface FlushParams extends HandParams {
-  params: {
-    highestCard: CardValue
-  }
+  highestCard: CardValue
 }
 interface FullHouseParams extends HandParams {
-  params: {
-    trips: HandStrength,
-    pair: HandStrength
-  }
+  trips: HandStrength,
+  pair: HandStrength
 }
 interface QuadsParams extends HandParams {
-  params: {
-    quads: HandStrength
-  }
+  quads: HandStrength
 }
 interface StraightFlushParams extends HandParams {
-  params: {
-    highestCard: CardValue
-  }
+  highestCard: CardValue
 }
 
 type SearchesOnceAndRemembers = () => Search;
