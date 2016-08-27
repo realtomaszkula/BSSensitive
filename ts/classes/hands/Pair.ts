@@ -3,21 +3,21 @@ import { Hand } from './_hand'
 
 export class Pair extends Hand {
 
-  private _pair: [Card, Card]
-  private _kickers: [Card, Card, Card]
+  private _pair: CardValue
+  private _kickers: [CardValue, CardValue, CardValue]
 
   constructor( params: PairParams ) {
     super(params)
+    this._pair = params.pair
   }
 
-  get pair(): Card {
-    return this._pair[0];
+  get pair(): CardValue {
+    return this._pair;
   }
 
-  get kickers(): [Card, Card, Card] {
+  get kickers(): [CardValue, CardValue, CardValue] {
     return this._kickers;
   }
-
 
   private checkKickers(other:Pair) {
     let hisKickers =  other.kickers

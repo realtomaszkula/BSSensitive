@@ -3,6 +3,8 @@ import { Card, HandRank, HandParams, HandStrength,  Suit, CardValue } from './_i
 export class Hand {
   private _rank: HandRank;
   private _handStrength: HandStrength;
+  private _values: CardValue[]
+  private _suits: Suit[]
   private _cards: [Card, Card, Card, Card, Card] 
 
   constructor( params: HandParams ){
@@ -12,6 +14,14 @@ export class Hand {
 
   get rank () {
     return this._rank;  
+  }
+  
+  protected setSuits() {
+    this._suits = this._cards.map( card => card.suit )
+  }
+
+  protected setValues() {
+    this._values = this._cards.map( card => card.value )
   }
 
   protected compare(params: { my: Card, other: Card }): number {
