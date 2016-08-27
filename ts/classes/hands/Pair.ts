@@ -31,13 +31,12 @@ export class Pair extends Hand {
     let hisKickers =  other.kickers
     let myKickers = this.kickers
 
-    let result: number;
     for( let kicker in myKickers) {
       let r = this.compare({ my: myKickers[kicker], other: hisKickers[kicker]} )
       if ( r == 1 || r == -1 ) return r;
     }
 
-   return result;
+   return 0;
   }
 
   prepareForResolving() {

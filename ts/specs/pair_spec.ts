@@ -63,7 +63,8 @@ describe('Pair', function() {
   let firstPair: Pair;
   let secondPair: Pair;
   let defaultParams = { pair: CardValue.ace, handStrength: HandStrength.pair }
-
+  
+  describe('with different 1st kicker', function() {
     beforeEach(function() {
       let cards = {
         cards: [ card('aceOfClubs'), card('aceOfSpades'), card('kingOfSpades'), card('queenOfClubs'), card('jackOfSpades')]
@@ -75,15 +76,75 @@ describe('Pair', function() {
       ({ firstPair, secondPair } = getPair(defaultParams, cards, otherCards));
     });
 
-
-    it('should compare 1st kicker and return 1 if higher', function() {
+    it('should return 1 if higher', function() {
       expect(firstPair.resolveConflict(secondPair)).toEqual(1)
     })
-    it('should compare 1st kicker and return -1 if lower', function() {
+    it('should return -1 if lower', function() {
       expect(secondPair.resolveConflict(firstPair)).toEqual(-1)
     })
       
+    });
+
+  describe('with different 2nd kicker', function() {
+    beforeEach(function() {
+      let cards = {
+        cards: [ card('aceOfClubs'), card('aceOfSpades'), card('kingOfSpades'), card('queenOfClubs'), card('jackOfSpades')]
+      };
+      let otherCards = {
+        cards: [ card('aceOfDiamonds'), card('aceOfHearts'), card('kingOfDiamonds'), card('jackOfDiamonds'), card('tenOfSpades')],
+      };
+      
+      ({ firstPair, secondPair } = getPair(defaultParams, cards, otherCards));
+    });
+
+    it('should return 1 if higher', function() {
+      expect(firstPair.resolveConflict(secondPair)).toEqual(1)
+    })
+    it('should return -1 if lower', function() {
+      expect(secondPair.resolveConflict(firstPair)).toEqual(-1)
+    })
+      
+    });
+
+  describe('with different 3rd kicker', function() {
+    beforeEach(function() {
+      let cards = {
+        cards: [ card('aceOfClubs'), card('aceOfSpades'), card('kingOfSpades'), card('queenOfClubs'), card('jackOfSpades')]
+      };
+      let otherCards = {
+        cards: [ card('aceOfDiamonds'), card('aceOfHearts'), card('kingOfDiamonds'), card('queenOfDiamonds'), card('tenOfSpades')],
+      };
+      
+      ({ firstPair, secondPair } = getPair(defaultParams, cards, otherCards));
+    });
+
+    it('should return 1 if higher', function() {
+      expect(firstPair.resolveConflict(secondPair)).toEqual(1)
+    })
+    it('should return -1 if lower', function() {
+      expect(secondPair.resolveConflict(firstPair)).toEqual(-1)
+    })
+    });
+
+  
+  describe('with the same kickers', function() {
+    
+    it('should return 0', function() {
+      let cards = {
+        cards: [ card('aceOfClubs'), card('aceOfSpades'), card('kingOfSpades'), card('queenOfClubs'), card('jackOfSpades')]
+      };
+      let otherCards = {
+        cards: [ card('aceOfDiamonds'), card('aceOfHearts'), card('kingOfDiamonds'), card('queenOfDiamonds'), card('jackOfHearts')],
+      };
+      
+      ({ firstPair, secondPair } = getPair(defaultParams, cards, otherCards));
+      console.log(firstPair)
+      console.log(secondPair)
+      expect(firstPair.resolveConflict(secondPair)).toEqual(0)
+    })
   });
     
+  });
 
 });
+
