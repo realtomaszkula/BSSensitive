@@ -1,5 +1,6 @@
 import { Card, HandRank, HandParams,  Suit, CardValue, PairParams } from './_interfaces'
 import { Hand } from './_hand'
+import { returnThreeCast } from './../../typecasting/arrays'
 
 export class Pair extends Hand {
 
@@ -20,11 +21,11 @@ export class Pair extends Hand {
   }
 
   private setKickers(): void {
-    this._kickers = this._values.filter( cardValue => cardValue != this._pair )
+    this._kickers = returnThreeCast(this._values.filter( cardValue => cardValue != this._pair ))
   }
 
   private sortKickers(): void {
-    this._kickers = this._kickers.sort( (a, b) => b - a)
+    this._kickers = returnThreeCast(this._kickers.sort( (a, b) => b - a))
   }
 
   private checkKickers(other:Pair) {
