@@ -54,18 +54,18 @@ interface HandParams {
 
 interface PairParams extends HandParams {
   params: {
-    pair: HandStrength
+    pair: CardValue
   }
 }
 interface TwoPairParams extends HandParams {
   params: {
-    lowerPair: HandStrength,
-    higherPair: HandStrength
+    lowerPair: CardValue,
+    higherPair: CardValue
   }
 }
 interface TripsParams extends HandParams {
   params: {
-    trips: HandStrength
+    trips: CardValue
   }
 }
 interface StraightParams extends HandParams {
