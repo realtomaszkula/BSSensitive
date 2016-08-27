@@ -117,7 +117,7 @@ describe('HandRankSearch', function() {
           { suit: 'club', value: CardValue.jack  }, 
           { suit: 'club', value: CardValue.duce  }
         ]
-      )
+      ) 
     });
       
     it('instance should return instance of class flush', function() {

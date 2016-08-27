@@ -1,5 +1,6 @@
 import { Card, HandRank, HandStrength, HandParams,  Suit, CardValue, Search,
-  PairParams, TwoPairParams, TripsParams, StraightParams, FlushParams, FullHouseParams, QuadsParams, StraightFlushParams } from './_interfaces'
+  PairParams, TwoPairParams, TripsParams, StraightParams, FlushParams, FullHouseParams, QuadsParams, StraightFlushParams,
+  SearchesOnceAndRemembers } from './_interfaces'
 import { Pair } from './Pair'
 import { TwoPair } from './TwoPair'
 import { Trips } from './Trips'
@@ -86,27 +87,41 @@ export class HandRankSearch {
       return { found: isStraightFlush }
     },
 
-    isFlush: (): Search =>  {
-      let result = this._suits.find( (_e, i, a) => {
-        if ( i > 0 ) {
-          return a[i-1] !== a[i]
+    isFlush: ( (): SearchesOnceAndRemembers => {
+      let alreadyCalled = false;
+      let result: Search;
+      return (): Search => {
+        if (!alreadyCalled) {
+          alreadyCalled = true;
+          let notUniqSuits = this._suits.find( (_e, i, a) => {
+            if ( i > 0 ) return a[i-1] !== a[i]
+          })
+          let isFlush =  !notUniqSuits;
+          result =  { found: isFlush }
         }
-        })
+        return result
+      }
+    })(),
 
-      let isFlush =  !result;
-      return { found: isFlush }
-    },
-    isStraight: (): Search => {
-      let result = this._sortedValues.find( (_e, i, a) => {
-        if (i > 0) {
-          return a[i-1] + 1 != a[i]
-        } else {
-          return false
-        }
-      })
-      let isStraight =  !result;
-      return { found: isStraight }
-    },
+    isStraight: ( (): SearchesOnceAndRemembers => {
+      let alreadyCalled = false;
+      let result: Search;
+      return (): Search => {
+        if (!alreadyCalled) {
+          alreadyCalled = true;
+          let notContinousCards = this._sortedValues.find( (_e, i, a) => {
+          if (i > 0) {
+            return a[i-1] + 1 != a[i]
+          } else {
+            return false
+          }
+        })
+        let isStraight =  !notContinousCards;
+        result = { found: isStraight }
+      }
+        return result;
+      }
+    })(),
 
     isQuads: (): Search => {
       let isQuads: boolean = this.isUniqueSingleRep && this._paired[0].length === 3
@@ -146,8 +161,9 @@ export class HandRankSearch {
       let isTwoPair: boolean = this.isUniqueDoubleRep && this._paired[0].length === 1 && this._paired[1] &&  this._paired[1].length === 1
       return { found: isTwoPair }
     }
-}
+  }
 
+  
   private classBuilder =  {
     StraightFlush: (): StraightFlush => {
       let params: StraightFlushParams = {

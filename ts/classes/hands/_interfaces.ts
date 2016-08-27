@@ -95,7 +95,8 @@ interface StraightFlushParams extends HandParams {
   }
 }
 
-
+type SearchesOnceAndRemembers = () => Search;
 
 export { Card, HandRank, HandStrength, HandParams,  Suit, CardValue, 
-  Search, PairParams, TwoPairParams, TripsParams, StraightParams, FlushParams, FullHouseParams, QuadsParams, StraightFlushParams }
+  Search, PairParams, TwoPairParams, TripsParams, StraightParams, FlushParams, FullHouseParams, QuadsParams, StraightFlushParams,
+  SearchesOnceAndRemembers }
