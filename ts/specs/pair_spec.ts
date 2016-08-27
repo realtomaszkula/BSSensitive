@@ -55,8 +55,35 @@ describe('Pair', function() {
     });
     it('should recognize lower pair', function() {
       expect(secondPair.resolveConflict(firstPair)).toEqual(1)
+    }); 
+  });
+  
+  
+  describe('when comparing to the same pair', function() {
+  let firstPair: Pair;
+  let secondPair: Pair;
+    beforeEach(function() {
+      let params: PairParams = {
+        cards: [ card('aceOfClubs'), card('aceOfSpades'), card('kingOfSpades'), card('queenOfClubs'), card('jackOfSpades')],
+        handStrength: HandStrength.pair,
+        pair: CardValue.ace
+      }
+      let anotherParams: PairParams = {
+        cards: [ card('aceOfDiamonds'), card('aceOfHearts'), card('queenOfDiamonds'), card('jackOfDiamonds'), card('tenOfSpades')],
+        handStrength: HandStrength.pair,
+        pair: CardValue.ace
+      }
+
+      firstPair = new Pair(params)
+      secondPair = new Pair(anotherParams)
     });
 
+    it('should compare 1st kicker and return 1 if higher', function() {
+      expect(firstPair.resolveConflict(secondPair)).toEqual(1)
+    })
+    it('should compare 1st kicker and return -1 if lower', function() {
+      expect(secondPair.resolveConflict(firstPair)).toEqual(-1)
+    })
       
   });
     

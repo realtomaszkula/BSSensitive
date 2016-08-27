@@ -40,11 +40,16 @@ export class Pair extends Hand {
    return result;
   }
 
+  prepareForResolving() {
+    this.setValues();
+    this.setKickers();
+    this.sortKickers();
+  }
+
   resolveConflict(other:Pair): number {
     if (this.pair === other.pair) { 
-      this.setSuits();
-      this.setKickers();
-      this.sortKickers();
+      this.prepareForResolving()
+      other.prepareForResolving()
       return this.checkKickers(other)   
     } 
 
