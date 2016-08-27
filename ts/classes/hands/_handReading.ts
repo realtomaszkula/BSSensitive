@@ -28,7 +28,11 @@ export class HandRankSearch {
 
   private sortValues(): void {
     this._sortedValues = this._cards.map( card =>  card.value  )
-                            .sort()
+                            .sort( (a, b) => {
+                              if ( a - b > 0 ) return 1
+                              if ( a - b < 0 ) return -1
+                              return 0
+                            })
   }
 
   private extractSuits(): void {
