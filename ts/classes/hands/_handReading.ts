@@ -78,6 +78,14 @@ export class HandRankSearch {
   }
 
   private searchRanks =  {
+
+    isStraightFlush(): Search {
+      let isFlush = this.isFlush().found
+      let isStraight = this.isStraight().found
+      let isStraightFlush =  isFlush && isStraight
+      return { found: isStraightFlush }
+    },
+
     isFlush: (): Search =>  {
       let result = this._suits.find( (_e, i, a) => {
         if ( i > 0 ) {
@@ -141,7 +149,14 @@ export class HandRankSearch {
 }
 
   private classBuilder =  {
-    StraighFlush(params: StraightFlushParams): StraightFlush {
+    StraightFlush: (): StraightFlush => {
+      let params: StraightFlushParams = {
+        cards: this._cards,
+        handStrength: HandStrength.straightFlush,
+        params: {
+          highestCard: this._cards[4].value
+        }
+      }
       return new StraightFlush(params)
     },
     Quads: (): Quads => {
@@ -220,7 +235,7 @@ export class HandRankSearch {
   }
 
   private figureOutHandRank() {
-    let classNames = ["Quads", "FullHouse", "Flush", "Straight", "Trips", "TwoPair", "Pair"]
+    let classNames = ['StraightFlush', 'Quads', 'FullHouse', 'Flush', 'Straight', 'Trips', 'TwoPair', 'Pair']
     for (let className of classNames) {
       let found =  this.searchRanks['is' + className]().found
       if( found ) return this.classBuilder[className]()
