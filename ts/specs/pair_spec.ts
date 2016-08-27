@@ -10,7 +10,7 @@ import { StraightFlush } from './../classes/hands/StraightFlush'
 import { Card, HandRank, HandStrength, HandParams,  Suit, CardValue, 
   Search, PairParams, TwoPairParams, TripsParams, StraightParams, FlushParams, FullHouseParams, QuadsParams, StraightFlushParams,
   SearchesOnceAndRemembers } from './../classes/hands/_interfaces'
-import { card } from './helpers/methods'
+import { card, getPair } from './helpers/methods'
 
 describe('Pair', function() {
 
@@ -62,21 +62,19 @@ describe('Pair', function() {
   describe('when comparing to the same pair', function() {
   let firstPair: Pair;
   let secondPair: Pair;
-    beforeEach(function() {
-      let params: PairParams = {
-        cards: [ card('aceOfClubs'), card('aceOfSpades'), card('kingOfSpades'), card('queenOfClubs'), card('jackOfSpades')],
-        handStrength: HandStrength.pair,
-        pair: CardValue.ace
-      }
-      let anotherParams: PairParams = {
-        cards: [ card('aceOfDiamonds'), card('aceOfHearts'), card('queenOfDiamonds'), card('jackOfDiamonds'), card('tenOfSpades')],
-        handStrength: HandStrength.pair,
-        pair: CardValue.ace
-      }
+  let defaultParams = { pair: CardValue.ace, handStrength: HandStrength.pair }
 
-      firstPair = new Pair(params)
-      secondPair = new Pair(anotherParams)
+    beforeEach(function() {
+      let cards = {
+        cards: [ card('aceOfClubs'), card('aceOfSpades'), card('kingOfSpades'), card('queenOfClubs'), card('jackOfSpades')]
+      };
+      let otherCards = {
+        cards: [ card('aceOfDiamonds'), card('aceOfHearts'), card('queenOfDiamonds'), card('jackOfDiamonds'), card('tenOfSpades')],
+      };
+      
+      ({ firstPair, secondPair } = getPair(defaultParams, cards, otherCards));
     });
+
 
     it('should compare 1st kicker and return 1 if higher', function() {
       expect(firstPair.resolveConflict(secondPair)).toEqual(1)
