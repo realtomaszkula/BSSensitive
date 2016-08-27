@@ -10,25 +10,15 @@ import { StraightFlush } from './../classes/hands/StraightFlush'
 import { Card, HandRank, HandStrength, HandParams,  Suit, CardValue, 
   Search, PairParams, TwoPairParams, TripsParams, StraightParams, FlushParams, FullHouseParams, QuadsParams, StraightFlushParams,
   SearchesOnceAndRemembers } from './../classes/hands/_interfaces'
+import { card } from './helpers/methods'
 
 describe('Pair', function() {
-  let aceOfSpades: Card =  { suit: "spade", value: CardValue.ace  };
-  let aceOfClubs: Card  =  { suit: "club", value: CardValue.ace  };
-  let kingOfClubs: Card  = { suit: "club", value: CardValue.king  }; 
-  let queenOfClubs: Card  = { suit: "club", value: CardValue.queen  };
-  let jackOfClubs: Card  = { suit: "club", value: CardValue.jack  };
 
-  let kingOfSpades: Card = { suit: 'spade', value: CardValue.king }
-  let kingOfDiamonds: Card = { suit: 'diamond', value: CardValue.king }
-  let tenOfSpades: Card  = { suit: "spade", value: CardValue.ten  };
-  let nineOfSpades: Card  = { suit: "spade", value: CardValue.nine  };
-  let eightOfSpades: Card  = { suit: "spade", value: CardValue.eight  };
-  
   describe('when creating an instance of Pair', function() {
   let hand: Pair;
     beforeEach(function() {
       let params: PairParams = {
-        cards : [ aceOfSpades, aceOfClubs, kingOfClubs, queenOfClubs, jackOfClubs],
+        cards : [ card('aceOfSpades'), card('aceOfCslub'), card('kingOfclubs'), card('queenOfClubs'), card('jackOfClubs')],
         handStrength: HandStrength.pair,
         pair: CardValue.ace 
       }
@@ -46,12 +36,12 @@ describe('Pair', function() {
   let secondPair: Pair;
     beforeEach(function() {
       let params: PairParams = {
-        cards: [ kingOfDiamonds, kingOfClubs, queenOfClubs, jackOfClubs, tenOfSpades ],
+        cards: [ card('kingOfDiamonds'), card('kingOfClubs'), card('queenOfClubs'), card('jackOfClubs'), card('tenOfSpades') ],
         handStrength: HandStrength.pair,
         pair: CardValue.king
       }
       let anotherParams: PairParams = {
-        cards: [ aceOfClubs, aceOfSpades, queenOfClubs, jackOfClubs, tenOfSpades ],
+        cards: [ card('aceOfClubs'), card('aceOfSpades'), card('queenOfClubs'), card('jackOfClubs'), card('tenOfSpades') ],
         handStrength: HandStrength.pair,
         pair: CardValue.ace
       }

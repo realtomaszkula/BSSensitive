@@ -1,13 +1,9 @@
 import { HandRankSearch } from './classes/hands/_handReading'
 import { CardValue } from './classes/hands/_interfaces'
 
+function card(name: string): {} {
+  let [value, suit] = name.split('Of')
+  return { value: value, suit: suit }
+}
 
-let        hand = new HandRankSearch(
-        [ 
-          { suit: 'spade', value: CardValue.ace  }, 
-          { suit: 'diamond', value: CardValue.duce  }, 
-          { suit: 'club', value: CardValue.three  }, 
-          { suit: 'club', value: CardValue.four  }, 
-          { suit: 'club', value: CardValue.five  }
-        ]
-      )
+card('aceOfclubs')
