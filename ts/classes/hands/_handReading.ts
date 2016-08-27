@@ -64,12 +64,12 @@ export class HandRankSearch {
   }
 
   // pair, trips, quads ex. [[111]]
-  get isUniqueSingleRep(): boolean {
+  private get isUniqueSingleRep(): boolean {
     return this._paired.length === 1
   }
 
   // two pair or full house ex. [ [111], [22] ]
-  get isUniqueDoubleRep(): boolean {
+  private get isUniqueDoubleRep(): boolean {
     return this._paired.length === 2
   }
 
@@ -166,7 +166,7 @@ export class HandRankSearch {
           cards: this._cards,
           handStrength: HandStrength.flush,
           params: {
-            highestCard: this._cards[4]
+            highestCard: this._cards[4].value
           }
       }
       return new Flush(params)
@@ -176,7 +176,7 @@ export class HandRankSearch {
         cards: this._cards,
         handStrength: HandStrength.straight,
         params: {
-          highestCard: this._cards[4]
+          highestCard: this._cards[4].value
         }
       }
 
