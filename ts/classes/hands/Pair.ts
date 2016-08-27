@@ -19,6 +19,14 @@ export class Pair extends Hand {
     return this._kickers;
   }
 
+  private setKickers(): void {
+    this._kickers = this._values.filter( cardValue => cardValue != this._pair )
+  }
+
+  private sortKickers(): void {
+    this._kickers = this._kickers.sort( (a, b) => b - a)
+  }
+
   private checkKickers(other:Pair) {
     let hisKickers =  other.kickers
     let myKickers = this.kickers
@@ -33,10 +41,13 @@ export class Pair extends Hand {
   }
 
   resolveConflict(other:Pair): number {
-    if (this.pair.value === other.pair.value) { 
+    if (this.pair === other.pair) { 
+      this.setSuits();
+      this.setKickers();
+      this.sortKickers();
       return this.checkKickers(other)   
     } 
 
-    (this.pair.value > other.pair.value) ? 1 : 0
+    return (this.pair > other.pair) ? 1 : -1
   }  
 }

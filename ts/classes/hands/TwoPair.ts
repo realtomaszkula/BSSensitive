@@ -32,7 +32,7 @@ export class TwoPair extends Hand {
       return this.checkKickers(other)   
     } 
 
-    (this.lowerPair.value > other.lowerPair.value) ? 1 : 0
+    (this.lowerPair.value > other.lowerPair.value) ? 1 : -1
   }
 
   resolveConflict(other: TwoPair): number {
@@ -40,6 +40,6 @@ export class TwoPair extends Hand {
       return this.checkLowerPair(other)   
     } 
 
-    (this.higherPair.value > other.higherPair.value) ? 1 : 0
+    (this.higherPair.value > other.higherPair.value) ? 1 : -1
   }  
 }

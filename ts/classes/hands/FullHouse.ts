@@ -27,6 +27,6 @@ export class FullHouse extends Hand {
       return this.checkPair(other)   
     } 
 
-    (this.trips.value > other.trips.value) ? 1 : 0
+    (this.trips.value > other.trips.value) ? 1 : -1
   }
 }
