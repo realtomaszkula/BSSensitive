@@ -88,11 +88,11 @@ export class HandRankSearch {
     },
 
     isFlush: ( (): SearchesOnceAndRemembers => {
-      let alreadyCalled = false;
+      let calledBefore = false;
       let result: Search;
       return (): Search => {
-        if (!alreadyCalled) {
-          alreadyCalled = true;
+        if (!calledBefore) {
+          calledBefore = true;
           let notUniqSuits = this._suits.find( (_e, i, a) => {
             if ( i > 0 ) return a[i-1] !== a[i]
           })
@@ -104,11 +104,11 @@ export class HandRankSearch {
     })(),
 
     isStraight: ( (): SearchesOnceAndRemembers => {
-      let alreadyCalled = false;
+      let calledBefore = false;
       let result: Search;
       return (): Search => {
-        if (!alreadyCalled) {
-          alreadyCalled = true;
+        if (!calledBefore) {
+          calledBefore = true;
           let notContinousCards = this._sortedValues.find( (_e, i, a) => {
           if (i > 0) {
             return a[i-1] + 1 != a[i]
@@ -116,8 +116,11 @@ export class HandRankSearch {
             return false
           }
         })
+        let isWheelStr8 = this._sortedValues[0] === 2 && this._sortedValues[1] === 3 && 
+                  this._sortedValues[2] === 4 && this._sortedValues[3] === 5 && 
+                  this._sortedValues[4] === 14
         let isStraight =  !notContinousCards;
-        result = { found: isStraight }
+        result = { found: isStraight || isWheelStr8 }
       }
         return result;
       }

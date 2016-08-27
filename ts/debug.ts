@@ -2,12 +2,12 @@ import { HandRankSearch } from './classes/hands/_handReading'
 import { CardValue } from './classes/hands/_interfaces'
 
 
-let       hand = new HandRankSearch(
+let        hand = new HandRankSearch(
         [ 
-          { suit: 'club', value: CardValue.ace  }, 
-          { suit: 'club', value: CardValue.king  }, 
-          { suit: 'club', value: CardValue.queen  }, 
-          { suit: 'club', value: CardValue.jack  }, 
-          { suit: 'club', value: CardValue.duce  }
+          { suit: 'spade', value: CardValue.ace  }, 
+          { suit: 'diamond', value: CardValue.duce  }, 
+          { suit: 'club', value: CardValue.three  }, 
+          { suit: 'club', value: CardValue.four  }, 
+          { suit: 'club', value: CardValue.five  }
         ]
-      ) 
+      )

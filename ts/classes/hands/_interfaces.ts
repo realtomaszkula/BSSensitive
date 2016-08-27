@@ -23,7 +23,7 @@ enum HandStrength {
 }
 
 enum CardValue {
-  duce = 1,
+  duce = 2,
   three,
   four,
   five,
