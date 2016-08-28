@@ -3,7 +3,6 @@ import { Card, CardClass, HandParams, HandStrength,  Suit, CardValue } from './_
 export class Hand {
   protected _rank: CardClass;
   protected _handStrength: HandStrength;
-  protected _suits: Suit[]
   protected _cards: Card[]
   protected _values: CardValue[]
   protected _kickers: CardValue[]
@@ -18,11 +17,7 @@ export class Hand {
     return this._rank;  
   }
 
-  protected setSuits() {
-    this._suits = this._cards.map( card => card.suit )
-  }
-
-  protected setValues() {
+  private setValues() {
     this._values = this._cards.map( card => card.value )
   }
 
@@ -34,6 +29,7 @@ export class Hand {
     // kickers is anything thats not relevant for given hand,
     // so pair will pass pair, two pair will pass both pairs etc.
     // this function collects the remaining values
+    this.setValues()
 
     // if value match any of forbiden elems, filter it out
     this._kickers = this._values.filter( v => !excluded.some( n => v === n ) )

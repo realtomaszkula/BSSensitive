@@ -41,7 +41,6 @@ export class TwoPair extends Hand implements HandClass {
   }
 
   prepareForResolving() {
-    this.setValues();
     super.setKickers(this._higherPair, this.lowerPair)
   }
 

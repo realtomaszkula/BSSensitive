@@ -29,7 +29,6 @@ export class Pair extends Hand implements HandClass {
   }
 
   prepareForResolving() {
-    this.setValues();
     super.setKickers(this._pair);
   }
 
