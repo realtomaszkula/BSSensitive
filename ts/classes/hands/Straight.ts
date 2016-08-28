@@ -23,7 +23,7 @@ export class Straight extends Hand implements HandClass {
   }
 
   private setIsWheelStr8(  ): void {
-    this._isWheelStr8 = (this._cards[3].value === 4)
+    this._isWheelStr8 = (this._values[3] === 5 && this._values[4]  === 14 )
   }
 
   private setHighestCard(): void {

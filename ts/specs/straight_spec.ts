@@ -58,18 +58,21 @@ describe('Straight', function() {
     
     beforeEach(function() {
       let firstParams: StraightParams = {
-        cards: [ card('sixOfDiamonds'), card('fiveOfSpades'), card('fourOfSpades'), card('threeOfClubs'), card('twoOfSpades')],
+        cards: [ card('sixOfDiamonds'), card('fiveOfSpades'), card('fourOfSpades'), card('threeOfClubs'), card('duceOfSpades')],
         handStrength: HandStrength.straight,
       };    
       let secondParams: StraightParams = {
-        cards: [ card('fiveOfSpades'), card('fourOfSpades'), card('threeOfClubs'), card('twoOfSpades'), card('aceOfDiamonds')],
+        cards: [ card('fiveOfSpades'), card('fourOfSpades'), card('threeOfClubs'), card('duceOfSpades'), card('aceOfDiamonds')],
         handStrength: HandStrength.straight,
       };    
       firstHand = new Straight(firstParams)
       secondHand = new Straight(secondParams)
+
     });
 
     it('should return 1 when higher', function() {
+            console.log(firstHand)
+      console.log(secondHand)
       expect( firstHand.resolveConflict(secondHand)).toEqual(1)
     });
 
