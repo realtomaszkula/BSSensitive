@@ -21,7 +21,7 @@ export class Hand {
     return this._kickers;
   }
 
-  private setValues() {
+  protected setValues() {
     this._values = this._cards.map( card => card.value )
   }
 

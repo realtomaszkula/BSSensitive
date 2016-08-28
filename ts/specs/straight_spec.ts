@@ -11,7 +11,6 @@ describe('Straight', function() {
     let params: StraightParams = {
       cards: [ card('aceOfSpades'), card('kingOfClubs'), card('queenOfSpades'), card('jackOfSpades'), card('tenOfHearts')],
       handStrength: HandStrength.straight,
-      highestCard: CardValue.ace
     }
     let hand = new Straight(params)
 
@@ -30,12 +29,10 @@ describe('Straight', function() {
       let firstParams: StraightParams = {
         cards: [ card('aceOfSpades'), card('kingOfClubs'), card('queenOfSpades'), card('jackOfSpades'), card('tenOfHearts')],
         handStrength: HandStrength.straight,
-        highestCard: CardValue.ace
       }
       let secondParams: StraightParams = {
         cards: [ card('kingOfSpades'), card('queenOfSpades'), card('jackOfSpades'), card('tenOfHearts'), card('nineOfClubs')],
         handStrength: HandStrength.straight,
-        highestCard: CardValue.king 
       };
       firstHand = new Straight(firstParams)
       secondHand = new Straight(secondParams);    
@@ -63,12 +60,10 @@ describe('Straight', function() {
       let firstParams: StraightParams = {
         cards: [ card('sixOfDiamonds'), card('fiveOfSpades'), card('fourOfSpades'), card('threeOfClubs'), card('twoOfSpades')],
         handStrength: HandStrength.straight,
-        highestCard: CardValue.six 
       };    
       let secondParams: StraightParams = {
         cards: [ card('fiveOfSpades'), card('fourOfSpades'), card('threeOfClubs'), card('twoOfSpades'), card('aceOfDiamonds')],
         handStrength: HandStrength.straight,
-        highestCard: CardValue.five 
       };    
       firstHand = new Straight(firstParams)
       secondHand = new Straight(secondParams)

@@ -13,9 +13,9 @@ import { returnFiveCast } from './../../typecasting/arrays'
 
 export class HandRankSearch {
   private _handRank: CardClass;
-  private _sortedValues: [CardValue, CardValue, CardValue, CardValue, CardValue];
+  private _sortedValues: CardValue[];
   private _paired: number[][];
-  private _suits: [Suit, Suit, Suit, Suit, Suit];
+  private _suits: Suit[];
 
   constructor( private _cards: [Card, Card, Card, Card, Card] ) { 
     this.sortValues();
@@ -29,16 +29,16 @@ export class HandRankSearch {
   }
 
   private sortValues(): void {
-    this._sortedValues = returnFiveCast(this._cards.map( card =>  card.value  )
+    this._sortedValues = this._cards.map( card =>  card.value  )
                             .sort( (a, b) => {
                               if ( a - b > 0 ) return 1
                               if ( a - b < 0 ) return -1
                               return 0
-                            }))
+                            })
   }
 
   private extractSuits(): void {
-    this._suits = returnFiveCast(this._cards.map( card => card.suit ))
+    this._suits = this._cards.map( card => card.suit )
   }
 
   private pairSort(): void {
@@ -205,7 +205,6 @@ export class HandRankSearch {
       let params: StraightParams = {
         cards: this._cards,
         handStrength: HandStrength.straight,
-        highestCard: this._cards[4].value
       }
 
       return new Straight(params)

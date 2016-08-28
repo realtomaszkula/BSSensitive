@@ -63,7 +63,6 @@ interface TripsParams extends HandParams {
   trips: CardValue
 }
 interface StraightParams extends HandParams {
-  highestCard: CardValue
 }
 interface FlushParams extends HandParams {
 }
