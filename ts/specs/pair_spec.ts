@@ -18,7 +18,7 @@ describe('Pair', function() {
   let hand: Pair;
     beforeEach(function() {
       let params: PairParams = {
-        cards : [ card('aceOfSpades'), card('aceOfCslub'), card('kingOfclubs'), card('queenOfClubs'), card('jackOfClubs')],
+        cards : [ card('aceOfSpades'), card('aceOfClubs'), card('kingOfclubs'), card('queenOfClubs'), card('jackOfClubs')],
         handStrength: HandStrength.pair,
         pair: CardValue.ace 
       }

@@ -1,3 +1,5 @@
+import { Suit } from './../classes/hands/_interfaces'
+
 function returnThreeCast<T>(arr: T[]): [T, T, T] {
   if (arr.length !== 3) {
     throw new Error('Array should have length of 3')
