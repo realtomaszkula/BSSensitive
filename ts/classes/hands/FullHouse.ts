@@ -20,7 +20,7 @@ export class FullHouse extends Hand implements HandClass {
     return this._pair
   }
 
-  resolveConlict(other: FullHouse) {
+  resolveConflict(other: FullHouse) {
     if (this.trips === other.trips) { 
       return super.compare(this.pair, other.pair)   
     } 

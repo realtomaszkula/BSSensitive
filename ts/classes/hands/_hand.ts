@@ -55,12 +55,20 @@ export class Hand {
     return 0;
   }
 
-  compareToSibiling(other: CardClass) {
+  compareToSibiling(other: CardClass): number {
     if (this._handStrength > other.handStrength) return 1;
     if (this._handStrength < other.handStrength) return -1;
     return 0;
   }
 
+  private resolveConflict(){};
 
+  compareTo(other: CardClass): number {
+    if (this.constructor.name === other.constructor.name) {
+      return this.resolveConflict(other);
+    } else {
+      return this.compareToSibiling(other)
+    }
+  }
 }
 
