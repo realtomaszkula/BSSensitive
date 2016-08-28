@@ -51,6 +51,10 @@ describe('Trips', function() {
     it('should return -1 when lower', function() {
       expect( secondHand.resolveConflict(firstHand)).toEqual(-1)
     });
+
+    it('should return 0 if the same', function() {
+      expect( secondHand.resolveConflict(secondHand)).toEqual(0)
+    });
       
   });
     
