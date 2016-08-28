@@ -7,7 +7,7 @@ import { FullHouse } from './../classes/hands/FullHouse'
 import { Flush } from './../classes/hands/Flush'
 import { Quads } from './../classes/hands/Quads'
 import { StraightFlush } from './../classes/hands/StraightFlush'
-import { Card, HandRank, HandParams,  Suit, CardValue } from './../classes/hands/_interfaces'
+import { Card, CardClass, HandParams,  Suit, CardValue } from './../classes/hands/_interfaces'
 
 describe('HandRankSearch', function() {
   

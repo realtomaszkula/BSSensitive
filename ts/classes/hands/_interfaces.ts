@@ -8,7 +8,7 @@ import { Quads } from './Quads'
 import { StraightFlush } from './StraightFlush'
 
 type Suit = 'spade' | 'club' | 'diamond' | 'hearts'
-type HandRank = Pair | TwoPair | Trips | Straight | Flush | FullHouse | Quads | StraightFlush
+type CardClass = Pair | TwoPair | Trips | Straight | Flush | FullHouse | Quads | StraightFlush
 
 enum HandStrength {
   nopair,
@@ -81,6 +81,10 @@ interface StraightFlushParams extends HandParams {
 
 type SearchesOnceAndRemembers = () => Search;
 
-export { Card, HandRank, HandStrength, HandParams,  Suit, CardValue, 
+interface HandClass {
+  resolveConflict(other: CardClass ): number
+}
+
+export { HandClass, Card, CardClass, HandStrength, HandParams,  Suit, CardValue, 
   Search, PairParams, TwoPairParams, TripsParams, StraightParams, FlushParams, FullHouseParams, QuadsParams, StraightFlushParams,
   SearchesOnceAndRemembers }

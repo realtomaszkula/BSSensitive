@@ -1,4 +1,4 @@
-import { Card, HandRank, HandStrength, HandParams,  Suit, CardValue, 
+import { Card, CardClass, HandStrength, HandParams,  Suit, CardValue, 
   Search, PairParams, TwoPairParams, TripsParams, StraightParams, FlushParams, FullHouseParams, QuadsParams, StraightFlushParams,
   SearchesOnceAndRemembers } from './../../classes/hands/_interfaces'
 import { Pair } from './../../classes/hands/Pair'

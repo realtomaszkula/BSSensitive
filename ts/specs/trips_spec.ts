@@ -1,6 +1,6 @@
 import { HandRankSearch } from './../classes/hands/_handReading'
 import { Trips } from './../classes/hands/Trips'
-import { Card, HandRank, HandStrength, HandParams,  Suit, CardValue, 
+import { Card, CardClass, HandStrength, HandParams,  Suit, CardValue, 
   Search, TripsParams } from './../classes/hands/_interfaces'
 import { card } from './helpers/methods'
 
@@ -13,6 +13,9 @@ describe('Trips', function() {
       handStrength: HandStrength.trips,
       trips: CardValue.ace
     }
+
+    hand = new Trips(params)
+
     
     it('should set trips correctly', function() {
       expect( hand.trips ).toEqual( CardValue.ace )
@@ -46,7 +49,7 @@ describe('Trips', function() {
     });
 
     it('should return -1 when lower', function() {
-      expect( firstHand.resolveConflict(secondHand)).toEqual(-1)
+      expect( secondHand.resolveConflict(firstHand)).toEqual(-1)
     });
       
   });

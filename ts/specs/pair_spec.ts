@@ -1,6 +1,6 @@
 import { HandRankSearch } from './../classes/hands/_handReading'
 import { Pair } from './../classes/hands/Pair'
-import { Card, HandRank, HandStrength, HandParams,  Suit, CardValue, 
+import { Card, CardClass, HandStrength, HandParams,  Suit, CardValue, 
   Search, PairParams, TwoPairParams, TripsParams, StraightParams, FlushParams, FullHouseParams, QuadsParams, StraightFlushParams,
   SearchesOnceAndRemembers } from './../classes/hands/_interfaces'
 import { card, getPair } from './helpers/methods'

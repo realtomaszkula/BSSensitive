@@ -1,7 +1,7 @@
-import { Card, HandRank,  Suit, CardValue, FlushParams } from './_interfaces'
+import { Card, CardClass,  Suit, CardValue, FlushParams } from './_interfaces'
 import { Hand } from './_hand'
 
-export class Flush extends Hand {
+export class Flush extends Hand implements HandClass {
 
   private _kickers: [Card, Card, Card, Card, Card]
   private _suit: Suit

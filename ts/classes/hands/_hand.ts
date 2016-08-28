@@ -1,7 +1,7 @@
-import { Card, HandRank, HandParams, HandStrength,  Suit, CardValue } from './_interfaces'
+import { Card, CardClass, HandParams, HandStrength,  Suit, CardValue } from './_interfaces'
 
 export class Hand {
-  protected _rank: HandRank;
+  protected _rank: CardClass;
   protected _handStrength: HandStrength;
   protected _suits: Suit[]
   protected _cards: Card[]

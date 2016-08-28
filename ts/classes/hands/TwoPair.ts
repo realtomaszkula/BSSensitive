@@ -1,8 +1,8 @@
-import { Card, HandRank, HandParams,  Suit, CardValue, TwoPairParams } from './_interfaces'
+import { HandClass, Card, CardClass, HandParams,  Suit, CardValue, TwoPairParams } from './_interfaces'
 import { Hand } from './_hand'
 import { returnTwoCast } from './../../typecasting/arrays'
 
-export class TwoPair extends Hand {
+export class TwoPair extends Hand implements HandClass {
 
   private _higherPair: CardValue
   private _lowerPair: CardValue

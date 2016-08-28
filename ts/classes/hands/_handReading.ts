@@ -1,4 +1,4 @@
-import { Card, HandRank, HandStrength, HandParams,  Suit, CardValue, Search,
+import { Card, CardClass, HandStrength, HandParams,  Suit, CardValue, Search,
   PairParams, TwoPairParams, TripsParams, StraightParams, FlushParams, FullHouseParams, QuadsParams, StraightFlushParams,
   SearchesOnceAndRemembers } from './_interfaces'
 import { Pair } from './Pair'
@@ -12,7 +12,7 @@ import { StraightFlush } from './StraightFlush'
 import { returnFiveCast } from './../../typecasting/arrays'
 
 export class HandRankSearch {
-  private _handRank: HandRank;
+  private _handRank: CardClass;
   private _sortedValues: [CardValue, CardValue, CardValue, CardValue, CardValue];
   private _paired: number[][];
   private _suits: [Suit, Suit, Suit, Suit, Suit];
@@ -24,7 +24,7 @@ export class HandRankSearch {
     this._handRank = this.figureOutHandRank();
   }
 
-  get result(): HandRank {
+  get result(): CardClass {
     return this._handRank;
   }
 

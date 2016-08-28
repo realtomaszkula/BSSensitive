@@ -1,11 +1,9 @@
-import { Card, HandRank, HandParams,  Suit, CardValue, PairParams } from './_interfaces'
+import { HandClass, Card, CardClass, HandParams,  Suit, CardValue, PairParams } from './_interfaces'
 import { Hand } from './_hand'
 
-export class Pair extends Hand {
+export class Pair extends Hand implements HandClass {
 
   private _pair: CardValue
-  private _kickers: CardValue[]
-
   constructor( params: PairParams ) {
     super(params)
     this._pair = params.pair
