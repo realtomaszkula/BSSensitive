@@ -66,7 +66,6 @@ interface StraightParams extends HandParams {
   highestCard: CardValue
 }
 interface FlushParams extends HandParams {
-  highestCard: CardValue
 }
 interface FullHouseParams extends HandParams {
   trips: HandStrength,

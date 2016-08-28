@@ -198,7 +198,6 @@ export class HandRankSearch {
       let params: FlushParams = {
           cards: this._cards,
           handStrength: HandStrength.flush,
-          highestCard: this._cards[4].value
       }
       return new Flush(params)
     },
