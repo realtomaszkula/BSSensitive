@@ -1,7 +1,6 @@
 import { Card, CardClass, HandParams, HandStrength,  Suit, CardValue } from './_interfaces'
 
 export class Hand {
-  protected _rank: CardClass;
   protected _handStrength: HandStrength;
   protected _cards: Card[]
   protected _values: CardValue[]
@@ -13,8 +12,8 @@ export class Hand {
     this._handStrength = params.handStrength;
   }
 
-  get rank () {
-    return this._rank;  
+  get handStrength () {
+    return this._handStrength;  
   }
 
   get kickers(): CardValue[] {

@@ -173,7 +173,6 @@ export class HandRankSearch {
       let params: StraightFlushParams = {
         cards: this._cards,
         handStrength: HandStrength.straightFlush,
-        highestCard: this._cards[4].value
       }
       return new StraightFlush(params)
     },

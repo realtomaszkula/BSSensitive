@@ -6,12 +6,13 @@ import { Flush } from './Flush'
 import { FullHouse } from './FullHouse'
 import { Quads } from './Quads'
 import { StraightFlush } from './StraightFlush'
+import { HighCard } from './HighCard'
 
 type Suit = 'spade' | 'club' | 'diamond' | 'hearts'
-type CardClass = Pair | TwoPair | Trips | Straight | Flush | FullHouse | Quads | StraightFlush
+type CardClass = Pair | TwoPair | Trips | Straight | Flush | FullHouse | Quads | StraightFlush | HighCard
 
 enum HandStrength {
-  nopair,
+  highCard,
   pair,
   twoPair,
   trips,
@@ -48,7 +49,7 @@ interface Search {
 }
 
 interface HandParams {
-  cards: [Card, Card, Card, Card, Card],
+  cards: Card[],
   handStrength: HandStrength,
 }
 
@@ -74,7 +75,8 @@ interface QuadsParams extends HandParams {
   quads: CardValue
 }
 interface StraightFlushParams extends HandParams {
-  highestCard: CardValue
+}
+interface HighCardParams extends HandParams {
 }
 
 type SearchesOnceAndRemembers = () => Search;
@@ -85,5 +87,5 @@ interface HandClass {
 }
 
 export { HandClass, Card, CardClass, HandStrength, HandParams,  Suit, CardValue, 
-  Search, PairParams, TwoPairParams, TripsParams, StraightParams, FlushParams, FullHouseParams, QuadsParams, StraightFlushParams,
+  Search, PairParams, TwoPairParams, TripsParams, StraightParams, FlushParams, FullHouseParams, QuadsParams, StraightFlushParams, HighCardParams
   SearchesOnceAndRemembers }
