@@ -11,18 +11,18 @@ import { card } from './helpers/methods'
 
 import { Card, CardClass, HandStrength, HandParams,  Suit, CardValue, Search,
   PairParams, TwoPairParams, TripsParams, StraightParams, FlushParams, FullHouseParams, QuadsParams, StraightFlushParams,
-  SearchesOnceAndRemembers } from './../classes/hands/_interfaces'
+  HighCardParams } from './../classes/hands/_interfaces'
 
 
 describe('Hand', function() {
 
-  let pairParams: PairParams = {
-    cards: [ card('kingOfDiamonds'), card('kingOfClubs'), card('queenOfClubs'), card('jackOfClubs'), card('tenOfSpades') ],
-    handStrength: HandStrength.pair,
-    pair: CardValue.king
-  }
+let pairParams: PairParams = {
+  cards: [ card('kingOfDiamonds'), card('kingOfClubs'), card('queenOfClubs'), card('jackOfClubs'), card('tenOfSpades') ],
+  handStrength: HandStrength.pair,
+  pair: CardValue.king
+}
 
- let firstPair = new Pair(pairParams)
+let pair = new Pair(pairParams)
 
 let twoPairParams: TwoPairParams = {
   cards : [ card('aceOfSpades'), card('aceOfClubs'), card('kingOfclubs'), card('kingOfDiamonds'), card('jackOfClubs')],
@@ -83,6 +83,170 @@ let highCardParams: HighCardParams = {
 let highCard = new HighCard(highCardParams)
 
 
+  describe('when comparing pair to other classes', function() {
+    
+    it('should return 0 when comparing to itself', function() {
+      expect(pair.compareToSibiling(pair)).toEqual(0)
+    })
+    
+    it('should return -1 for every class higher then itself', function() {
+      expect(pair.compareToSibiling(trips)).toEqual(-1)
+      expect(pair.compareToSibiling(straight)).toEqual(-1)
+      expect(pair.compareToSibiling(flush)).toEqual(-1)
+      expect(pair.compareToSibiling(fullHouse)).toEqual(-1)
+      expect(pair.compareToSibiling(quads)).toEqual(-1)
+      expect(pair.compareToSibiling(straightFlush)).toEqual(-1)
+    });
+
+    it('should return 1 for every class lower then itself', function() {
+      expect(pair.compareToSibiling(highCard)).toEqual(1)
+    });
+
+  describe('when comparing two pair to other classes', function() {
+
+    it('should return 0 when comparing to itself', function() {
+      expect(twoPair.compareToSibiling(twoPair)).toEqual(0)
+    })
+    
+    it('should return -1 for every class higher then itself', function() {
+      expect(twoPair.compareToSibiling(trips)).toEqual(-1)
+      expect(twoPair.compareToSibiling(straight)).toEqual(-1)
+      expect(twoPair.compareToSibiling(flush)).toEqual(-1)
+      expect(twoPair.compareToSibiling(fullHouse)).toEqual(-1)
+      expect(twoPair.compareToSibiling(quads)).toEqual(-1)
+      expect(twoPair.compareToSibiling(straightFlush)).toEqual(-1)
+    });
+
+    it('should return 1 for every class lower then itself', function() {
+      expect(twoPair.compareToSibiling(pair)).toEqual(1)
+      expect(twoPair.compareToSibiling(highCard)).toEqual(1)
+    });
+  });
+
+  describe('when comparing trips to other classes', function() {
+
+    it('should return 0 when comparing to itself', function() {
+      expect(trips.compareToSibiling(trips)).toEqual(0)
+    })
+    
+    it('should return -1 for every class higher then itself', function() {
+      expect(trips.compareToSibiling(straight)).toEqual(-1)
+      expect(trips.compareToSibiling(flush)).toEqual(-1)
+      expect(trips.compareToSibiling(fullHouse)).toEqual(-1)
+      expect(trips.compareToSibiling(quads)).toEqual(-1)
+      expect(trips.compareToSibiling(straightFlush)).toEqual(-1)
+    });
+
+    it('should return 1 for every class lower then itself', function() {
+      expect(trips.compareToSibiling(twoPair)).toEqual(1)
+      expect(trips.compareToSibiling(pair)).toEqual(1)
+      expect(trips.compareToSibiling(highCard)).toEqual(1)
+    });
+  });
+  describe('when comparing straight to other classes', function() {
+
+    it('should return 0 when comparing to itself', function() {
+      expect(straight.compareToSibiling(straight)).toEqual(0)
+    })
+    
+    it('should return -1 for every class higher then itself', function() {
+      expect(straight.compareToSibiling(flush)).toEqual(-1)
+      expect(straight.compareToSibiling(fullHouse)).toEqual(-1)
+      expect(straight.compareToSibiling(quads)).toEqual(-1)
+      expect(straight.compareToSibiling(straightFlush)).toEqual(-1)
+    });
+
+    it('should return 1 for every class lower then itself', function() {
+      expect(straight.compareToSibiling(trips)).toEqual(1)
+      expect(straight.compareToSibiling(twoPair)).toEqual(1)
+      expect(straight.compareToSibiling(pair)).toEqual(1)
+      expect(straight.compareToSibiling(highCard)).toEqual(1)
+    });
+  });
+
+
+  describe('when comparing flush to other classes', function() {
+
+    it('should return 0 when comparing to itself', function() {
+      expect(flush.compareToSibiling(flush)).toEqual(0)
+    })
+    
+    it('should return -1 for every class higher then itself', function() {
+      expect(flush.compareToSibiling(fullHouse)).toEqual(-1)
+      expect(flush.compareToSibiling(quads)).toEqual(-1)
+      expect(flush.compareToSibiling(straightFlush)).toEqual(-1)
+    });
+
+    it('should return 1 for every class lower then itself', function() {
+      expect(flush.compareToSibiling(straight)).toEqual(1)
+      expect(flush.compareToSibiling(trips)).toEqual(1)
+      expect(flush.compareToSibiling(twoPair)).toEqual(1)
+      expect(flush.compareToSibiling(pair)).toEqual(1)
+      expect(flush.compareToSibiling(highCard)).toEqual(1)
+    });
+  });
+
+
+  describe('when comparing fullHouse to other classes', function() {
+
+    it('should return 0 when comparing to itself', function() {
+      expect(fullHouse.compareToSibiling(fullHouse)).toEqual(0)
+    })
+    
+    it('should return -1 for every class higher then itself', function() {
+      expect(fullHouse.compareToSibiling(quads)).toEqual(-1)
+      expect(fullHouse.compareToSibiling(straightFlush)).toEqual(-1)
+    });
+
+    it('should return 1 for every class lower then itself', function() {
+      expect(fullHouse.compareToSibiling(flush)).toEqual(1)
+      expect(fullHouse.compareToSibiling(straight)).toEqual(1)
+      expect(fullHouse.compareToSibiling(trips)).toEqual(1)
+      expect(fullHouse.compareToSibiling(twoPair)).toEqual(1)
+      expect(fullHouse.compareToSibiling(pair)).toEqual(1)
+      expect(fullHouse.compareToSibiling(highCard)).toEqual(1)
+    });
+  });
+
+  describe('when comparing quads to other classes', function() {
+
+    it('should return 0 when comparing to itself', function() {
+      expect(quads.compareToSibiling(quads)).toEqual(0)
+    })
+    
+    it('should return -1 for every class higher then itself', function() {
+      expect(quads.compareToSibiling(straightFlush)).toEqual(-1)
+    });
+
+    it('should return 1 for every class lower then itself', function() {
+      expect(quads.compareToSibiling(fullHouse)).toEqual(1)
+      expect(quads.compareToSibiling(flush)).toEqual(1)
+      expect(quads.compareToSibiling(straight)).toEqual(1)
+      expect(quads.compareToSibiling(trips)).toEqual(1)
+      expect(quads.compareToSibiling(twoPair)).toEqual(1)
+      expect(quads.compareToSibiling(pair)).toEqual(1)
+      expect(quads.compareToSibiling(highCard)).toEqual(1)
+    });
+  });
+
+  describe('when comparing quads to other classes', function() {
+
+    it('should return 0 when comparing to itself', function() {
+      expect(straightFlush.compareToSibiling(straightFlush)).toEqual(0)
+    })
+    
+    it('should return 1 for every class lower then itself', function() {
+      expect(straightFlush.compareToSibiling(quads)).toEqual(1)
+      expect(straightFlush.compareToSibiling(fullHouse)).toEqual(1)
+      expect(straightFlush.compareToSibiling(flush)).toEqual(1)
+      expect(straightFlush.compareToSibiling(straight)).toEqual(1)
+      expect(straightFlush.compareToSibiling(trips)).toEqual(1)
+      expect(straightFlush.compareToSibiling(twoPair)).toEqual(1)
+      expect(straightFlush.compareToSibiling(pair)).toEqual(1)
+      expect(straightFlush.compareToSibiling(highCard)).toEqual(1)
+    });
+  });
+  
 
     
 });
