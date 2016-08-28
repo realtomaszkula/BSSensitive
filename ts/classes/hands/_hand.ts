@@ -3,9 +3,11 @@ import { Card, HandRank, HandParams, HandStrength,  Suit, CardValue } from './_i
 export class Hand {
   protected _rank: HandRank;
   protected _handStrength: HandStrength;
-  protected _values: CardValue[]
   protected _suits: Suit[]
-  protected _cards: [Card, Card, Card, Card, Card] 
+  protected _cards: Card[]
+  protected _values: CardValue[]
+  protected _kickers: CardValue[]
+
 
   constructor( params: HandParams ){
     this._cards = params.cards;
@@ -24,6 +26,20 @@ export class Hand {
     this._values = this._cards.map( card => card.value )
   }
 
+  private sortKickers(): void {
+    this._kickers = this._kickers.sort( (a, b) => b - a)
+  }
+
+  protected setKickers(...excluded): void {
+    // kickers is anything thats not relevant for given hand,
+    // so pair will pass pair, two pair will pass both pairs etc.
+    // this function collects the remaining values
+
+    // if value match any of forbiden elems, filter it out
+    this._kickers = this._values.filter( v => !excluded.some( n => v === n ) )
+    this.sortKickers();
+  }
+
   protected compare(params: { my: CardValue, other: CardValue }): number {
     if (params.my > params.other) {
       return 1
@@ -33,5 +49,7 @@ export class Hand {
       return 0
     }
   }
+
+
 }
 

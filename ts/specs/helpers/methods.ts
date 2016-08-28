@@ -18,4 +18,8 @@ function getPair(defaultParams: stepPairDefault, first: step, second: step) {
   return { firstPair: new Pair(firstParams), secondPair: new Pair(secondParams)}
 }
 
-export { card, getPair }
+function getTwoPair() {
+
+}
+
+export { card, getPair, getTwoPair }

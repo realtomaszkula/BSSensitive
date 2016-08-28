@@ -1,11 +1,10 @@
 import { Card, HandRank, HandParams,  Suit, CardValue, PairParams } from './_interfaces'
 import { Hand } from './_hand'
-import { returnThreeCast } from './../../typecasting/arrays'
 
 export class Pair extends Hand {
 
   private _pair: CardValue
-  private _kickers: [CardValue, CardValue, CardValue]
+  private _kickers: CardValue[]
 
   constructor( params: PairParams ) {
     super(params)
@@ -16,18 +15,9 @@ export class Pair extends Hand {
     return this._pair;
   }
 
-  get kickers(): [CardValue, CardValue, CardValue] {
+  get kickers(): CardValue[] {
     return this._kickers;
   }
-
-  private setKickers(): void {
-    this._kickers = returnThreeCast(this._values.filter( cardValue => cardValue != this._pair ))
-  }
-
-  private sortKickers(): void {
-    this._kickers = returnThreeCast(this._kickers.sort( (a, b) => b - a))
-  }
-
   private checkKickers(other:Pair) {
     let hisKickers =  other.kickers
     let myKickers = this.kickers
@@ -42,8 +32,7 @@ export class Pair extends Hand {
 
   prepareForResolving() {
     this.setValues();
-    this.setKickers();
-    this.sortKickers();
+    super.setKickers(this._pair);
   }
 
   resolveConflict(other:Pair): number {

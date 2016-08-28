@@ -1,16 +1,18 @@
 import { Suit } from './../classes/hands/_interfaces'
 
 function returnThreeCast<T>(arr: T[]): [T, T, T] {
-  if (arr.length !== 3) {
-    throw new Error('Array should have length of 3')
-  }
+  if (arr.length !== 3)throw new Error('Array should have length of 3')
   return <any>arr;
 }
 
 function returnFiveCast<T>(arr: T[]): [T, T, T, T, T] {
-  if (arr.length !== 5)
-    throw new Error('Array should have length of 5')
-    return <any>arr;
+  if (arr.length !== 5) throw new Error('Array should have length of 5')
+  return <any>arr;
+}
+
+function returnTwoCast<T>(arr: T[]): [T, T] {
+  if(arr.length !== 2) throw new Error('Array should have length of 2')
+  return <any>arr;
 }
 
 function castSuit(arg:string): Suit {
@@ -19,4 +21,4 @@ function castSuit(arg:string): Suit {
 	return <any>arg
 }
 
-export { returnThreeCast, returnFiveCast, castSuit }
+export { returnThreeCast, returnFiveCast, returnTwoCast, castSuit }
