@@ -1,16 +1,10 @@
 import { HandRankSearch } from './../classes/hands/_handReading'
 import { Pair } from './../classes/hands/Pair'
-import { TwoPair } from './../classes/hands/TwoPair'
-import { Trips } from './../classes/hands/Trips'
-import { Straight } from './../classes/hands/Straight'
-import { FullHouse } from './../classes/hands/FullHouse'
-import { Flush } from './../classes/hands/Flush'
-import { Quads } from './../classes/hands/Quads'
-import { StraightFlush } from './../classes/hands/StraightFlush'
 import { Card, HandRank, HandStrength, HandParams,  Suit, CardValue, 
   Search, PairParams, TwoPairParams, TripsParams, StraightParams, FlushParams, FullHouseParams, QuadsParams, StraightFlushParams,
   SearchesOnceAndRemembers } from './../classes/hands/_interfaces'
 import { card, getPair } from './helpers/methods'
+import { returnFiveCast } from './../typecasting/arrays'
 
 describe('Pair', function() {
 
@@ -67,10 +61,10 @@ describe('Pair', function() {
   describe('with different 1st kicker', function() {
     beforeEach(function() {
       let cards = {
-        cards: [ card('aceOfClubs'), card('aceOfSpades'), card('kingOfSpades'), card('queenOfClubs'), card('jackOfSpades')]
+        cards: returnFiveCast([ card('aceOfClubs'), card('aceOfSpades'), card('kingOfSpades'), card('queenOfClubs'), card('jackOfSpades')])
       };
       let otherCards = {
-        cards: [ card('aceOfDiamonds'), card('aceOfHearts'), card('queenOfDiamonds'), card('jackOfDiamonds'), card('tenOfSpades')],
+        cards: returnFiveCast([ card('aceOfDiamonds'), card('aceOfHearts'), card('queenOfDiamonds'), card('jackOfDiamonds'), card('tenOfSpades')]),
       };
       
       ({ firstPair, secondPair } = getPair(defaultParams, cards, otherCards));
@@ -88,10 +82,10 @@ describe('Pair', function() {
   describe('with different 2nd kicker', function() {
     beforeEach(function() {
       let cards = {
-        cards: [ card('aceOfClubs'), card('aceOfSpades'), card('kingOfSpades'), card('queenOfClubs'), card('jackOfSpades')]
+        cards: returnFiveCast([ card('aceOfClubs'), card('aceOfSpades'), card('kingOfSpades'), card('queenOfClubs'), card('jackOfSpades')])
       };
       let otherCards = {
-        cards: [ card('aceOfDiamonds'), card('aceOfHearts'), card('kingOfDiamonds'), card('jackOfDiamonds'), card('tenOfSpades')],
+        cards: returnFiveCast([ card('aceOfDiamonds'), card('aceOfHearts'), card('kingOfDiamonds'), card('jackOfDiamonds'), card('tenOfSpades')]),
       };
       
       ({ firstPair, secondPair } = getPair(defaultParams, cards, otherCards));
@@ -109,10 +103,10 @@ describe('Pair', function() {
   describe('with different 3rd kicker', function() {
     beforeEach(function() {
       let cards = {
-        cards: [ card('aceOfClubs'), card('aceOfSpades'), card('kingOfSpades'), card('queenOfClubs'), card('jackOfSpades')]
+        cards: returnFiveCast([ card('aceOfClubs'), card('aceOfSpades'), card('kingOfSpades'), card('queenOfClubs'), card('jackOfSpades')])
       };
       let otherCards = {
-        cards: [ card('aceOfDiamonds'), card('aceOfHearts'), card('kingOfDiamonds'), card('queenOfDiamonds'), card('tenOfSpades')],
+        cards: returnFiveCast([ card('aceOfDiamonds'), card('aceOfHearts'), card('kingOfDiamonds'), card('queenOfDiamonds'), card('tenOfSpades')]),
       };
       
       ({ firstPair, secondPair } = getPair(defaultParams, cards, otherCards));
@@ -131,15 +125,13 @@ describe('Pair', function() {
     
     it('should return 0', function() {
       let cards = {
-        cards: [ card('aceOfClubs'), card('aceOfSpades'), card('kingOfSpades'), card('queenOfClubs'), card('jackOfSpades')]
+        cards: returnFiveCast([ card('aceOfClubs'), card('aceOfSpades'), card('kingOfSpades'), card('queenOfClubs'), card('jackOfSpades')])
       };
       let otherCards = {
-        cards: [ card('aceOfDiamonds'), card('aceOfHearts'), card('kingOfDiamonds'), card('queenOfDiamonds'), card('jackOfHearts')],
+        cards: returnFiveCast([ card('aceOfDiamonds'), card('aceOfHearts'), card('kingOfDiamonds'), card('queenOfDiamonds'), card('jackOfHearts')]),
       };
       
       ({ firstPair, secondPair } = getPair(defaultParams, cards, otherCards));
-      console.log(firstPair)
-      console.log(secondPair)
       expect(firstPair.resolveConflict(secondPair)).toEqual(0)
     })
   });
