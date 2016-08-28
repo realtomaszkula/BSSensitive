@@ -61,7 +61,12 @@ export class Hand {
     return 0;
   }
 
-  private resolveConflict(){};
+  private resolveConflict(other: CardClass): number{
+    if( 1 ) {
+      throw new Error('child class must implement resolveConflict method')
+    } 
+    return 42;
+  };
 
   compareTo(other: CardClass): number {
     if (this.constructor.name === other.constructor.name) {

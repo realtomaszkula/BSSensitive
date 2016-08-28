@@ -87,8 +87,8 @@ describe('Straight', function() {
     });
 
     it('should return 1 when higher', function() {
-            console.log(firstHand)
-      console.log(secondHand)
+            
+      
       expect( firstHand.compareTo(secondHand)).toEqual(1)
     });
 
