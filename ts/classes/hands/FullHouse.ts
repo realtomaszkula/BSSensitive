@@ -3,30 +3,28 @@ import { Hand } from './_hand'
 
 export class FullHouse extends Hand implements HandClass {
 
-  private _trips: [Card, Card, Card]
-  private _pair: [Card, Card]
+  private _trips: CardValue;
+  private _pair: CardValue;
 
   constructor( params: FullHouseParams ) {
     super(params)
+    this._pair = params.pair;
+    this._trips = params.trips;
   }
 
-  get trips(): Card {
-    return this._trips[0]
+  get trips(): CardValue {
+    return this._trips
   }
 
-  get pair(): Card {
-    return this._pair[0]
-  }
-
-  private checkPair(other: FullHouse) :number {
-    return this.compare({ my: this.pair, other: other.pair})
+  get pair(): CardValue {
+    return this._pair
   }
 
   resolveConlict(other: FullHouse) {
-    if (this.trips.value === other.trips.value) { 
-      return this.checkPair(other)   
+    if (this.trips === other.trips) { 
+      return super.compare(this.pair, other.pair)   
     } 
 
-    (this.trips.value > other.trips.value) ? 1 : -1
+    return (this.trips > other.trips) ? 1 : -1
   }
 }
