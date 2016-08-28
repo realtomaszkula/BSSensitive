@@ -67,11 +67,11 @@ interface StraightParams extends HandParams {
 interface FlushParams extends HandParams {
 }
 interface FullHouseParams extends HandParams {
-  trips: HandStrength,
-  pair: HandStrength
+  trips: CardValue,
+  pair: CardValue
 }
 interface QuadsParams extends HandParams {
-  quads: HandStrength
+  quads: CardValue
 }
 interface StraightFlushParams extends HandParams {
   highestCard: CardValue
