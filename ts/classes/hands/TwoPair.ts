@@ -35,7 +35,7 @@ export class TwoPair extends Hand {
       return this.checkKickers(other)   
     } 
 
-    (this.lowerPair > other.lowerPair) ? 1 : -1
+    return (this.lowerPair > other.lowerPair) ? 1 : -1
   }
 
   prepareForResolving() {
@@ -48,6 +48,6 @@ export class TwoPair extends Hand {
       return this.checkLowerPair(other)   
     } 
 
-    (this.higherPair > other.higherPair) ? 1 : -1
+    return (this.higherPair > other.higherPair) ? 1 : -1
   }  
 }

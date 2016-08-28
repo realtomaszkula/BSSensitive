@@ -30,7 +30,7 @@ export class Hand {
     this._kickers = this._kickers.sort( (a, b) => b - a)
   }
 
-  protected setKickers(...excluded): void {
+  protected setKickers(...excluded: CardValue[]): void {
     // kickers is anything thats not relevant for given hand,
     // so pair will pass pair, two pair will pass both pairs etc.
     // this function collects the remaining values
