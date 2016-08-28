@@ -5,7 +5,7 @@ import { Card, CardClass, HandStrength, HandParams,  Suit, CardValue,
 import { card } from './helpers/methods'
 
 
-describe('Trips', function() {
+describe('Straight', function() {
   let hand: Straight;
   describe('when creating an instance of Straight', function() {
     let params: StraightParams = {

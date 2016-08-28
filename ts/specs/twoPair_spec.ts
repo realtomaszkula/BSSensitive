@@ -91,16 +91,16 @@ describe('when comparing to another TwoPair', function() {
     let secondTwoPair: TwoPair;
       beforeEach(function() {
         let params: TwoPairParams = {
-          cards: [card('aceOfSpades'), card('aceOfDiamonds'), card('kingOfSpades'), card('kingOfDiamonds'), card('duceOfClubs')],
+          cards: [ card('aceOfClubs'), card('aceOfHearts'), card('kingOfClubs'), card('kingOfHearts'), card('threeOfSpades')],
           handStrength: HandStrength.twoPair,
           higherPair: CardValue.ace,
           lowerPair: CardValue.king
         }
         let anotherParams: TwoPairParams = {
-          cards: [ card('aceOfClubs'), card('aceOfHearts'), card('kingOfClubs'), card('kingOfHearts'), card('threeOfSpades')],
+          cards: [card('aceOfSpades'), card('aceOfDiamonds'), card('kingOfSpades'), card('kingOfDiamonds'), card('duceOfClubs')],
           handStrength: HandStrength.twoPair,
           higherPair: CardValue.ace,
-          lowerPair: CardValue.jack
+          lowerPair: CardValue.king
         }
         firstTwoPair = new TwoPair(params)
         secondTwoPair = new TwoPair(anotherParams)

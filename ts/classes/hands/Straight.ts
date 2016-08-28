@@ -3,7 +3,7 @@ import { Hand } from './_hand'
 
 export class Straight extends Hand implements HandClass {
 
-  private _highestCard: CardValue
+  private _highestCard: CardValue;
 
   constructor( params: StraightParams ) {
     super(params);
@@ -14,7 +14,13 @@ export class Straight extends Hand implements HandClass {
     return this._highestCard;
   }
 
+  setKickers() {
+    super.setKickers(this._highestCard);
+  }
+  
   resolveConflict(other: Straight): number {
-    return this.compare( {my: this.highestCard, other: other.highestCard} )
+    this.setKickers();
+    other.setKickers();
+    return this.checkKickers(other);
   }
 }

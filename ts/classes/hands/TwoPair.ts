@@ -26,29 +26,26 @@ export class TwoPair extends Hand implements HandClass {
     return this._kickers[0]
   }
 
-  private checkKickers(other: TwoPair) {
-    this.prepareForResolving();
-    other.prepareForResolving();
-    return this.compare({my: this.kicker, other: other.kicker})
+  setKickers() {
+    super.setKickers(this._lowerPair, this._higherPair)
+  }
+
+  private checkHigherPair(other: TwoPair) {
+    if (this.higherPair === other.higherPair) { 
+      return this.checkLowerPair(other)   
+    } 
+    return (this.higherPair > other.higherPair) ? 1 : -1
   }
 
   private checkLowerPair(other: TwoPair) {
     if (this.lowerPair === other.lowerPair) { 
+      this.setKickers();
+      other.setKickers();
       return this.checkKickers(other)   
     } 
-
     return (this.lowerPair > other.lowerPair) ? 1 : -1
   }
-
-  prepareForResolving() {
-    super.setKickers(this._higherPair, this.lowerPair)
-  }
-
   resolveConflict(other: TwoPair): number {
-    if (this.higherPair === other.higherPair) { 
-      return this.checkLowerPair(other)   
-    } 
-
-    return (this.higherPair > other.higherPair) ? 1 : -1
+    return this.checkHigherPair(other);
   }  
 }

@@ -14,7 +14,18 @@ export class Trips extends Hand implements HandClass {
     return this._trips;
   }
 
+  setKickers() {
+    super.setKickers(this._trips)
+  }
+
   resolveConflict(other: Trips): number {
-    return this.compare({ my: this.trips, other: other.trips })
+    if (this.trips === other.trips) { 
+      this.setKickers();
+      other.setKickers();
+      return this.checkKickers(other);   
+    } 
+
+    return (this.trips > other.trips) ? 1 : -1;
+
   }
 }

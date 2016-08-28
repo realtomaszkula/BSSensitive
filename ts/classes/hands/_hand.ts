@@ -17,6 +17,10 @@ export class Hand {
     return this._rank;  
   }
 
+  get kickers(): CardValue[] {
+    return this._kickers;
+  }
+
   private setValues() {
     this._values = this._cards.map( card => card.value )
   }
@@ -36,22 +40,20 @@ export class Hand {
     this.sortKickers();
   }
 
-  protected checkKickers(params: { thisKickers: CardValue[], otherKickers: CardValue[] }) {
-    for( let kicker in params.thisKickers) {
-      let r = this.compare({ my: params.thisKickers[kicker], other: params.otherKickers[kicker]} )
+  protected checkKickers(other: CardClass) {
+    let otherKickers = other.kickers;
+    let thisKickers = this._kickers;
+    for( let kicker in thisKickers) {
+      let r = this.compare(thisKickers[kicker],otherKickers[kicker])
       if ( r == 1 || r == -1 ) return r;
     }
    return 0;
   }
 
-  protected compare(params: { my: CardValue, other: CardValue }): number {
-    if (params.my > params.other) {
-      return 1
-    } else if ( params.other > params.my) {
-      return -1
-    } else {
-      return 0
-    }
+  protected compare(thisKicker: CardValue, otherKicker: CardValue): number {
+    if (thisKicker > otherKicker) return 1;
+    if (thisKicker < otherKicker) return -1
+    return 0;
   }
 
 

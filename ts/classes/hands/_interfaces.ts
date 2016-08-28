@@ -82,6 +82,7 @@ type SearchesOnceAndRemembers = () => Search;
 
 interface HandClass {
   resolveConflict(other: CardClass ): number
+  setKickers(): void
 }
 
 export { HandClass, Card, CardClass, HandStrength, HandParams,  Suit, CardValue, 
