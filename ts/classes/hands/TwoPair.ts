@@ -27,7 +27,9 @@ export class TwoPair extends Hand {
   }
 
   private checkKickers(other: TwoPair) {
-    return this.compare({my: this._kickers[0], other: other._kickers[0]})
+    this.prepareForResolving();
+    other.prepareForResolving();
+    return this.compare({my: this.kicker, other: other.kicker})
   }
 
   private checkLowerPair(other: TwoPair) {
@@ -40,7 +42,7 @@ export class TwoPair extends Hand {
 
   prepareForResolving() {
     this.setValues();
-    this.setKickers(this._higherPair, this.lowerPair)
+    super.setKickers(this._higherPair, this.lowerPair)
   }
 
   resolveConflict(other: TwoPair): number {
