@@ -16,6 +16,10 @@ export class Straight extends Hand implements HandClass {
 
   get highestCard(): CardValue {
     return this._highestCard;
+  } 
+
+  get isWheel(): boolean {
+    return this._isWheelStr8;
   }
 
   private sortValues() {

@@ -17,6 +17,22 @@ describe('Straight', function() {
     it('should set highest card correctly', function() {
       expect( hand.highestCard ).toEqual( CardValue.ace )
     });
+
+    it('should set isWheel to false when passed not wheel str8', function() {
+      expect( hand.isWheel ).toBe( false )
+    });
+
+    
+    it('should set isWheel to true when passeed wheel str8', function() {
+      let params2: StraightParams = {
+        cards: [ card('fiveOfSpades'), card('fourOfSpades'), card('threeOfClubs'), card('duceOfSpades'), card('aceOfDiamonds')],
+        handStrength: HandStrength.straight,
+      };    
+      let hand2 = new Straight(params2);
+
+      expect(hand2.isWheel).toBe(true);
+    });
+      
       
   });
     
