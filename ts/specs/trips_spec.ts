@@ -45,15 +45,15 @@ describe('Trips', function() {
 
     
     it('should return 1 when higher', function() {
-      expect( firstHand.resolveConflict(secondHand)).toEqual(1)
+      expect( firstHand.compareTo(secondHand)).toEqual(1)
     });
 
     it('should return -1 when lower', function() {
-      expect( secondHand.resolveConflict(firstHand)).toEqual(-1)
+      expect( secondHand.compareTo(firstHand)).toEqual(-1)
     });
 
     it('should return 0 if the same', function() {
-      expect( secondHand.resolveConflict(secondHand)).toEqual(0)
+      expect( secondHand.compareTo(secondHand)).toEqual(0)
     });
       
   });
@@ -80,11 +80,11 @@ describe('Trips', function() {
 
       
       it('should return 1 when higher', function() {
-        expect( firstHand.resolveConflict(secondHand)).toEqual(1)
+        expect( firstHand.compareTo(secondHand)).toEqual(1)
       });
 
       it('should return -1 when lower', function() {
-        expect( secondHand.resolveConflict(firstHand)).toEqual(-1)
+        expect( secondHand.compareTo(firstHand)).toEqual(-1)
       });
       
 
@@ -109,11 +109,11 @@ describe('Trips', function() {
         secondHand = new Trips(secondParams)
       })
       it('should return 1 when higher', function() {
-        expect( firstHand.resolveConflict(secondHand)).toEqual(1)
+        expect( firstHand.compareTo(secondHand)).toEqual(1)
       });
 
       it('should return -1 when lower', function() {
-        expect( secondHand.resolveConflict(firstHand)).toEqual(-1)
+        expect( secondHand.compareTo(firstHand)).toEqual(-1)
       });
     });
       
@@ -129,7 +129,7 @@ describe('Trips', function() {
         firstHand = new Trips(firstParams)
       })
       it('should return 1 when higher', function() {
-        expect( firstHand.resolveConflict(firstHand)).toEqual(0)
+        expect( firstHand.compareTo(firstHand)).toEqual(0)
       });
     });
       

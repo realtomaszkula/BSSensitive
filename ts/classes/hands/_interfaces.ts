@@ -88,4 +88,4 @@ interface HandClass {
 
 export { HandClass, Card, CardClass, HandStrength, HandParams,  Suit, CardValue, 
   Search, PairParams, TwoPairParams, TripsParams, StraightParams, FlushParams, FullHouseParams, QuadsParams, StraightFlushParams, HighCardParams
-  SearchesOnceAndRemembers }
+  , SearchesOnceAndRemembers }

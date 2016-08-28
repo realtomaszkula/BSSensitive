@@ -52,11 +52,11 @@ describe('FullHouse', function() {
       });
         
       it('should return 1 when higher', function() {
-        expect( firstHand.resolveConflict(secondHand)).toEqual(1)
+        expect( firstHand.compareTo(secondHand)).toEqual(1)
       });
 
       it('should return -1 when lower', function() {
-        expect( secondHand.resolveConflict(firstHand)).toEqual(-1)
+        expect( secondHand.compareTo(firstHand)).toEqual(-1)
       });
 
     });
@@ -85,11 +85,11 @@ describe('FullHouse', function() {
       });
         
       it('should return 1 when higher', function() {
-        expect( firstHand.resolveConflict(secondHand)).toEqual(1)
+        expect( firstHand.compareTo(secondHand)).toEqual(1)
       });
 
       it('should return -1 when lower', function() {
-        expect( secondHand.resolveConflict(firstHand)).toEqual(-1)
+        expect( secondHand.compareTo(firstHand)).toEqual(-1)
       });
     });
 
@@ -118,11 +118,11 @@ describe('FullHouse', function() {
       });
         
       it('should return 1 when higher', function() {
-        expect( firstHand.resolveConflict(secondHand)).toEqual(1)
+        expect( firstHand.compareTo(secondHand)).toEqual(1)
       });
 
       it('should return -1 when lower', function() {
-        expect( secondHand.resolveConflict(firstHand)).toEqual(-1)
+        expect( secondHand.compareTo(firstHand)).toEqual(-1)
       });
     });
       
@@ -141,7 +141,7 @@ describe('FullHouse', function() {
       });
         
       it('should return 0 when the same', function() {
-        expect( firstHand.resolveConflict(firstHand)).toEqual(0)
+        expect( firstHand.compareTo(firstHand)).toEqual(0)
       });
 
     });

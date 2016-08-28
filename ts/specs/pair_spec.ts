@@ -45,10 +45,10 @@ describe('Pair', function() {
     });
       
     it('should recognize bigger pair', function() {
-      expect(firstPair.resolveConflict(secondPair)).toEqual(-1)
+      expect(firstPair.compareTo(secondPair)).toEqual(-1)
     });
     it('should recognize lower pair', function() {
-      expect(secondPair.resolveConflict(firstPair)).toEqual(1)
+      expect(secondPair.compareTo(firstPair)).toEqual(1)
     }); 
   });
   
@@ -71,10 +71,10 @@ describe('Pair', function() {
     });
 
     it('should return 1 if higher', function() {
-      expect(firstPair.resolveConflict(secondPair)).toEqual(1)
+      expect(firstPair.compareTo(secondPair)).toEqual(1)
     })
     it('should return -1 if lower', function() {
-      expect(secondPair.resolveConflict(firstPair)).toEqual(-1)
+      expect(secondPair.compareTo(firstPair)).toEqual(-1)
     })
       
     });
@@ -92,10 +92,10 @@ describe('Pair', function() {
     });
 
     it('should return 1 if higher', function() {
-      expect(firstPair.resolveConflict(secondPair)).toEqual(1)
+      expect(firstPair.compareTo(secondPair)).toEqual(1)
     })
     it('should return -1 if lower', function() {
-      expect(secondPair.resolveConflict(firstPair)).toEqual(-1)
+      expect(secondPair.compareTo(firstPair)).toEqual(-1)
     })
       
     });
@@ -113,10 +113,10 @@ describe('Pair', function() {
     });
 
     it('should return 1 if higher', function() {
-      expect(firstPair.resolveConflict(secondPair)).toEqual(1)
+      expect(firstPair.compareTo(secondPair)).toEqual(1)
     })
     it('should return -1 if lower', function() {
-      expect(secondPair.resolveConflict(firstPair)).toEqual(-1)
+      expect(secondPair.compareTo(firstPair)).toEqual(-1)
     })
     });
 
@@ -132,7 +132,7 @@ describe('Pair', function() {
       };
       
       ({ firstPair, secondPair } = getPair(defaultParams, cards, otherCards));
-      expect(firstPair.resolveConflict(secondPair)).toEqual(0)
+      expect(firstPair.compareTo(secondPair)).toEqual(0)
     })
   });
     

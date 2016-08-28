@@ -51,10 +51,10 @@ describe('when comparing to another TwoPair', function() {
       });
         
       it('should return 1 if higher', function() {
-        expect(firstTwoPair.resolveConflict(secondTwoPair)).toEqual(1)
+        expect(firstTwoPair.compareTo(secondTwoPair)).toEqual(1)
       });
       it('should return -1 if lower', function() {
-        expect(secondTwoPair.resolveConflict(firstTwoPair)).toEqual(-1)
+        expect(secondTwoPair.compareTo(firstTwoPair)).toEqual(-1)
       }); 
     });
 
@@ -79,10 +79,10 @@ describe('when comparing to another TwoPair', function() {
       });
         
       it('should return 1 if higher', function() {
-        expect(firstTwoPair.resolveConflict(secondTwoPair)).toEqual(1)
+        expect(firstTwoPair.compareTo(secondTwoPair)).toEqual(1)
       });
       it('should return -1 if lower', function() {
-        expect(secondTwoPair.resolveConflict(firstTwoPair)).toEqual(-1)
+        expect(secondTwoPair.compareTo(firstTwoPair)).toEqual(-1)
       }); 
     });
 
@@ -107,10 +107,10 @@ describe('when comparing to another TwoPair', function() {
       });
         
       it('should return 1 if higher', function() {
-        expect(firstTwoPair.resolveConflict(secondTwoPair)).toEqual(1)
+        expect(firstTwoPair.compareTo(secondTwoPair)).toEqual(1)
       });
       it('should return -1 if lower', function() {
-        expect(secondTwoPair.resolveConflict(firstTwoPair)).toEqual(-1)
+        expect(secondTwoPair.compareTo(firstTwoPair)).toEqual(-1)
       }); 
     });
     
@@ -137,10 +137,10 @@ describe('when comparing to another TwoPair', function() {
       });
         
       it('should return 1 if higher', function() {
-        expect(firstTwoPair.resolveConflict(secondTwoPair)).toEqual(0)
+        expect(firstTwoPair.compareTo(secondTwoPair)).toEqual(0)
       });
       it('should return -1 if lower', function() {
-        expect(secondTwoPair.resolveConflict(firstTwoPair)).toEqual(0)
+        expect(secondTwoPair.compareTo(firstTwoPair)).toEqual(0)
       }); 
     });
     

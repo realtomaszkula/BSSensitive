@@ -26,7 +26,7 @@ describe('Flush', function() {
       });
       
       it('should return 0', function() {
-        expect( secondHand.resolveConflict(secondHand)).toEqual(0)
+        expect( secondHand.compareTo(secondHand)).toEqual(0)
       });
     });
 
@@ -45,11 +45,11 @@ describe('Flush', function() {
       });
       
       it('should return 1 when higher', function() {
-        expect( firstHand.resolveConflict(secondHand)).toEqual(1)
+        expect( firstHand.compareTo(secondHand)).toEqual(1)
       });
 
       it('should return -1 when lower', function() {
-        expect( secondHand.resolveConflict(firstHand)).toEqual(-1)
+        expect( secondHand.compareTo(firstHand)).toEqual(-1)
       });
     });
 
@@ -68,11 +68,11 @@ describe('Flush', function() {
       });
       
       it('should return 1 when higher', function() {
-        expect( firstHand.resolveConflict(secondHand)).toEqual(1)
+        expect( firstHand.compareTo(secondHand)).toEqual(1)
       });
 
       it('should return -1 when lower', function() {
-        expect( secondHand.resolveConflict(firstHand)).toEqual(-1)
+        expect( secondHand.compareTo(firstHand)).toEqual(-1)
       });
     });
 
@@ -91,11 +91,11 @@ describe('Flush', function() {
       });
       
       it('should return 1 when higher', function() {
-        expect( firstHand.resolveConflict(secondHand)).toEqual(1)
+        expect( firstHand.compareTo(secondHand)).toEqual(1)
       });
 
       it('should return -1 when lower', function() {
-        expect( secondHand.resolveConflict(firstHand)).toEqual(-1)
+        expect( secondHand.compareTo(firstHand)).toEqual(-1)
       });
     });
 
@@ -114,11 +114,11 @@ describe('Flush', function() {
       });
       
       it('should return 1 when higher', function() {
-        expect( firstHand.resolveConflict(secondHand)).toEqual(1)
+        expect( firstHand.compareTo(secondHand)).toEqual(1)
       });
 
       it('should return -1 when lower', function() {
-        expect( secondHand.resolveConflict(firstHand)).toEqual(-1)
+        expect( secondHand.compareTo(firstHand)).toEqual(-1)
       });
     });
 
@@ -137,11 +137,11 @@ describe('Flush', function() {
       });
       
       it('should return 1 when higher', function() {
-        expect( firstHand.resolveConflict(secondHand)).toEqual(1)
+        expect( firstHand.compareTo(secondHand)).toEqual(1)
       });
 
       it('should return -1 when lower', function() {
-        expect( secondHand.resolveConflict(firstHand)).toEqual(-1)
+        expect( secondHand.compareTo(firstHand)).toEqual(-1)
       });
     });
 
