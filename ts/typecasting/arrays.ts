@@ -11,4 +11,10 @@ function returnFiveCast<T>(arr: T[]): [T, T, T, T, T] {
     return <any>arr;
 }
 
-export { returnThreeCast, returnFiveCast }
+function castSuit(arg:string): Suit {
+	let isSuit = ['spade', 'club', 'diamond', 'heart'].some( s => s === arg)
+	if(!isSuit) throw new Error('Incorrect suit name')
+	return <any>arg
+}
+
+export { returnThreeCast, returnFiveCast, castSuit }
