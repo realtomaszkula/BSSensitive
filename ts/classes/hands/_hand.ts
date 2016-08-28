@@ -36,6 +36,14 @@ export class Hand {
     this.sortKickers();
   }
 
+  protected checkKickers(params: { thisKickers: CardValue[], otherKickers: CardValue[] }) {
+    for( let kicker in params.thisKickers) {
+      let r = this.compare({ my: params.thisKickers[kicker], other: params.otherKickers[kicker]} )
+      if ( r == 1 || r == -1 ) return r;
+    }
+   return 0;
+  }
+
   protected compare(params: { my: CardValue, other: CardValue }): number {
     if (params.my > params.other) {
       return 1
