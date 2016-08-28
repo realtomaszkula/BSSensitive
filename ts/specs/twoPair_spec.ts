@@ -2,8 +2,7 @@ import { HandRankSearch } from './../classes/hands/_handReading'
 import { TwoPair } from './../classes/hands/TwoPair'
 import { Card, HandRank, HandStrength, HandParams,  Suit, CardValue, 
   Search, TwoPairParams } from './../classes/hands/_interfaces'
-import { card, getTwoPair } from './helpers/methods'
-import { returnFiveCast } from './../typecasting/arrays'
+import { card } from './helpers/methods'
 
 
 
@@ -146,7 +145,5 @@ describe('when comparing to another TwoPair', function() {
     });
     
   });
-    
   
-});
   
