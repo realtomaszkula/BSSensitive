@@ -58,45 +58,88 @@ export class TheBestHand {
     }
   }
 
-  private findUniqOmahaHands() {
+  *generateHand(cards: OmahaHoleCards) {
+    let one, two;
+    [one, two, , ] = cards;
+    yield([one, two]);
 
+    [one, , two, ] = cards;
+    yield([one, two]);
+
+    [one, , , two] = cards;
+    yield([one, two]);
+
+    [, one, two, ] = cards;
+    yield([one, two]);
+
+    [, one, , two] = cards;
+    yield([one, two]);
+
+    [, , one, two] = cards;
+    yield([one, two]);
   }
 
-  private findUniqHoldemHands() {
-    let arr = [...this._boardCards, ...this._playerCards];
-    // return combination of 5 elements from 5-7 element set
+  private castCards<T>(args: T[]): [T, T, T, T] {
+    if (args.length !== 4) {
+      throw new Error('generateHand accepts omaha hands only (length 4)')
+    }
+    return <any> args
+  }
+
+  private generateHoldemHandsOutOfOmahaHand() {
+    let omahaCards: OmahaHoleCards = this.castCards(this._playerCards)
+    let gen = this.generateHand(omahaCards)
+    let hands: {}[]; 
+    for(let hand of gen) {
+      hands.push(hand)
+    }
+    return hands;
+  }
+
+  private findUniqOmahaHands() {
+    let possibleHoleCards = this.generateHoldemHandsOutOfOmahaHand();
     
-    // given [1,2,3,4,5,6,7] splits into core of [1,2,3,4,5] and rest of [6,7]
-    let core: Card[] = arr.slice(0, 5)
-    let rest: Card[] = arr.slice(5)
-    let result: Card[][] = []
-    
+  }
+
+  private usingOneHoleCard(core: Card[], rest: Card[]): Card[][] {
+  /*  given [1,2,3,4,5] core and [6, 7] rest will replace each core element with 6 and then with 7 */
+    let result: Card[][] = [];
     for (let i = 0; i < core.length; i++ ) {
-      
-      /*  given [1,2,3,4,5] core and [6, 7] rest will replace each core element with 6 and then with 7 */
       for (let replacement of rest) {
         let temp = [...core];
         temp[i] = replacement;
         result.push(temp)
       }
-      
-      /*  given [1,2,3,4,5] core and [6, 7] rest will replace eachtwo core element with 6 and 7 */
-      if (rest.length === 2) {
-        let [first, second] = rest;
-        // make sure to not replace element with the same index twice
-        let idxs = [0, 1, 2, 3, 4].filter(( _v, idx) => idx < i )
-        // actual replacing
-        for (let idx of idxs) {
-          let temp = [...core];
-          temp[i] = first;
-          temp[idx] = second;
-          result.push(temp)
-        }
+    }
+    return result;
+  }
+
+  private usingTwoHoleCards(core: Card[], rest: Card[]): Card[][] {
+  /*  given [1,2,3,4,5] core and [6, 7] rest will replace eachtwo core element with 6 and 7 */
+    let result: Card[][] = [];
+    for (let i = 0; i < core.length; i++ ) {
+      let [first, second] = rest;
+      // make sure to not replace element with the same index twice
+      let idxs = [0, 1, 2, 3, 4].filter(( _v, idx) => idx < i )
+      for (let idx of idxs) {
+        let temp = [...core];
+        temp[i] = first;
+        temp[idx] = second;
+        result.push(temp)
       }
     }
-    
-    // add core to possible combinations
-    result.push(core)
-    this._uniqHands = result;
+    return result;
+  }
+
+  private findUniqHoldemHands() {
+    let arr = [...this._boardCards, ...this._playerCards];
+   
+    // given [1,2,3,4,5,6,7] splits into core of [1,2,3,4,5] and rest of [6,7]
+    let core: Card[] = arr.slice(0, 5)
+    let rest: Card[] = arr.slice(5)
+    let oneHoleCardSubstitution = this.usingOneHoleCard(core, rest)
+    let twoHoleCardsSubStitution = this.usingTwoHoleCards(core, rest)
+
+    this._uniqHands = [...oneHoleCardSubstitution, ...twoHoleCardsSubStitution, core]
   }
 }
