@@ -1,15 +1,33 @@
 import { Card, HandStrength, CardClass } from './../hands/_interfaces'
 import { HandRankSearch } from './../hands/_handReading'
 
+type HoldemHoleCards = [Card, Card];
+type OmahaHoleCards = [Card, Card, Card, Card];
+type HoleCards =  HoldemHoleCards | OmahaHoleCards;
+
+type Flop = [Card, Card, Card];
+type FlopTurn = [Card, Card, Card, Card];
+type FlopTurnRiver = [Card, Card, Card, Card, Card];
+type BoardCards = Flop | FlopTurn | FlopTurnRiver;
+
+interface TheBestHandParams {
+  playerCards: HoleCards,
+  boardCards: BoardCards
+}
 
 // finds the best hand out of given card combination
 export class TheBestHand {
   private _uniqHands: Card[][];
   private _result: CardClass
 
-  constructor(private _cards: Card[]) {
-    if (_cards.length > 7 || _cards.length < 5) 
-      throw new Error('Cards[] must have length between 5 and 7')
+  private _playerCards: HoleCards;
+  private _boardCards: BoardCards;
+
+  constructor(params: TheBestHandParams) {
+    if (params.playerCards.length !== 4 || params.playerCards.length !== 2) 
+      throw new Error('Player hand must have 2 or 4 cards');
+    if (params.boardCards.length > 5 || params.boardCards.length < 3 )
+      throw new Error('Board cards must have between 3 and 5 cards')
     this.findUniqHands();
     this.findTheBestHand();
   }
@@ -17,8 +35,6 @@ export class TheBestHand {
   get result() {
     return this._result;
   }
-
-
 
   private findTheBestHand() {
     let hightestHandStr = -1;
