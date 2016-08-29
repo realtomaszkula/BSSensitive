@@ -15,9 +15,7 @@ export class TheBestHand {
   constructor(params: TheBestHandParams) {
     this.playerCards = params.playerCards;
     this.boardCards = params.boardCards;
-
     this.setGameType();
-    this.findUniqHands();
     this.findTheBestHand();
   }
 
@@ -40,17 +38,7 @@ export class TheBestHand {
   private setGameType() {
     this._gameType = (this._playerCards.length === 2) ? 'Holdem' : 'Omaha';
   }
-  private findTheBestHand(defaultHandStr = -1) {
-    let hightestHandStr = defaultHandStr;
-    for(let hand of this._uniqHands) {
-      let result = new HandRankSearch(hand).result;
-      if (result.handStrength > hightestHandStr) {
-        this._result = result;
-        hightestHandStr = result.handStrength;
-      }
-      
-    }
-  }
+
 
   *generateHand(cards: OmahaHoleCards) {
     let one, two;
@@ -83,14 +71,33 @@ export class TheBestHand {
   private generateHoldemHandsOutOfOmahaHand() {
     let omahaCards: OmahaHoleCards = this.castCards(this._playerCards)
     let gen = this.generateHand(omahaCards)
-    let hands: {}[]; 
+    let hands: HoldemHoleCards[]; 
     for(let hand of gen) {
-      hands.push(hand)
+      hands.push(hand as HoldemHoleCards)
     }
     return hands;
   }
 
+  private setHightestHandStr(defaultHandStr = -1) {
+    let hightestHandStr = defaultHandStr;
+    for(let hand of this._uniqHands) {
+      let result = new HandRankSearch(hand).result;
+      if (result.handStrength > hightestHandStr) {
+        this._result = result;
+        hightestHandStr = result.handStrength;
+      }
+    }
+  }
 
+  private findTheBestHand() {
+    if (this._gameType === 'Holdem') {
+      this.setUniqHoldemHands();
+    }
+    if (this._gameType === 'Omaha') {
+      this.setUniqOmahaHands();
+    }
+    this.setHightestHandStr();
+  }
 
   private usingOneHoleCard(core: Card[], rest: Card[]): Card[][] {
   /*  given [1,2,3,4,5] core and [6, 7] rest will replace each core element with 6 and then with 7 */
@@ -123,29 +130,27 @@ export class TheBestHand {
   }
 
   private getCoreAndRest(playerCards: Card[]): { core: Card[], rest: Card[] } {
-    let arr = [...this._boardCards, ...this._playerCards];
+    let arr = [...this._boardCards, ...playerCards];
     return {
       core: arr.slice(0, 5),
       rest: arr.slice(5)
     }
   }
-  private findUniqHands() {
-    if (this._gameType === 'Holdem') this.findUniqHoldemHands()
-    if (this._gameType === 'Omaha') this.findUniqOmahaHands();
-  }
-
-  private findUniqOmahaHands() {
+  private setUniqOmahaHands(): void {
     let possibleHoleCards = this.generateHoldemHandsOutOfOmahaHand();
+    this._uniqHands = [];
     for(let playerCards of possibleHoleCards) {
-      let { core, rest } = this.getCoreAndRest(playerCards)
+      let { core, rest } = this.getCoreAndRest(playerCards);    
+      let twoHoleCardsSubStitution = this.usingTwoHoleCards(core, rest);
+      this._uniqHands = [ ...this._uniqHands, ...twoHoleCardsSubStitution, core]
     }
   }
 
-  private findUniqHoldemHands() {
+  private setUniqHoldemHands(): void {
     let { core, rest } = this.getCoreAndRest(this._playerCards)
     let oneHoleCardSubstitution = this.usingOneHoleCard(core, rest)
     let twoHoleCardsSubStitution = this.usingTwoHoleCards(core, rest)
-    this._uniqHands = [...oneHoleCardSubstitution, ...twoHoleCardsSubStitution, core]
+    this._uniqHands =  [...oneHoleCardSubstitution, ...twoHoleCardsSubStitution, core]
   }
 
 }
