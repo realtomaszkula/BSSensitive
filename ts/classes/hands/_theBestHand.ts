@@ -18,12 +18,17 @@ export class TheBestHand {
     return this._result;
   }
 
+
+
   private findTheBestHand() {
-    let hightestHandStr: HandStrength = HandStrength.highCard;
+    let hightestHandStr = -1;
     for(let hand of this._uniqHands) {
       let result = new HandRankSearch(hand).result;
-      if (result.handStrength > hightestHandStr) 
-        this._result = result
+      if (result.handStrength > hightestHandStr) {
+        this._result = result;
+        hightestHandStr = result.handStrength;
+      }
+      
     }
   }
 

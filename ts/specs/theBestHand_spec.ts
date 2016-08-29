@@ -15,19 +15,19 @@ describe('TheBestHand', function() {
   
   
   describe('when given 7 cards', function() {
-    describe('with the best hand of high card', function() {
+    describe('and hand of high card', function() {
     let theBestHand: TheBestHand;
       beforeEach(function() {
         theBestHand =  new TheBestHand([  card('aceOfSpades'), card('jackOfDiamonds'), card('kingOfClubs'), card('queenOfspades'), 
             card('threeOfSpades'), card('fourOfClubs'), card('fiveOfDiamonds') ])
       });
         
-      it('should return instance of class Pair', function() {
+      it('should return instance of class HighCard', function() {
         expect(theBestHand.result instanceof HighCard ).toBe(true)
       });
     });
 
-    describe('when given hand including pair', function() {
+    describe('and hand including pair', function() {
       let theBestHand: TheBestHand;
       beforeEach(function() {
         theBestHand =  new TheBestHand([  card('aceOfSpades'), card('aceOfDiamonds'), card('kingOfClubs'), card('queenOfspades'), 
@@ -39,7 +39,7 @@ describe('TheBestHand', function() {
       });
     });
 
-    describe('when given hand including two pair', function() {
+    describe('and hand including two pair', function() {
       let theBestHand: TheBestHand;
       beforeEach(function() {
         theBestHand =  new TheBestHand([  card('aceOfSpades'), card('aceOfDiamonds'), card('kingOfClubs'), card('kingOfspades'), 
@@ -51,7 +51,7 @@ describe('TheBestHand', function() {
       });
     });
 
-    describe('when given hand including trips', function() {
+    describe('and hand including trips', function() {
       let theBestHand: TheBestHand;
       beforeEach(function() {
         theBestHand =  new TheBestHand([  card('aceOfSpades'), card('aceOfDiamonds'), card('aceOfClubs'), card('queenOfspades'), 
@@ -63,7 +63,7 @@ describe('TheBestHand', function() {
       });
     });
 
-    describe('when given hand including straight', function() {
+    describe('and hand including straight', function() {
       let theBestHand: TheBestHand;
       beforeEach(function() {
         theBestHand =  new TheBestHand([  card('aceOfSpades'), card('kingOfDiamonds'), card('queenOfClubs'), card('jackOfspades'), 
@@ -75,7 +75,7 @@ describe('TheBestHand', function() {
       });
     });
 
-    describe('when given hand including wheel straight', function() {
+    describe('and hand including wheel straight', function() {
       let theBestHand: TheBestHand;
       beforeEach(function() {
         theBestHand =  new TheBestHand([  card('aceOfSpades'), card('kingOfDiamonds'), card('queenOfClubs'), card('duceOfspades'), 
@@ -87,11 +87,11 @@ describe('TheBestHand', function() {
       });
     });
 
-    describe('when given hand including flush', function() {
+    describe('and hand including flush', function() {
       let theBestHand: TheBestHand;
       beforeEach(function() {
         theBestHand =  new TheBestHand([  card('aceOfSpades'), card('kingOfSpades'), card('queenOfClubs'), card('eightOfSpades'), 
-            card('threeOfSpades'), card('fourOfSlubs'), card('fiveOfDiamonds') ])
+            card('threeOfSpades'), card('fourOfClubs'), card('fiveOfSpades') ])
       });
         
       it('should return instance of class Flush', function() {
@@ -99,7 +99,7 @@ describe('TheBestHand', function() {
       });
     });
 
-    describe('when given hand including fullhouse', function() {
+    describe('and hand including fullhouse', function() {
       let theBestHand: TheBestHand;
       beforeEach(function() {
         theBestHand =  new TheBestHand([  card('aceOfSpades'), card('aceOfDiamonds'), card('aceOfClubs'), card('queenOfspades'), 
@@ -111,7 +111,7 @@ describe('TheBestHand', function() {
       });
     });
 
-    describe('when given hand including quads', function() {
+    describe('and hand including quads', function() {
       let theBestHand: TheBestHand;
       beforeEach(function() {
         theBestHand =  new TheBestHand([  card('aceOfSpades'), card('aceOfDiamonds'), card('aceOfClubs'), card('aceOfHearts'), 
@@ -123,7 +123,7 @@ describe('TheBestHand', function() {
       });
     });
 
-    describe('when given hand including straightflush', function() {
+    describe('and hand including straightflush', function() {
       let theBestHand: TheBestHand;
       beforeEach(function() {
         theBestHand =  new TheBestHand([  card('aceOfSpades'), card('kingOfSpades'), card('queenOfSpades'), card('jackOfSpades'), 
@@ -136,11 +136,11 @@ describe('TheBestHand', function() {
     });
 
     
-    describe('when given hand including wheel straightflush', function() {
+    describe('and hand including wheel straightflush', function() {
       let theBestHand: TheBestHand;
       beforeEach(function() {
         theBestHand =  new TheBestHand([  card('aceOfSpades'), card('kingOfSpades'), card('queenOfSpades'), card('threeOfSpades'), 
-            card('duceOfSpades'), card('fourOfClubs'), card('fiveOfDiamonds') ])
+            card('duceOfSpades'), card('fourOfSpades'), card('fiveOfSpades') ])
       });
         
       it('should return instance of class StraightFlush', function() {
