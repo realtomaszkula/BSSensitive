@@ -1,39 +1,49 @@
-import { Card, HandStrength, CardClass } from './../hands/_interfaces'
+import { Card, HandStrength, CardClass, HoldemHoleCards, OmahaHoleCards, HoleCards, HandCards, Flop, FlopTurn, FlopTurnRiver, BoardCards, TheBestHandParams } from './../hands/_interfaces'
 import { HandRankSearch } from './../hands/_handReading'
 
-type HoldemHoleCards = [Card, Card];
-type OmahaHoleCards = [Card, Card, Card, Card];
-type HoleCards =  HoldemHoleCards | OmahaHoleCards;
-
-type Flop = [Card, Card, Card];
-type FlopTurn = [Card, Card, Card, Card];
-type FlopTurnRiver = [Card, Card, Card, Card, Card];
-type BoardCards = Flop | FlopTurn | FlopTurnRiver;
-
-interface TheBestHandParams {
-  playerCards: HoleCards,
-  boardCards: BoardCards
-}
 
 // finds the best hand out of given card combination
 export class TheBestHand {
   private _uniqHands: Card[][];
-  private _result: CardClass
+  private _result: CardClass;
 
+  private _cards: HandCards;
   private _playerCards: HoleCards;
   private _boardCards: BoardCards;
+  private _gameType: 'Holdem' | 'Omaha';
 
   constructor(params: TheBestHandParams) {
-    if (params.playerCards.length !== 4 || params.playerCards.length !== 2) 
-      throw new Error('Player hand must have 2 or 4 cards');
-    if (params.boardCards.length > 5 || params.boardCards.length < 3 )
-      throw new Error('Board cards must have between 3 and 5 cards')
+    this.playerCards = params.playerCards;
+    this.boardCards = params.boardCards;
+
+    this.setGameType();
     this.findUniqHands();
     this.findTheBestHand();
   }
 
+  private set playerCards(cards: HoleCards) {
+    if (!(cards.length === 4 || cards.length === 2))
+      throw new Error('Player hand must have 2 or 4 cards');
+    this._playerCards = cards;
+  }
+
+  private set boardCards(cards: BoardCards) {   
+    if (cards.length > 5 || cards.length < 3 )
+      throw new Error('Board cards must have between 3 and 5 cards')
+    this._boardCards = cards;
+  }
+
   get result() {
     return this._result;
+  }
+
+  private setGameType() {
+    this._gameType = (this._playerCards.length === 2) ? 'Holdem' : 'Omaha';
+  }
+
+  private findUniqHands() {
+    if (this._gameType === 'Holdem') this.findUniqHoldemHands()
+    if (this._gameType === 'Omaha') this.findUniqOmahaHands();
   }
 
   private findTheBestHand() {
@@ -48,8 +58,12 @@ export class TheBestHand {
     }
   }
 
-  private findUniqHands() {
-    let arr = this._cards;
+  private findUniqOmahaHands() {
+
+  }
+
+  private findUniqHoldemHands() {
+    let arr = [...this._boardCards, ...this._playerCards];
     // return combination of 5 elements from 5-7 element set
     
     // given [1,2,3,4,5,6,7] splits into core of [1,2,3,4,5] and rest of [6,7]

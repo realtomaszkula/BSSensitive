@@ -86,6 +86,25 @@ interface HandClass {
   setKickers(): void
 }
 
-export { HandClass, Card, CardClass, HandStrength, HandParams,  Suit, CardValue, 
-  Search, PairParams, TwoPairParams, TripsParams, StraightParams, FlushParams, FullHouseParams, QuadsParams, StraightFlushParams, HighCardParams
-  , SearchesOnceAndRemembers }
+
+type HoldemHoleCards = [Card, Card];
+type OmahaHoleCards = [Card, Card, Card, Card];
+type HoleCards =  HoldemHoleCards | OmahaHoleCards;
+type HandCards = [Card, Card, Card, Card, Card];
+
+type Flop = [Card, Card, Card];
+type FlopTurn = [Card, Card, Card, Card];
+type FlopTurnRiver = [Card, Card, Card, Card, Card];
+type BoardCards = Flop | FlopTurn | FlopTurnRiver;
+
+interface TheBestHandParams {
+  playerCards: HoleCards,
+  boardCards: BoardCards
+}
+
+
+export { HandClass, Card, CardClass, HandStrength, HandParams,  Suit, CardValue, Search, 
+  PairParams, TwoPairParams, TripsParams, StraightParams, FlushParams, FullHouseParams, QuadsParams, StraightFlushParams, HighCardParams
+  , SearchesOnceAndRemembers ,
+  HoldemHoleCards, OmahaHoleCards, HoleCards, HandCards, Flop, FlopTurn, FlopTurnRiver, BoardCards, TheBestHandParams
+}
