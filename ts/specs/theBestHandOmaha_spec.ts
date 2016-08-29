@@ -14,7 +14,7 @@ import { card } from './helpers/methods'
 describe('TheBestHand', function() {
   
   describe('Omaha', function() {
-    describe('when given 7 cards', function() {
+    describe('when given 9 cards', function() {
       
       describe('and hand of high card', function() {
       let theBestHand: TheBestHand;
@@ -169,17 +169,17 @@ describe('TheBestHand', function() {
           expect(theBestHand.result instanceof StraightFlush ).toBe(true)
         });
       });
-    }); // desc 7 cards
+    }); // desc 9 cards
     
-    describe('when given 6 cards', function() {
+    describe('when given 8 cards', function() {
       
-    }); // desc 6 cards
+    }); // desc 8 cards cards
     
 
     
-    describe('when given 5 cards', function() {
+    describe('when given 7 cards', function() {
       
-    }); // desc 5 cards
+    }); // desc 7 cards
     
     
   });  // NLHE
