@@ -1,4 +1,5 @@
 import { HandRankSearch } from './../classes/hands/_handReading'
+import { HighCard } from './../classes/hands/HighCard'
 import { Pair } from './../classes/hands/Pair'
 import { TwoPair } from './../classes/hands/TwoPair'
 import { Trips } from './../classes/hands/Trips'
@@ -11,6 +12,25 @@ import { Card, CardClass, HandParams,  Suit, CardValue } from './../classes/hand
 
 describe('HandRankSearch', function() {
   
+  describe('when given hand with high card', function() {
+  let hand: HandRankSearch;
+    beforeEach(function() {
+      hand = new HandRankSearch(
+        [ 
+          { suit: 'spade', value: CardValue.ace  }, 
+          { suit: 'diamond', value: CardValue.jack  }, 
+          { suit: 'club', value: CardValue.king  }, 
+          { suit: 'club', value: CardValue.queen  }, 
+          { suit: 'club', value: CardValue.duce  }
+        ]
+      )
+    });
+      
+    it('instance should return instance of class Pair', function() {
+      expect(hand.result instanceof HighCard ).toBe(true)
+    });
+  });
+
   describe('when given hand including pair', function() {
   let hand: HandRankSearch;
     beforeEach(function() {

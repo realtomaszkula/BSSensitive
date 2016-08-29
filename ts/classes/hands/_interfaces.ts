@@ -8,7 +8,7 @@ import { Quads } from './Quads'
 import { StraightFlush } from './StraightFlush'
 import { HighCard } from './HighCard'
 
-type Suit = 'spade' | 'club' | 'diamond' | 'hearts'
+type Suit = 's' | 'c' | 'd' | 'h' | 'spade' | 'club' | 'diamond' | 'heart' | 'S' | 'C' | 'D' | 'H'
 type CardClass = Pair | TwoPair | Trips | Straight | Flush | FullHouse | Quads | StraightFlush | HighCard
 
 enum HandStrength {

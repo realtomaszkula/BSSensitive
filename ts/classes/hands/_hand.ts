@@ -61,7 +61,7 @@ export class Hand {
     return 0;
   }
 
-  private resolveConflict(other: CardClass): number{
+  resolveConflict(other: CardClass): number{
     if( 1 ) {
       throw new Error('child class must implement resolveConflict method')
     } 

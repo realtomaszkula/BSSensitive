@@ -1,6 +1,7 @@
 import { Card, CardClass, HandStrength, HandParams,  Suit, CardValue, Search,
-  PairParams, TwoPairParams, TripsParams, StraightParams, FlushParams, FullHouseParams, QuadsParams, StraightFlushParams,
+  HighCardParams, PairParams, TwoPairParams, TripsParams, StraightParams, FlushParams, FullHouseParams, QuadsParams, StraightFlushParams,
   SearchesOnceAndRemembers } from './_interfaces'
+import { HighCard } from './HighCard'
 import { Pair } from './Pair'
 import { TwoPair } from './TwoPair'
 import { Trips } from './Trips'
@@ -17,7 +18,7 @@ export class HandRankSearch {
   private _paired: number[][];
   private _suits: Suit[];
 
-  constructor( private _cards: [Card, Card, Card, Card, Card] ) { 
+  constructor( private _cards: Card[] ) { 
     this.sortValues();
     this.extractSuits();
     this.pairSort();
@@ -164,6 +165,10 @@ export class HandRankSearch {
 
       let isTwoPair: boolean = this.isUniqueDoubleRep && this._paired[0].length === 1 && this._paired[1] &&  this._paired[1].length === 1
       return { found: isTwoPair }
+    },
+
+    isHighCard: (): Search => {
+      return { found: true }
     }
   }
 
@@ -232,11 +237,19 @@ export class HandRankSearch {
         pair: this._paired[0][0]
       }
       return new Pair(params)
+    },
+
+    HighCard: (): HighCard => {
+      let params: HighCardParams = {
+        cards: this._cards,
+        handStrength: HandStrength.highCard,
+      }
+      return new HighCard(params)
     }
   }
 
   private figureOutHandRank() {
-    let classNames = ['StraightFlush', 'Quads', 'FullHouse', 'Flush', 'Straight', 'Trips', 'TwoPair', 'Pair']
+    let classNames = ['StraightFlush', 'Quads', 'FullHouse', 'Flush', 'Straight', 'Trips', 'TwoPair', 'Pair', 'HighCard']
     for (let className of classNames) {
       let found =  this.searchRanks['is' + className]().found
       if( found ) return this.classBuilder[className]()
