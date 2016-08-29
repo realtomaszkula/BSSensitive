@@ -20,7 +20,7 @@ describe('TheBestHand', function() {
       let theBestHand: TheBestHand;
         beforeEach(function() {
           let playerCards: OmahaHoleCards = [ card('aceOfSpades'), card('jackOfDiamonds'), card('kingOfClubs'), card('queenOfspades') ]
-          let boardCards: BoardCards = [ card('threeOfSpades'), card('fourOfClubs'), card('fiveOfDiamonds') ]
+          let boardCards: BoardCards = [ card('threeOfSpades'), card('fourOfClubs'), card('fiveOfDiamonds'), card('sevenOfDiamonds'), card('nineOfDiamonds') ]
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
         });
           
@@ -33,7 +33,7 @@ describe('TheBestHand', function() {
         let theBestHand: TheBestHand;
         beforeEach(function() {
           let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('aceOfDiamonds'), card('kingOfClubs'), card('queenOfspades')]
-          let boardCards: BoardCards = [card('threeOfSpades'), card('fourOfClubs'), card('fiveOfDiamonds') ]
+          let boardCards: BoardCards = [card('threeOfSpades'), card('fourOfClubs'), card('fiveOfDiamonds'), card('sevenOfDiamonds'), card('nineOfDiamonds')  ]
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
 
         });
@@ -47,7 +47,7 @@ describe('TheBestHand', function() {
         let theBestHand: TheBestHand;
         beforeEach(function() {
           let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('aceOfDiamonds'), card('kingOfClubs'), card('kingOfspades')]
-          let boardCards: BoardCards = [card('threeOfSpades'), card('fourOfClubs'), card('fiveOfDiamonds')] 
+          let boardCards: BoardCards = [card('threeOfSpades'), card('fourOfClubs'), card('fiveOfDiamonds'), card('sevenOfDiamonds'), card('nineOfDiamonds')] 
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
 
         });
@@ -61,7 +61,7 @@ describe('TheBestHand', function() {
         let theBestHand: TheBestHand;
         beforeEach(function() {
           let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('aceOfDiamonds'), card('aceOfClubs'), card('queenOfspades')]
-          let boardCards: BoardCards = [card('threeOfSpades'), card('fourOfClubs'), card('fiveOfDiamonds')]
+          let boardCards: BoardCards = [card('threeOfSpades'), card('fourOfClubs'), card('fiveOfDiamonds'), card('sevenOfDiamonds'), card('nineOfDiamonds')]
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
 
         });
@@ -75,7 +75,7 @@ describe('TheBestHand', function() {
         let theBestHand: TheBestHand;
         beforeEach(function() {
           let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('kingOfDiamonds'), card('queenOfClubs'), card('jackOfspades')]
-          let boardCards: BoardCards = [card('tenOfSpades'), card('fourOfClubs'), card('fiveOfDiamonds')]
+          let boardCards: BoardCards = [card('tenOfSpades'), card('fourOfClubs'), card('fiveOfDiamonds'), card('sevenOfDiamonds'), card('nineOfDiamonds')]
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
 
         });
@@ -89,7 +89,7 @@ describe('TheBestHand', function() {
         let theBestHand: TheBestHand;
         beforeEach(function() {
           let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('kingOfDiamonds'), card('queenOfClubs'), card('duceOfspades')]
-          let boardCards: BoardCards = [card('threeOfSpades'), card('fourOfClubs'), card('fiveOfDiamonds')]
+          let boardCards: BoardCards = [card('threeOfSpades'), card('fourOfClubs'), card('fiveOfDiamonds'),  card('sevenOfDiamonds'), card('nineOfDiamonds')]
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
 
         });
@@ -102,8 +102,8 @@ describe('TheBestHand', function() {
       describe('and hand including flush', function() {
         let theBestHand: TheBestHand;
         beforeEach(function() {
-          let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('kingOfSpades'), card('queenOfClubs'), card('eightOfSpades')]
-          let boardCards: BoardCards = [card('threeOfSpades'), card('fourOfClubs'), card('fiveOfSpades')]
+          let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('kingOfSpades'), card('queenOfClubs') , card('nineOfDiamonds'),]
+          let boardCards: BoardCards = [card('threeOfSpades'), card('fourOfClubs'), card('fiveOfSpades'), card('sevenOfDiamonds') , card('eightOfSpades')]
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
 
         });
@@ -116,8 +116,8 @@ describe('TheBestHand', function() {
       describe('and hand including fullhouse', function() {
         let theBestHand: TheBestHand;
         beforeEach(function() {
-          let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('aceOfDiamonds'), card('aceOfClubs'), card('queenOfspades')]
-          let boardCards: BoardCards = [card('threeOfSpades'), card('queenOfClubs'), card('fiveOfDiamonds')]
+          let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('aceOfDiamonds'),  card('sevenOfDiamonds') , card('eightOfSpades')]
+          let boardCards: BoardCards = [card('threeOfSpades'), card('queenOfClubs'), card('fiveOfDiamonds'), , card('aceOfClubs'), card('queenOfspades')]
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
 
         });
@@ -130,8 +130,8 @@ describe('TheBestHand', function() {
       describe('and hand including quads', function() {
         let theBestHand: TheBestHand;
         beforeEach(function() {
-          let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('aceOfDiamonds'), card('aceOfClubs'), card('aceOfHearts')]
-          let boardCards: BoardCards = [card('threeOfSpades'), card('queenOfClubs'), card('fiveOfDiamonds')]
+          let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('aceOfDiamonds'), card('sevenOfDiamonds') , card('eightOfSpades')]
+          let boardCards: BoardCards = [card('threeOfSpades'), card('queenOfClubs'), card('fiveOfDiamonds'), card('aceOfClubs'), card('aceOfHearts')]
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
 
         });
@@ -144,8 +144,8 @@ describe('TheBestHand', function() {
       describe('and hand including straightflush', function() {
         let theBestHand: TheBestHand;
         beforeEach(function() {
-          let playerCards: OmahaHoleCards = [ card('aceOfSpades'), card('kingOfSpades'), card('queenOfSpades'), card('jackOfSpades')]
-          let boardCards: BoardCards = [card('tenOfSpades'), card('fourOfClubs'), card('fiveOfDiamonds') ]
+          let playerCards: OmahaHoleCards = [ card('aceOfSpades'), card('kingOfSpades'), card('sevenOfDiamonds') , card('eightOfSpades')]
+          let boardCards: BoardCards = [card('tenOfSpades'), card('fourOfClubs'), card('fiveOfDiamonds'), card('queenOfSpades'), card('jackOfSpades') ]
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
 
         });
@@ -159,8 +159,8 @@ describe('TheBestHand', function() {
       describe('and hand including wheel straightflush', function() {
         let theBestHand: TheBestHand;
         beforeEach(function() {
-        let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('kingOfSpades'), card('queenOfSpades'), card('threeOfSpades')]
-          let boardCards: BoardCards = [card('duceOfSpades'), card('fourOfSpades'), card('fiveOfSpades')]
+        let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('kingOfSpades'), card('sevenOfDiamonds') , card('eightOfSpades')]
+          let boardCards: BoardCards = [card('duceOfSpades'), card('fourOfSpades'), card('fiveOfSpades'), card('queenOfSpades'), card('threeOfSpades')]
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
 
         });

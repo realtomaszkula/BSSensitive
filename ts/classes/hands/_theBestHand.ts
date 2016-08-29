@@ -71,7 +71,7 @@ export class TheBestHand {
   private generateHoldemHandsOutOfOmahaHand() {
     let omahaCards: OmahaHoleCards = this.castCards(this._playerCards)
     let gen = this.generateHand(omahaCards)
-    let hands: HoldemHoleCards[]; 
+    let hands: HoldemHoleCards[] = []; 
     for(let hand of gen) {
       hands.push(hand as HoldemHoleCards)
     }
@@ -95,6 +95,7 @@ export class TheBestHand {
     }
     if (this._gameType === 'Omaha') {
       this.setUniqOmahaHands();
+      console.log(this._uniqHands)
     }
     this.setHightestHandStr();
   }
