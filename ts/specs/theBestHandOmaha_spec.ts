@@ -46,8 +46,8 @@ describe('TheBestHand', function() {
       describe('and hand including two pair', function() {
         let theBestHand: TheBestHand;
         beforeEach(function() {
-          let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('aceOfDiamonds'), card('kingOfClubs'), card('kingOfspades')]
-          let boardCards: BoardCards = [card('threeOfSpades'), card('fourOfClubs'), card('fiveOfDiamonds'), card('sevenOfDiamonds'), card('nineOfDiamonds')] 
+          let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('kingOfspades'), card('threeOfSpades'), card('fourOfClubs')]
+          let boardCards: BoardCards = [ card('aceOfDiamonds'), card('kingOfClubs'), card('fiveOfDiamonds'), card('sevenOfDiamonds'), card('nineOfDiamonds')] 
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
 
         });
@@ -60,8 +60,8 @@ describe('TheBestHand', function() {
       describe('and hand including trips', function() {
         let theBestHand: TheBestHand;
         beforeEach(function() {
-          let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('aceOfDiamonds'), card('aceOfClubs'), card('queenOfspades')]
-          let boardCards: BoardCards = [card('threeOfSpades'), card('fourOfClubs'), card('fiveOfDiamonds'), card('sevenOfDiamonds'), card('nineOfDiamonds')]
+          let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('aceOfDiamonds'), card('queenOfspades'), card('fiveOfDiamonds')]
+          let boardCards: BoardCards = [card('threeOfSpades'), card('fourOfClubs'), card('aceOfClubs'), card('sevenOfDiamonds'), card('nineOfDiamonds')]
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
 
         });
@@ -74,8 +74,8 @@ describe('TheBestHand', function() {
       describe('and hand including straight', function() {
         let theBestHand: TheBestHand;
         beforeEach(function() {
-          let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('kingOfDiamonds'), card('queenOfClubs'), card('jackOfspades')]
-          let boardCards: BoardCards = [card('tenOfSpades'), card('fourOfClubs'), card('fiveOfDiamonds'), card('sevenOfDiamonds'), card('nineOfDiamonds')]
+          let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('kingOfDiamonds'), card('fourOfClubs'), card('fiveOfDiamonds')]
+          let boardCards: BoardCards = [card('queenOfClubs'), card('jackOfspades'), card('tenOfSpades'), card('sevenOfDiamonds'), card('nineOfDiamonds')]
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
 
         });
@@ -117,7 +117,7 @@ describe('TheBestHand', function() {
         let theBestHand: TheBestHand;
         beforeEach(function() {
           let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('aceOfDiamonds'),  card('sevenOfDiamonds') , card('eightOfSpades')]
-          let boardCards: BoardCards = [card('threeOfSpades'), card('queenOfClubs'), card('fiveOfDiamonds'), , card('aceOfClubs'), card('queenOfspades')]
+          let boardCards: BoardCards = [card('threeOfSpades'), card('queenOfClubs'), card('fiveOfDiamonds'), card('aceOfClubs'), card('queenOfspades')]
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
 
         });
@@ -159,8 +159,8 @@ describe('TheBestHand', function() {
       describe('and hand including wheel straightflush', function() {
         let theBestHand: TheBestHand;
         beforeEach(function() {
-        let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('kingOfSpades'), card('sevenOfDiamonds') , card('eightOfSpades')]
-          let boardCards: BoardCards = [card('duceOfSpades'), card('fourOfSpades'), card('fiveOfSpades'), card('queenOfSpades'), card('threeOfSpades')]
+        let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('duceOfSpades') ,card('kingOfSpades'), card('sevenOfDiamonds') ]
+          let boardCards: BoardCards = [card('fourOfSpades'), card('fiveOfSpades'), card('queenOfSpades'), card('threeOfSpades'), card('eightOfSpades')]
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
 
         });

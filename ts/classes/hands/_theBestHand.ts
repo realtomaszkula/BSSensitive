@@ -95,7 +95,7 @@ export class TheBestHand {
     }
     if (this._gameType === 'Omaha') {
       this.setUniqOmahaHands();
-      console.log(this._uniqHands)
+      (this._uniqHands)
     }
     this.setHightestHandStr();
   }
