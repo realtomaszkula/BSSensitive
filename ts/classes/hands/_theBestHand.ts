@@ -40,14 +40,8 @@ export class TheBestHand {
   private setGameType() {
     this._gameType = (this._playerCards.length === 2) ? 'Holdem' : 'Omaha';
   }
-
-  private findUniqHands() {
-    if (this._gameType === 'Holdem') this.findUniqHoldemHands()
-    if (this._gameType === 'Omaha') this.findUniqOmahaHands();
-  }
-
-  private findTheBestHand() {
-    let hightestHandStr = -1;
+  private findTheBestHand(defaultHandStr = -1) {
+    let hightestHandStr = defaultHandStr;
     for(let hand of this._uniqHands) {
       let result = new HandRankSearch(hand).result;
       if (result.handStrength > hightestHandStr) {
@@ -96,10 +90,7 @@ export class TheBestHand {
     return hands;
   }
 
-  private findUniqOmahaHands() {
-    let possibleHoleCards = this.generateHoldemHandsOutOfOmahaHand();
-    
-  }
+
 
   private usingOneHoleCard(core: Card[], rest: Card[]): Card[][] {
   /*  given [1,2,3,4,5] core and [6, 7] rest will replace each core element with 6 and then with 7 */
@@ -131,15 +122,30 @@ export class TheBestHand {
     return result;
   }
 
-  private findUniqHoldemHands() {
+  private getCoreAndRest(playerCards: Card[]): { core: Card[], rest: Card[] } {
     let arr = [...this._boardCards, ...this._playerCards];
-   
-    // given [1,2,3,4,5,6,7] splits into core of [1,2,3,4,5] and rest of [6,7]
-    let core: Card[] = arr.slice(0, 5)
-    let rest: Card[] = arr.slice(5)
+    return {
+      core: arr.slice(0, 5),
+      rest: arr.slice(5)
+    }
+  }
+  private findUniqHands() {
+    if (this._gameType === 'Holdem') this.findUniqHoldemHands()
+    if (this._gameType === 'Omaha') this.findUniqOmahaHands();
+  }
+
+  private findUniqOmahaHands() {
+    let possibleHoleCards = this.generateHoldemHandsOutOfOmahaHand();
+    for(let playerCards of possibleHoleCards) {
+      let { core, rest } = this.getCoreAndRest(playerCards)
+    }
+  }
+
+  private findUniqHoldemHands() {
+    let { core, rest } = this.getCoreAndRest(this._playerCards)
     let oneHoleCardSubstitution = this.usingOneHoleCard(core, rest)
     let twoHoleCardsSubStitution = this.usingTwoHoleCards(core, rest)
-
     this._uniqHands = [...oneHoleCardSubstitution, ...twoHoleCardsSubStitution, core]
   }
+
 }
