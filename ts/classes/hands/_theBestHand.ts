@@ -95,7 +95,6 @@ export class TheBestHand {
     }
     if (this._gameType === 'Omaha') {
       this.setUniqOmahaHands();
-      (this._uniqHands)
     }
     this.setHightestHandStr();
   }
@@ -133,25 +132,27 @@ export class TheBestHand {
     return result;
   }
 
-  private getCoreAndRest(playerCards: Card[]): { core: Card[], rest: Card[] } {
+private getCoreAndRest(playerCards: Card[]): { core: Card[], rest: Card[] } {
     let arr = [...this._boardCards, ...playerCards];
     return {
       core: arr.slice(0, 5),
       rest: arr.slice(5)
     }
   }
+
   private setUniqOmahaHands(): void {
-    let possibleHoleCards = this.generateHoldemHandsOutOfOmahaHand();
+    let core = this._boardCards;
     this._uniqHands = [];
+    let possibleHoleCards = this.generateHoldemHandsOutOfOmahaHand();
     for(let playerCards of possibleHoleCards) {
-      let { core, rest } = this.getCoreAndRest(playerCards);    
+      let rest = playerCards;
       let twoHoleCardsSubStitution = this.usingTwoHoleCards(core, rest);
       this._uniqHands = [ ...this._uniqHands, ...twoHoleCardsSubStitution, core]
     }
   }
 
   private setUniqHoldemHands(): void {
-    let { core, rest } = this.getCoreAndRest(this._playerCards)
+    let { core, rest } = this.getCoreAndRest(this._playerCards);
     let oneHoleCardSubstitution = this.usingOneHoleCard(core, rest)
     let twoHoleCardsSubStitution = this.usingTwoHoleCards(core, rest)
     this._uniqHands =  [...oneHoleCardSubstitution, ...twoHoleCardsSubStitution, core]

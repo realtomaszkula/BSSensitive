@@ -312,7 +312,7 @@ describe('TheBestHand', function() {
     
 
     
-    describe('when given 5 cards', function() {
+    describe('when given 3 cards', function() {
       describe('and hand of high card', function() {
       let theBestHand: TheBestHand;
         beforeEach(function() {
