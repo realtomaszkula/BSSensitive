@@ -97,9 +97,14 @@ interface TheBestHandParams {
   boardCards: BoardCards
 }
 
+interface CardParams {
+  value: number,
+  suit: Suit
+}
+
 
 export { HandClass, Card, CardClass, HandStrength, HandParams,  Suit, CardValue, Search, 
   PairParams, TwoPairParams, TripsParams, StraightParams, FlushParams, FullHouseParams, QuadsParams, StraightFlushParams, HighCardParams
   , SearchesOnceAndRemembers ,
-  HoldemHoleCards, OmahaHoleCards, HoleCards, HandCards, Flop, FlopTurn, FlopTurnRiver, BoardCards, TheBestHandParams
+  HoldemHoleCards, OmahaHoleCards, HoleCards, HandCards, Flop, FlopTurn, FlopTurnRiver, BoardCards, TheBestHandParams, CardParams
 }

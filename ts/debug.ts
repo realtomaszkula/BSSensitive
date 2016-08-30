@@ -4,4 +4,4 @@ import { CardValue } from './classes/hands/_interfaces'
 import { Pair } from './classes/hands/Pair'
 import { card } from './specs/helpers/methods'
 
-let p = new Pair({cards: Array.of( { value: -5 , suit: 'spade'},), handStrength: ''});
+// let p = new Pair({cards: Array.of( { value: -5 , suit: 'spade'},), handStrength: ''});

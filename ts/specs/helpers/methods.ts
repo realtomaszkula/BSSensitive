@@ -1,6 +1,6 @@
 import { CardClass, HandStrength, HandParams,  Suit, CardValue, 
   Search, PairParams, TwoPairParams, TripsParams, StraightParams, FlushParams, FullHouseParams, QuadsParams, StraightFlushParams,
-  SearchesOnceAndRemembers } from './../../classes/hands/_interfaces'
+  SearchesOnceAndRemembers, CardParams } from './../../classes/hands/_interfaces'
 import { Pair } from './../../classes/hands/Pair'
 import { castSuit } from './../../typecasting/arrays'
 import { step, stepPairDefault } from './../interfaces/main'
@@ -11,7 +11,7 @@ function card(name: string): Card {
   let [value , suit] = name.split('Of')
   value = CardValue[value];
   suit = suit.toLowerCase().slice(0,-1)  // i want to use camel case and use plural form for suits ex: aceOfSpades becomes 'ace' 'spade'
-  return new Card(suit, value)
+  return new Card( { suit: suit, value: +value} as CardParams)
 }
 
 function getPair(defaultParams: stepPairDefault, first: step, second: step) {
