@@ -16,7 +16,7 @@ describe('TheBestHand', function() {
   beforeEach(function() {
     jasmine.addMatchers(customMatchers as any)
   });
-    
+  // running each test twice with reversed arr to make sure the order doesn't matter
   describe('Omaha', function() {
     let playerCards: OmahaHoleCards;
     let theBestHand: TheBestHand;
@@ -26,10 +26,13 @@ describe('TheBestHand', function() {
         beforeEach(function() {
           playerCards = [ card('aceOfSpades'), card('jackOfDiamonds'), card('kingOfClubs'), card('queenOfspades') ]
           boardCards = [ card('threeOfSpades'), card('fourOfClubs'), card('fiveOfDiamonds'), card('sevenOfDiamonds'), card('nineOfDiamonds') ]
-          
         });
         it('should return instance of class HighCard', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
+          expect(theBestHand.result).toBeCardClassOf(HighCard)
+        });
+        it('should return instance of class HighCard', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards.reverse() as HoleCards, boardCards: boardCards.reverse() as BoardCards})
           expect(theBestHand.result).toBeCardClassOf(HighCard)
         });
       });
@@ -44,6 +47,10 @@ describe('TheBestHand', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
           expect( theBestHand.result ).toBeCardClassOf(Pair)
         });
+        it('should return instance of class Pair', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards.reverse() as HoleCards, boardCards: boardCards.reverse() as BoardCards})
+          expect( theBestHand.result ).toBeCardClassOf(Pair)
+        });
       });
 
       describe('and hand including two pair', function() {
@@ -54,6 +61,10 @@ describe('TheBestHand', function() {
           
         it('should return instance of class TwoPair', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
+          expect( theBestHand.result ).toBeCardClassOf(TwoPair)
+        });
+        it('should return instance of class TwoPair', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards.reverse() as HoleCards, boardCards: boardCards.reverse() as BoardCards})
           expect( theBestHand.result ).toBeCardClassOf(TwoPair)
         });
       });
@@ -68,6 +79,10 @@ describe('TheBestHand', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
           expect( theBestHand.result ).toBeCardClassOf(Trips)
         });
+        it('should return instance of class Trips', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards.reverse() as HoleCards, boardCards: boardCards.reverse() as BoardCards})
+          expect( theBestHand.result ).toBeCardClassOf(Trips)
+        });
       });
 
       describe('and hand including straight', function() {
@@ -78,6 +93,10 @@ describe('TheBestHand', function() {
           
         it('should return instance of class Straight', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
+          expect( theBestHand.result ).toBeCardClassOf(Straight)
+        });
+        it('should return instance of class Straight', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards.reverse() as HoleCards, boardCards: boardCards.reverse() as BoardCards})
           expect( theBestHand.result ).toBeCardClassOf(Straight)
         });
       });
@@ -92,6 +111,10 @@ describe('TheBestHand', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
           expect( theBestHand.result ).toBeCardClassOf(Straight)
         });
+        it('should return instance of class Straight', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards.reverse() as HoleCards, boardCards: boardCards.reverse() as BoardCards})
+          expect( theBestHand.result ).toBeCardClassOf(Straight)
+        });
       });
 
       describe('and hand including flush', function() {
@@ -102,6 +125,10 @@ describe('TheBestHand', function() {
           
         it('should return instance of class Flush', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
+          expect( theBestHand.result ).toBeCardClassOf(Flush)
+        });
+        it('should return instance of class Flush', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards.reverse() as HoleCards, boardCards: boardCards.reverse() as BoardCards})
           expect( theBestHand.result ).toBeCardClassOf(Flush)
         });
       });
@@ -116,6 +143,10 @@ describe('TheBestHand', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
           expect( theBestHand.result ).toBeCardClassOf(FullHouse)
         });
+        it('should return instance of class FullHouse', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards.reverse() as HoleCards, boardCards: boardCards.reverse() as BoardCards})
+          expect( theBestHand.result ).toBeCardClassOf(FullHouse)
+        });
       });
 
       describe('and hand including quads', function() {
@@ -126,6 +157,10 @@ describe('TheBestHand', function() {
           
         it('should return instance of class Quads', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
+          expect( theBestHand.result ).toBeCardClassOf(Quads)
+        });
+        it('should return instance of class Quads', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards.reverse() as HoleCards, boardCards: boardCards.reverse() as BoardCards})
           expect( theBestHand.result ).toBeCardClassOf(Quads)
         });
       });
@@ -140,6 +175,10 @@ describe('TheBestHand', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
           expect(theBestHand.result).toBeCardClassOf(StraightFlush)
+        it('should return instance of class StraightFlush', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards.reverse() as HoleCards, boardCards: boardCards.reverse() as BoardCards})
+          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
+          expect(theBestHand.result).toBeCardClassOf(StraightFlush)
         });
       });
 
@@ -152,6 +191,10 @@ describe('TheBestHand', function() {
           
         it('should return instance of class StraightFlush', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
+          expect( theBestHand.result ).toBeCardClassOf(StraightFlush)
+        });
+        it('should return instance of class StraightFlush', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards.reverse() as HoleCards, boardCards: boardCards.reverse() as BoardCards})
           expect( theBestHand.result ).toBeCardClassOf(StraightFlush)
         });
       });
@@ -169,6 +212,10 @@ describe('TheBestHand', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
           expect( theBestHand.result ).toBeCardClassOf(HighCard)
         });
+        it('should return instance of class HighCard', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards.reverse() as HoleCards, boardCards: boardCards.reverse() as BoardCards})
+          expect( theBestHand.result ).toBeCardClassOf(HighCard)
+        });
       });
 
       describe('and hand including pair', function() {
@@ -180,6 +227,10 @@ describe('TheBestHand', function() {
           
         it('should return instance of class Pair', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
+          expect(theBestHand.result).toBeCardClassOf(Pair)
+        });
+        it('should return instance of class Pair', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards.reverse() as HoleCards, boardCards: boardCards.reverse() as BoardCards})
           expect(theBestHand.result).toBeCardClassOf(Pair)
         });
       });
@@ -195,6 +246,10 @@ describe('TheBestHand', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
           expect( theBestHand.result ).toBeCardClassOf(TwoPair)
         });
+        it('should return instance of class TwoPair', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards.reverse() as HoleCards, boardCards: boardCards.reverse() as BoardCards})
+          expect( theBestHand.result ).toBeCardClassOf(TwoPair)
+        });
       });
 
       describe('and hand including trips', function() {
@@ -206,6 +261,10 @@ describe('TheBestHand', function() {
           
         it('should return instance of class Trips', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
+          expect( theBestHand.result ).toBeCardClassOf(Trips)
+        });
+        it('should return instance of class Trips', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards.reverse() as HoleCards, boardCards: boardCards.reverse() as BoardCards})
           expect( theBestHand.result ).toBeCardClassOf(Trips)
         });
       });
@@ -221,6 +280,10 @@ describe('TheBestHand', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
           expect( theBestHand.result ).toBeCardClassOf(Straight)
         });
+        it('should return instance of class Straight', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards.reverse() as HoleCards, boardCards: boardCards.reverse() as BoardCards})
+          expect( theBestHand.result ).toBeCardClassOf(Straight)
+        });
       });
 
       describe('and hand including wheel straight', function() {
@@ -232,6 +295,10 @@ describe('TheBestHand', function() {
           
         it('should return instance of class Straight', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
+          expect( theBestHand.result ).toBeCardClassOf(Straight)
+        });
+        it('should return instance of class Straight', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards.reverse() as HoleCards, boardCards: boardCards.reverse() as BoardCards})
           expect( theBestHand.result ).toBeCardClassOf(Straight)
         });
       });
@@ -247,6 +314,10 @@ describe('TheBestHand', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
           expect( theBestHand.result ).toBeCardClassOf(Flush)
         });
+        it('should return instance of class Flush', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards.reverse() as HoleCards, boardCards: boardCards.reverse() as BoardCards})
+          expect( theBestHand.result ).toBeCardClassOf(Flush)
+        });
       });
 
       describe('and hand including fullhouse', function() {
@@ -258,6 +329,10 @@ describe('TheBestHand', function() {
           
         it('should return instance of class FullHouse', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
+          expect( theBestHand.result ).toBeCardClassOf(FullHouse)
+        });
+        it('should return instance of class FullHouse', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards.reverse() as HoleCards, boardCards: boardCards.reverse() as BoardCards})
           expect( theBestHand.result ).toBeCardClassOf(FullHouse)
         });
       });
@@ -273,6 +348,10 @@ describe('TheBestHand', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
           expect( theBestHand.result ).toBeCardClassOf(Quads)
         });
+        it('should return instance of class Quads', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards.reverse() as HoleCards, boardCards: boardCards.reverse() as BoardCards})
+          expect( theBestHand.result ).toBeCardClassOf(Quads)
+        });
       });
 
       describe('and hand including straightflush', function() {
@@ -286,6 +365,10 @@ describe('TheBestHand', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
           expect( theBestHand.result ).toBeCardClassOf(StraightFlush)
         });
+        it('should return instance of class StraightFlush', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards.reverse() as HoleCards, boardCards: boardCards.reverse() as BoardCards})
+          expect( theBestHand.result ).toBeCardClassOf(StraightFlush)
+        });
       });
 
       
@@ -297,6 +380,10 @@ describe('TheBestHand', function() {
           
         it('should return instance of class StraightFlush', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
+          expect( theBestHand.result ).toBeCardClassOf(StraightFlush)
+        });
+        it('should return instance of class StraightFlush', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards.reverse() as HoleCards, boardCards: boardCards.reverse() as BoardCards})
           expect( theBestHand.result ).toBeCardClassOf(StraightFlush)
         });
       });
@@ -313,6 +400,10 @@ describe('TheBestHand', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
           expect( theBestHand.result ).toBeCardClassOf(HighCard)
         });
+        it('should return instance of class HighCard', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards.reverse() as HoleCards, boardCards: boardCards.reverse() as BoardCards})
+          expect( theBestHand.result ).toBeCardClassOf(HighCard)
+        });
       });
 
       describe('and hand including pair', function() {
@@ -323,6 +414,10 @@ describe('TheBestHand', function() {
           
         it('should return instance of class Pair', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
+          expect(theBestHand.result).toBeCardClassOf(Pair)
+        });
+        it('should return instance of class Pair', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards.reverse() as HoleCards, boardCards: boardCards.reverse() as BoardCards})
           expect(theBestHand.result).toBeCardClassOf(Pair)
         });
       });
@@ -337,6 +432,10 @@ describe('TheBestHand', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
           expect( theBestHand.result ).toBeCardClassOf(TwoPair)
         });
+        it('should return instance of class TwoPair', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards.reverse() as HoleCards, boardCards: boardCards.reverse() as BoardCards})
+          expect( theBestHand.result ).toBeCardClassOf(TwoPair)
+        });
       });
 
       describe('and hand including trips', function() {
@@ -347,6 +446,10 @@ describe('TheBestHand', function() {
           
         it('should return instance of class Trips', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
+          expect( theBestHand.result ).toBeCardClassOf(Trips)
+        });
+        it('should return instance of class Trips', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards.reverse() as HoleCards, boardCards: boardCards.reverse() as BoardCards})
           expect( theBestHand.result ).toBeCardClassOf(Trips)
         });
       });
@@ -361,6 +464,10 @@ describe('TheBestHand', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
           expect( theBestHand.result ).toBeCardClassOf(Straight)
         });
+        it('should return instance of class Straight', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards.reverse() as HoleCards, boardCards: boardCards.reverse() as BoardCards})
+          expect( theBestHand.result ).toBeCardClassOf(Straight)
+        });
       });
 
       describe('and hand including wheel straight', function() {
@@ -371,6 +478,10 @@ describe('TheBestHand', function() {
           
         it('should return instance of class Straight', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
+          expect( theBestHand.result ).toBeCardClassOf(Straight)
+        });
+        it('should return instance of class Straight', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards.reverse() as HoleCards, boardCards: boardCards.reverse() as BoardCards})
           expect( theBestHand.result ).toBeCardClassOf(Straight)
         });
       });
@@ -385,6 +496,10 @@ describe('TheBestHand', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
           expect( theBestHand.result ).toBeCardClassOf(Flush)
         });
+        it('should return instance of class Flush', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards.reverse() as HoleCards, boardCards: boardCards.reverse() as BoardCards})
+          expect( theBestHand.result ).toBeCardClassOf(Flush)
+        });
       });
 
       describe('and hand including fullhouse', function() {
@@ -395,6 +510,10 @@ describe('TheBestHand', function() {
           
         it('should return instance of class FullHouse', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
+          expect( theBestHand.result ).toBeCardClassOf(FullHouse)
+        });
+        it('should return instance of class FullHouse', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards.reverse() as HoleCards, boardCards: boardCards.reverse() as BoardCards})
           expect( theBestHand.result ).toBeCardClassOf(FullHouse)
         });
       });
@@ -409,6 +528,10 @@ describe('TheBestHand', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
           expect( theBestHand.result ).toBeCardClassOf(Quads)
         });
+        it('should return instance of class Quads', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards.reverse() as HoleCards, boardCards: boardCards.reverse() as BoardCards})
+          expect( theBestHand.result ).toBeCardClassOf(Quads)
+        });
       });
 
       describe('and hand including straightflush', function() {
@@ -419,6 +542,10 @@ describe('TheBestHand', function() {
           
         it('should return instance of class StraightFlush', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
+          expect( theBestHand.result ).toBeCardClassOf(StraightFlush)
+        });
+        it('should return instance of class StraightFlush', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards.reverse() as HoleCards, boardCards: boardCards.reverse() as BoardCards})
           expect( theBestHand.result ).toBeCardClassOf(StraightFlush)
         });
       });
@@ -434,10 +561,13 @@ describe('TheBestHand', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
           expect( theBestHand.result ).toBeCardClassOf(StraightFlush)
         });
+        it('should return instance of class StraightFlush', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards.reverse() as HoleCards, boardCards: boardCards.reverse() as BoardCards})
+          expect( theBestHand.result ).toBeCardClassOf(StraightFlush)
+        });
       });
     }); // desc 3 board cards
     
   });  // NLHE
-
     
 });
