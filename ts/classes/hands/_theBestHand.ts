@@ -147,8 +147,9 @@ private getCoreAndRest(playerCards: Card[]): { core: Card[], rest: Card[] } {
     for(let playerCards of possibleHoleCards) {
       let rest = playerCards;
       let twoHoleCardsSubStitution = this.usingTwoHoleCards(core, rest);
-      this._uniqHands = [ ...this._uniqHands, ...twoHoleCardsSubStitution, core]
+      this._uniqHands = [...this._uniqHands, ...twoHoleCardsSubStitution]
     }
+    this._uniqHands = [...this._uniqHands, core]
   }
 
   private setUniqHoldemHands(): void {
