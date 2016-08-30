@@ -11,7 +11,7 @@ import { Quads } from './../classes/hands/Quads'
 import { StraightFlush } from './../classes/hands/StraightFlush'
 import { card } from './helpers/methods'
 
-xdescribe('TheBestHand', function() {
+describe('TheBestHand', function() {
   
   describe('NLHE', function() {
     describe('when given 5 board cards', function() {
@@ -158,7 +158,7 @@ xdescribe('TheBestHand', function() {
           expect(theBestHand.result instanceof StraightFlush ).toBe(true)
         });
       });
-    }); // desc 7 cards
+    }); // desc 5 cards
     
     describe('when given 4 board cards', function() {
      describe('and hand of high card', function() {
@@ -283,7 +283,7 @@ xdescribe('TheBestHand', function() {
         beforeEach(function() {
           let playerCards: HoldemHoleCards = [ card('aceOfSpades'), card('kingOfSpades')]
           let boardCards: FlopTurn = [ card('jackOfSpades'), 
-              card('tenOfSpades'), card('fourOfClubs'), card('fiveOfDiamonds') ]
+              card('tenOfSpades'), card('queenOfSpades'), card('fiveOfDiamonds') ]
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
         });
         it('should return instance of class StraightFlush', function() {
@@ -304,12 +304,12 @@ xdescribe('TheBestHand', function() {
           expect(theBestHand.result instanceof StraightFlush ).toBe(true)
         });
       });
-    }); // desc 6 cards
+    }); // desc 4 cards
     
 
     
     describe('when given 5 cards', function() {
-    }); // desc 5 cards
+    }); // desc 3 cards
     
     
   });  // NLHE

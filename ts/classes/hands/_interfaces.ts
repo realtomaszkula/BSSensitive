@@ -7,14 +7,9 @@ import { FullHouse } from './FullHouse'
 import { Quads } from './Quads'
 import { StraightFlush } from './StraightFlush'
 import { HighCard } from './HighCard'
-
+import { Card }  from './Card'
 type Suit = 's' | 'c' | 'd' | 'h' | 'spade' | 'club' | 'diamond' | 'heart' | 'S' | 'C' | 'D' | 'H'
 type CardClass = Pair | TwoPair | Trips | Straight | Flush | FullHouse | Quads | StraightFlush | HighCard
-
-interface Card {
-  value: CardValue,
-  suit: Suit
-}
 
 enum HandStrength {
   highCard,

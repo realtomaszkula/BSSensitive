@@ -116,16 +116,18 @@ export class TheBestHand {
   private usingTwoHoleCards(core: Card[], rest: Card[]): Card[][] {
   /*  given [1,2,3,4,5] core and [6, 7] rest will replace eachtwo core element with 6 and 7 */
     let result: Card[][] = [];
-    let coreIdxs = core.map( (v, i) => i )
-    for (let i = 0; i < core.length; i++ ) {
-      let [first, second] = rest;
-      // make sure to not replace element with the same index twice
-      let idxs = coreIdxs.filter(( _v, idx) => idx < i )
-      for (let idx of idxs) {
-        let temp = [...core];
-        temp[i] = first;
-        temp[idx] = second;
-        result.push(temp)
+    if ( rest.length === 2 ) {
+      let coreIdxs = core.map( (v, i) => i )
+      for (let i = 0; i < core.length; i++ ) {
+        let [first, second] = rest;
+        // make sure to not replace element with the same index twice
+        let idxs = coreIdxs.filter(( _v, idx) => idx < i )
+        for (let idx of idxs) {
+          let temp = [...core];
+          temp[i] = first;
+          temp[idx] = second;
+          result.push(temp)
+        }
       }
     }
     return result;

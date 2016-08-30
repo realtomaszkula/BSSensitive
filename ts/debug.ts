@@ -3,6 +3,9 @@ import { TheBestHand } from './classes/hands/_theBestHand'
 import { CardValue } from './classes/hands/_interfaces'
 import { card } from './specs/helpers/methods'
 
-let playerCards = [card('aceOfSpades'), card('kingOfSpades'), card('queenOfSpades'), card('threeOfSpades')]
-let boardCards = [card('duceOfSpades'), card('fourOfSpades'), card('fiveOfSpades')]
-let theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
+      ;
+
+          let playerCards = [ card('aceOfSpades'), card('jackOfDiamonds') ]
+          let boardCards = [card('kingOfClubs'), card('queenOfspades'), 
+              card('threeOfSpades'), card('fourOfClubs') ]
+          let theBestHand: TheBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
