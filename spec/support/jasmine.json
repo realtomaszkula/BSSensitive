@@ -2,7 +2,9 @@
   "spec_dir": "spec",
   "spec_files": [
     "../js/specs/cardClass/*_spec.js",
-    "../js/specs/bestHand/*_spec.js"
+    "../js/specs/bestHand/*_spec.js",
+    "../js/specs/handRankSearch/*_spec.js"
+
   ],
   "helpers": [
     "../js/specs/helpers/*.js"
