@@ -40,7 +40,17 @@ export class TheBestHand {
   }
 
 
-  *generateHand(cards: OmahaHoleCards) {
+  private endsOnTheFlop(): boolean {
+    return this._boardCards.length === 3;
+  }
+  private endsOnTheTurn(): boolean {
+    return this._boardCards.length === 4;
+  }
+  private endsOnTheRiver(): boolean {
+    return this._boardCards.length === 5;
+  }
+
+  private *generateHand(cards: OmahaHoleCards) {
     let one, two;
     [one, two, , ] = cards;
     yield([one, two]);
@@ -140,16 +150,37 @@ private getCoreAndRest(playerCards: Card[]): { core: Card[], rest: Card[] } {
     }
   }
 
+  private omahaTillRIver(possibleHoleCards:[Card, Card][], core: [Card, Card, Card, Card, Card]) {
+
+
+    this._uniqHands = [...this._uniqHands, core]
+  }
+
   private setUniqOmahaHands(): void {
-    let core = this._boardCards;
     this._uniqHands = [];
     let possibleHoleCards = this.generateHoldemHandsOutOfOmahaHand();
+    let core: Card[];
+    let rest: Card[];
     for(let playerCards of possibleHoleCards) {
-      let rest = playerCards;
-      let twoHoleCardsSubStitution = this.usingTwoHoleCards(core, rest);
-      this._uniqHands = [...this._uniqHands, ...twoHoleCardsSubStitution]
+      if( this.endsOnTheRiver() ) {
+        let twoHoleCardsSubStitution = this.usingTwoHoleCards(this._boardCards, playerCards);
+        this._uniqHands.push(...twoHoleCardsSubStitution)
+      }
+      if( this.endsOnTheTurn() ) {
+        let [firstCard, secondCard] = playerCards
+        core = [...this._boardCards, firstCard]
+        rest = [secondCard]
+        let firstOneHoleCardSubstitution = this.usingOneHoleCard(core, rest)
+        core = [...this._boardCards, secondCard]
+        rest = [firstCard]
+        let secondOneHoleCardSubstitution = this.usingOneHoleCard(core, rest)
+        this._uniqHands.push( ...firstOneHoleCardSubstitution, ...secondOneHoleCardSubstitution)
+      }
+      if( this.endsOnTheFlop() ) {
+        this._uniqHands.push( [...this._playerCards, ...this._boardCards])
+      }
     }
-    this._uniqHands = [...this._uniqHands, core]
+    
   }
 
   private setUniqHoldemHands(): void {
