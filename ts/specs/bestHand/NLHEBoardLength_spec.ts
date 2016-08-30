@@ -29,7 +29,7 @@ describe('TheBestHand', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
         });
         it('should return instance of class HighCard', function() {
-          expect(theBestHand.result instanceof HighCard ).toBe(true)
+          expect(theBestHand.result).toBeCardClassOf(HighCard)
         });
       });
 
@@ -55,7 +55,7 @@ describe('TheBestHand', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
         });
         it('should return instance of class TwoPair', function() {
-          expect(theBestHand.result instanceof TwoPair ).toBe(true)
+          expect(theBestHand.result).toBeCardClassOf(TwoPair)
         });
       });
 
@@ -68,7 +68,7 @@ describe('TheBestHand', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
         });
         it('should return instance of class Trips', function() {
-          expect(theBestHand.result instanceof Trips ).toBe(true)
+          expect(theBestHand.result).toBeCardClassOf(Trips)
         });
       });
 
@@ -81,7 +81,7 @@ describe('TheBestHand', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
         });
         it('should return instance of class Straight', function() {
-          expect(theBestHand.result instanceof Straight ).toBe(true)
+          expect(theBestHand.result).toBeCardClassOf(Straight)
         });
       });
 
@@ -94,7 +94,7 @@ describe('TheBestHand', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
         });
         it('should return instance of class Straight', function() {
-          expect(theBestHand.result instanceof Straight ).toBe(true)
+          expect(theBestHand.result).toBeCardClassOf(Straight)
         });
       });
 
@@ -107,7 +107,7 @@ describe('TheBestHand', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
         });
         it('should return instance of class Flush', function() {
-          expect(theBestHand.result instanceof Flush ).toBe(true)
+          expect(theBestHand.result).toBeCardClassOf(Flush)
         });
       });
 
@@ -120,7 +120,7 @@ describe('TheBestHand', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
         });
         it('should return instance of class FullHouse', function() {
-          expect(theBestHand.result instanceof FullHouse ).toBe(true)
+          expect(theBestHand.result).toBeCardClassOf(FullHouse)
         });
       });
 
@@ -133,7 +133,7 @@ describe('TheBestHand', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
         });
         it('should return instance of class Quads', function() {
-          expect(theBestHand.result instanceof Quads ).toBe(true)
+          expect(theBestHand.result).toBeCardClassOf(Quads)
         });
       });
 
@@ -146,7 +146,7 @@ describe('TheBestHand', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
         });
         it('should return instance of class StraightFlush', function() {
-          expect(theBestHand.result instanceof StraightFlush ).toBe(true)
+          expect(theBestHand.result).toBeCardClassOf(StraightFlush)
         });
       });
 
@@ -160,7 +160,7 @@ describe('TheBestHand', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
         });
         it('should return instance of class StraightFlush', function() {
-          expect(theBestHand.result instanceof StraightFlush ).toBe(true)
+          expect(theBestHand.result).toBeCardClassOf(StraightFlush)
         });
       });
     }); // desc 5 cards
@@ -175,7 +175,7 @@ describe('TheBestHand', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
         });
         it('should return instance of class HighCard', function() {
-          expect(theBestHand.result instanceof HighCard ).toBe(true)
+          expect(theBestHand.result).toBeCardClassOf(HighCard)
         });
       });
 
@@ -188,7 +188,7 @@ describe('TheBestHand', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
         });
         it('should return instance of class Pair', function() {
-          expect(theBestHand.result instanceof Pair ).toBe(true)
+          expect(theBestHand.result).toBeCardClassOf(Pair)
         });
       });
 
@@ -201,7 +201,7 @@ describe('TheBestHand', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
         });
         it('should return instance of class TwoPair', function() {
-          expect(theBestHand.result instanceof TwoPair ).toBe(true)
+          expect(theBestHand.result).toBeCardClassOf(TwoPair)
         });
       });
 
@@ -214,7 +214,7 @@ describe('TheBestHand', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
         });
         it('should return instance of class Trips', function() {
-          expect(theBestHand.result instanceof Trips ).toBe(true)
+          expect(theBestHand.result).toBeCardClassOf(Trips)
         });
       });
 
@@ -227,7 +227,7 @@ describe('TheBestHand', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
         });
         it('should return instance of class Straight', function() {
-          expect(theBestHand.result instanceof Straight ).toBe(true)
+          expect(theBestHand.result).toBeCardClassOf(Straight)
         });
       });
 
@@ -240,7 +240,7 @@ describe('TheBestHand', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
         });
         it('should return instance of class Straight', function() {
-          expect(theBestHand.result instanceof Straight ).toBe(true)
+          expect(theBestHand.result).toBeCardClassOf(Straight)
         });
       });
 
@@ -253,7 +253,7 @@ describe('TheBestHand', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
         });
         it('should return instance of class Flush', function() {
-          expect(theBestHand.result instanceof Flush ).toBe(true)
+          expect(theBestHand.result).toBeCardClassOf(Flush)
         });
       });
 
@@ -266,7 +266,7 @@ describe('TheBestHand', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
         });
         it('should return instance of class FullHouse', function() {
-          expect(theBestHand.result instanceof FullHouse ).toBe(true)
+          expect(theBestHand.result).toBeCardClassOf(FullHouse)
         });
       });
 
@@ -279,7 +279,7 @@ describe('TheBestHand', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
         });
         it('should return instance of class Quads', function() {
-          expect(theBestHand.result instanceof Quads ).toBe(true)
+          expect(theBestHand.result).toBeCardClassOf(Quads)
         });
       });
 
@@ -292,7 +292,7 @@ describe('TheBestHand', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
         });
         it('should return instance of class StraightFlush', function() {
-          expect(theBestHand.result instanceof StraightFlush ).toBe(true)
+          expect(theBestHand.result).toBeCardClassOf(StraightFlush)
         });
       });
 
@@ -305,7 +305,7 @@ describe('TheBestHand', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
         });
         it('should return instance of class StraightFlush', function() {
-          expect(theBestHand.result instanceof StraightFlush ).toBe(true)
+          expect(theBestHand.result).toBeCardClassOf(StraightFlush)
         });
       });
     }); // desc 4 cards
@@ -321,7 +321,7 @@ describe('TheBestHand', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
         });
         it('should return instance of class HighCard', function() {
-          expect(theBestHand.result instanceof HighCard ).toBe(true)
+          expect(theBestHand.result).toBeCardClassOf(HighCard)
         });
       });
 
@@ -333,7 +333,7 @@ describe('TheBestHand', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
         });
         it('should return instance of class Pair', function() {
-          expect(theBestHand.result instanceof Pair ).toBe(true)
+          expect(theBestHand.result).toBeCardClassOf(Pair)
         });
       });
 
@@ -345,7 +345,7 @@ describe('TheBestHand', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
         });
         it('should return instance of class TwoPair', function() {
-          expect(theBestHand.result instanceof TwoPair ).toBe(true)
+          expect(theBestHand.result).toBeCardClassOf(TwoPair)
         });
       });
 
@@ -357,7 +357,7 @@ describe('TheBestHand', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
         });
         it('should return instance of class Trips', function() {
-          expect(theBestHand.result instanceof Trips ).toBe(true)
+          expect(theBestHand.result).toBeCardClassOf(Trips)
         });
       });
 
@@ -369,7 +369,7 @@ describe('TheBestHand', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
         });
         it('should return instance of class Straight', function() {
-          expect(theBestHand.result instanceof Straight ).toBe(true)
+          expect(theBestHand.result).toBeCardClassOf(Straight)
         });
       });
 
@@ -381,7 +381,7 @@ describe('TheBestHand', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
         });
         it('should return instance of class Straight', function() {
-          expect(theBestHand.result instanceof Straight ).toBe(true)
+          expect(theBestHand.result).toBeCardClassOf(Straight)
         });
       });
 
@@ -393,7 +393,7 @@ describe('TheBestHand', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
         });
         it('should return instance of class Flush', function() {
-          expect(theBestHand.result instanceof Flush ).toBe(true)
+          expect(theBestHand.result).toBeCardClassOf(Flush)
         });
       });
 
@@ -405,7 +405,7 @@ describe('TheBestHand', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
         });
         it('should return instance of class FullHouse', function() {
-          expect(theBestHand.result instanceof FullHouse ).toBe(true)
+          expect(theBestHand.result).toBeCardClassOf(FullHouse)
         });
       });
 
@@ -417,7 +417,7 @@ describe('TheBestHand', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
         });
         it('should return instance of class Quads', function() {
-          expect(theBestHand.result instanceof Quads ).toBe(true)
+          expect(theBestHand.result).toBeCardClassOf(Quads)
         });
       });
 
@@ -429,7 +429,7 @@ describe('TheBestHand', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
         });
         it('should return instance of class StraightFlush', function() {
-          expect(theBestHand.result instanceof StraightFlush ).toBe(true)
+          expect(theBestHand.result).toBeCardClassOf(StraightFlush)
         });
       });
 
