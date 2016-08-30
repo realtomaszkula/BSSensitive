@@ -6,4 +6,4 @@ import { card } from './specs/helpers/methods'
       
           let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('aceOfDiamonds'), card('kingOfClubs'), card('queenOfspades')]
           let boardCards: BoardCards = [card('threeOfSpades'), card('fourOfClubs'), card('fiveOfDiamonds'), card('sevenOfDiamonds')  ]
-          let theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
+          let 

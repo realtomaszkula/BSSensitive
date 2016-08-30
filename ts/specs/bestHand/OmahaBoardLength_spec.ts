@@ -12,7 +12,7 @@ import { StraightFlush } from './../../classes/hands/StraightFlush'
 import { card } from './../helpers/methods'
 import { customMatchers } from './../helpers/customMatchers'
 
-describe('TheBestHand', function() {
+xdescribe('TheBestHand', function() {
   
   beforeEach(function() {
     jasmine.addMatchers(customMatchers as any)
@@ -26,7 +26,7 @@ describe('TheBestHand', function() {
         beforeEach(function() {
           let playerCards: OmahaHoleCards = [ card('aceOfSpades'), card('jackOfDiamonds'), card('kingOfClubs'), card('queenOfspades') ]
           let boardCards: BoardCards = [ card('threeOfSpades'), card('fourOfClubs'), card('fiveOfDiamonds'), card('sevenOfDiamonds'), card('nineOfDiamonds') ]
-          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
+          
         });
         it('should return instance of class HighCard', function() {
           expect(theBestHand.result).toBeCardClassOf(HighCard)
@@ -38,7 +38,7 @@ describe('TheBestHand', function() {
         beforeEach(function() {
           let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('aceOfDiamonds'), card('kingOfClubs'), card('queenOfspades')]
           let boardCards: BoardCards = [card('threeOfSpades'), card('fourOfClubs'), card('fiveOfDiamonds'), card('sevenOfDiamonds'), card('nineOfDiamonds')  ]
-          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
+          
         });
           
         it('should return instance of class Pair', function() {
@@ -51,7 +51,7 @@ describe('TheBestHand', function() {
         beforeEach(function() {
           let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('kingOfspades'), card('threeOfSpades'), card('fourOfClubs')]
           let boardCards: BoardCards = [ card('aceOfDiamonds'), card('kingOfClubs'), card('fiveOfDiamonds'), card('sevenOfDiamonds'), card('nineOfDiamonds')] 
-          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
+          
         });
           
         it('should return instance of class TwoPair', function() {
@@ -64,7 +64,7 @@ describe('TheBestHand', function() {
         beforeEach(function() {
           let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('aceOfDiamonds'), card('queenOfspades'), card('fiveOfDiamonds')]
           let boardCards: BoardCards = [card('threeOfSpades'), card('fourOfClubs'), card('aceOfClubs'), card('sevenOfDiamonds'), card('nineOfDiamonds')]
-          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
+          
         });
           
         it('should return instance of class Trips', function() {
@@ -77,7 +77,7 @@ describe('TheBestHand', function() {
         beforeEach(function() {
           let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('kingOfDiamonds'), card('fourOfClubs'), card('fiveOfDiamonds')]
           let boardCards: BoardCards = [card('queenOfClubs'), card('jackOfspades'), card('tenOfSpades'), card('sevenOfDiamonds'), card('nineOfDiamonds')]
-          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
+          
         });
           
         it('should return instance of class Straight', function() {
@@ -90,7 +90,7 @@ describe('TheBestHand', function() {
         beforeEach(function() {
           let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('kingOfDiamonds'), card('queenOfClubs'), card('duceOfspades')]
           let boardCards: BoardCards = [card('threeOfSpades'), card('fourOfClubs'), card('fiveOfDiamonds'),  card('sevenOfDiamonds'), card('nineOfDiamonds')]
-          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
+          
         });
           
         it('should return instance of class Straight', function() {
@@ -103,7 +103,7 @@ describe('TheBestHand', function() {
         beforeEach(function() {
           let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('kingOfSpades'), card('queenOfClubs') , card('nineOfDiamonds'),]
           let boardCards: BoardCards = [card('threeOfSpades'), card('fourOfClubs'), card('fiveOfSpades'), card('sevenOfDiamonds') , card('eightOfSpades')]
-          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
+          
         });
           
         it('should return instance of class Flush', function() {
@@ -116,7 +116,7 @@ describe('TheBestHand', function() {
         beforeEach(function() {
           let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('aceOfDiamonds'),  card('sevenOfDiamonds') , card('eightOfSpades')]
           let boardCards: BoardCards = [card('threeOfSpades'), card('queenOfClubs'), card('fiveOfDiamonds'), card('aceOfClubs'), card('queenOfspades')]
-          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
+          
         });
           
         it('should return instance of class FullHouse', function() {
@@ -129,7 +129,7 @@ describe('TheBestHand', function() {
         beforeEach(function() {
           let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('aceOfDiamonds'), card('sevenOfDiamonds') , card('eightOfSpades')]
           let boardCards: BoardCards = [card('threeOfSpades'), card('queenOfClubs'), card('fiveOfDiamonds'), card('aceOfClubs'), card('aceOfHearts')]
-          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
+          
         });
           
         it('should return instance of class Quads', function() {
@@ -142,7 +142,7 @@ describe('TheBestHand', function() {
         beforeEach(function() {
           let playerCards: OmahaHoleCards = [ card('aceOfSpades'), card('kingOfSpades'), card('sevenOfDiamonds') , card('eightOfSpades')]
           let boardCards: BoardCards = [card('tenOfSpades'), card('fourOfClubs'), card('fiveOfDiamonds'), card('queenOfSpades'), card('jackOfSpades') ]
-          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
+          
         });
           
         it('should return instance of class StraightFlush', function() {
@@ -156,7 +156,7 @@ describe('TheBestHand', function() {
         beforeEach(function() {
         let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('duceOfSpades') ,card('kingOfSpades'), card('sevenOfDiamonds') ]
           let boardCards: BoardCards = [card('fourOfSpades'), card('fiveOfSpades'), card('queenOfSpades'), card('threeOfSpades'), card('eightOfSpades')]
-          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
+          
         });
           
         it('should return instance of class StraightFlush', function() {
@@ -171,7 +171,7 @@ describe('TheBestHand', function() {
         beforeEach(function() {
           let playerCards: OmahaHoleCards = [ card('aceOfSpades'), card('jackOfDiamonds'), card('kingOfClubs'), card('queenOfspades') ]
           let boardCards: BoardCards = [ card('threeOfSpades'), card('fourOfClubs'), card('fiveOfDiamonds'), card('sevenOfDiamonds') ]
-          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
+          
         });
         it('should return instance of class HighCard', function() {
           expect( theBestHand.result ).toBeCardClassOf(HighCard)
@@ -183,7 +183,7 @@ describe('TheBestHand', function() {
         beforeEach(function() {
           let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('aceOfDiamonds'), card('kingOfClubs'), card('queenOfspades')]
           let boardCards: BoardCards = [card('threeOfSpades'), card('fourOfClubs'), card('fiveOfDiamonds'), card('sevenOfDiamonds')  ]
-          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
+          
         });
           
         it('should return instance of class Pair', function() {
@@ -196,7 +196,7 @@ describe('TheBestHand', function() {
         beforeEach(function() {
           let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('kingOfspades'), card('threeOfSpades'), card('fourOfClubs')]
           let boardCards: BoardCards = [ card('aceOfDiamonds'), card('kingOfClubs'), card('fiveOfDiamonds'), card('sevenOfDiamonds')] 
-          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
+          
         });
           
         it('should return instance of class TwoPair', function() {
@@ -209,7 +209,7 @@ describe('TheBestHand', function() {
         beforeEach(function() {
           let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('aceOfDiamonds'), card('queenOfspades'), card('fiveOfDiamonds')]
           let boardCards: BoardCards = [card('threeOfSpades'), card('fourOfClubs'), card('aceOfClubs'), card('sevenOfDiamonds')]
-          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
+          
         });
           
         it('should return instance of class Trips', function() {
@@ -222,7 +222,7 @@ describe('TheBestHand', function() {
         beforeEach(function() {
           let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('kingOfDiamonds'), card('fourOfClubs'), card('fiveOfDiamonds')]
           let boardCards: BoardCards = [card('queenOfClubs'), card('jackOfspades'), card('tenOfSpades'), card('sevenOfDiamonds')]
-          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
+          
         });
           
         it('should return instance of class Straight', function() {
@@ -235,7 +235,7 @@ describe('TheBestHand', function() {
         beforeEach(function() {
           let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('kingOfDiamonds'), card('queenOfClubs'), card('duceOfspades')]
           let boardCards: BoardCards = [card('threeOfSpades'), card('fourOfClubs'), card('fiveOfDiamonds'),  card('sevenOfDiamonds')]
-          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
+          
         });
           
         it('should return instance of class Straight', function() {
@@ -248,7 +248,7 @@ describe('TheBestHand', function() {
         beforeEach(function() {
           let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('kingOfSpades'), card('queenOfClubs') , card('nineOfDiamonds'),]
           let boardCards: BoardCards = [card('threeOfSpades'), card('fourOfClubs'), card('fiveOfSpades'), card('eightOfSpades')]
-          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
+          
         });
           
         it('should return instance of class Flush', function() {
@@ -261,7 +261,7 @@ describe('TheBestHand', function() {
         beforeEach(function() {
           let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('aceOfDiamonds'),  card('sevenOfDiamonds') , card('eightOfSpades')]
           let boardCards: BoardCards = [card('queenOfClubs'), card('fiveOfDiamonds'), card('aceOfClubs'), card('queenOfspades')]
-          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
+          
         });
           
         it('should return instance of class FullHouse', function() {
@@ -274,7 +274,7 @@ describe('TheBestHand', function() {
         beforeEach(function() {
           let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('aceOfDiamonds'), card('sevenOfDiamonds') , card('eightOfSpades')]
           let boardCards: BoardCards = [card('threeOfSpades'),  card('fiveOfDiamonds'), card('aceOfClubs'), card('aceOfHearts')]
-          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
+          
         });
           
         it('should return instance of class Quads', function() {
@@ -287,7 +287,7 @@ describe('TheBestHand', function() {
         beforeEach(function() {
           let playerCards: OmahaHoleCards = [ card('aceOfSpades'), card('kingOfSpades'), card('sevenOfDiamonds') , card('eightOfSpades')]
           let boardCards: BoardCards = [card('tenOfSpades'), card('fourOfClubs'), card('queenOfSpades'), card('jackOfSpades') ]
-          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
+          
         });
           
         it('should return instance of class StraightFlush', function() {
@@ -301,7 +301,7 @@ describe('TheBestHand', function() {
         beforeEach(function() {
         let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('duceOfSpades') ,card('kingOfSpades'), card('sevenOfDiamonds') ]
           let boardCards: BoardCards = [card('fourOfSpades'), card('fiveOfSpades'), card('queenOfSpades'), card('threeOfSpades')]
-          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
+          
         });
           
         it('should return instance of class StraightFlush', function() {
@@ -316,7 +316,7 @@ describe('TheBestHand', function() {
         beforeEach(function() {
           let playerCards: OmahaHoleCards = [ card('aceOfSpades'), card('jackOfDiamonds'), card('kingOfClubs'), card('queenOfspades') ]
           let boardCards: BoardCards = [ card('threeOfSpades'), card('fourOfClubs'), card('fiveOfDiamonds') ]
-          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
+          
         });
         it('should return instance of class HighCard', function() {
           expect( theBestHand.result ).toBeCardClassOf(HighCard)
@@ -328,7 +328,7 @@ describe('TheBestHand', function() {
         beforeEach(function() {
           let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('aceOfDiamonds'), card('kingOfClubs'), card('queenOfspades')]
           let boardCards: BoardCards = [card('threeOfSpades'), card('fourOfClubs'), card('fiveOfDiamonds')  ]
-          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
+          
         });
           
         it('should return instance of class Pair', function() {
@@ -341,7 +341,7 @@ describe('TheBestHand', function() {
         beforeEach(function() {
           let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('kingOfspades'), card('threeOfSpades'), card('fourOfClubs')]
           let boardCards: BoardCards = [ card('aceOfDiamonds'), card('kingOfClubs'), card('fiveOfDiamonds')] 
-          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
+          
         });
           
         it('should return instance of class TwoPair', function() {
@@ -354,7 +354,7 @@ describe('TheBestHand', function() {
         beforeEach(function() {
           let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('aceOfDiamonds'), card('queenOfspades'), card('fiveOfDiamonds')]
           let boardCards: BoardCards = [card('threeOfSpades'), card('fourOfClubs'), card('aceOfClubs')]
-          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
+          
         });
           
         it('should return instance of class Trips', function() {
@@ -367,7 +367,7 @@ describe('TheBestHand', function() {
         beforeEach(function() {
           let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('kingOfDiamonds'), card('fourOfClubs'), card('fiveOfDiamonds')]
           let boardCards: BoardCards = [card('queenOfClubs'), card('jackOfspades'), card('tenOfSpades')]
-          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
+          
         });
           
         it('should return instance of class Straight', function() {
@@ -380,7 +380,7 @@ describe('TheBestHand', function() {
         beforeEach(function() {
           let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('kingOfDiamonds'), card('queenOfClubs'), card('duceOfspades')]
           let boardCards: BoardCards = [card('threeOfSpades'), card('fourOfClubs'), card('fiveOfDiamonds')]
-          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
+          
         });
           
         it('should return instance of class Straight', function() {
@@ -393,7 +393,7 @@ describe('TheBestHand', function() {
         beforeEach(function() {
           let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('kingOfSpades'), card('queenOfClubs') , card('nineOfDiamonds'),]
           let boardCards: BoardCards = [card('threeOfSpades'), card('fiveOfSpades'), card('eightOfSpades')]
-          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
+          
         });
           
         it('should return instance of class Flush', function() {
@@ -406,7 +406,7 @@ describe('TheBestHand', function() {
         beforeEach(function() {
           let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('aceOfDiamonds'),  card('sevenOfDiamonds') , card('eightOfSpades')]
           let boardCards: BoardCards = [card('queenOfClubs'), card('aceOfClubs'), card('queenOfspades')]
-          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
+          
         });
           
         it('should return instance of class FullHouse', function() {
@@ -419,7 +419,7 @@ describe('TheBestHand', function() {
         beforeEach(function() {
           let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('aceOfDiamonds'), card('sevenOfDiamonds') , card('eightOfSpades')]
           let boardCards: BoardCards = [card('threeOfSpades'), card('aceOfClubs'), card('aceOfHearts')]
-          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
+          
         });
           
         it('should return instance of class Quads', function() {
@@ -432,7 +432,7 @@ describe('TheBestHand', function() {
         beforeEach(function() {
           let playerCards: OmahaHoleCards = [ card('aceOfSpades'), card('kingOfSpades'), card('sevenOfDiamonds') , card('eightOfSpades')]
           let boardCards: BoardCards = [card('tenOfSpades'), card('queenOfSpades'), card('jackOfSpades') ]
-          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
+          
         });
           
         it('should return instance of class StraightFlush', function() {
@@ -446,7 +446,7 @@ describe('TheBestHand', function() {
         beforeEach(function() {
         let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('duceOfSpades') ,card('kingOfSpades'), card('sevenOfDiamonds') ]
           let boardCards: BoardCards = [card('fourOfSpades'), card('fiveOfSpades'), card('threeOfSpades')]
-          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
+          
         });
           
         it('should return instance of class StraightFlush', function() {
