@@ -150,37 +150,43 @@ private getCoreAndRest(playerCards: Card[]): { core: Card[], rest: Card[] } {
     }
   }
 
-  private omahaTillRIver(possibleHoleCards:[Card, Card][], core: [Card, Card, Card, Card, Card]) {
-
-
-    this._uniqHands = [...this._uniqHands, core]
-  }
-
   private setUniqOmahaHands(): void {
     this._uniqHands = [];
     let possibleHoleCards = this.generateHoldemHandsOutOfOmahaHand();
     let core: Card[];
     let rest: Card[];
+    // loop runs for every possible holdem hand from omaha hand
     for(let playerCards of possibleHoleCards) {
       if( this.endsOnTheRiver() ) {
+        // find all combos by subsituting both hole cards
         let twoHoleCardsSubStitution = this.usingTwoHoleCards(this._boardCards, playerCards);
         this._uniqHands.push(...twoHoleCardsSubStitution)
       }
       if( this.endsOnTheTurn() ) {
+        /* add one hole card to board to make 5 card combo, 
+        and find all possible combos by substituting with another hole card, 
+        do it for both hole cards */
+
         let [firstCard, secondCard] = playerCards
+
+        // merges first hole card with the board and finds uniq hand combos by substituting with the second hole card
         core = [...this._boardCards, firstCard]
         rest = [secondCard]
         let firstOneHoleCardSubstitution = this.usingOneHoleCard(core, rest)
+
+        // does the same for another hole card
         core = [...this._boardCards, secondCard]
         rest = [firstCard]
         let secondOneHoleCardSubstitution = this.usingOneHoleCard(core, rest)
+
+        // collect results
         this._uniqHands.push( ...firstOneHoleCardSubstitution, ...secondOneHoleCardSubstitution)
       }
       if( this.endsOnTheFlop() ) {
-        this._uniqHands.push( [...this._playerCards, ...this._boardCards])
+        // add two hole cards to board to make 5 card combo
+        this._uniqHands.push([...this._playerCards, ...this._boardCards])
       }
     }
-    
   }
 
   private setUniqHoldemHands(): void {
