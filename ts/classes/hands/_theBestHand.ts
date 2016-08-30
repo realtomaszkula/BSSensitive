@@ -184,7 +184,7 @@ private getCoreAndRest(playerCards: Card[]): { core: Card[], rest: Card[] } {
       }
       if( this.endsOnTheFlop() ) {
         // add two hole cards to board to make 5 card combo
-        this._uniqHands.push([...this._playerCards, ...this._boardCards])
+        this._uniqHands.push([...playerCards, ...this._boardCards])
       }
     }
   }
