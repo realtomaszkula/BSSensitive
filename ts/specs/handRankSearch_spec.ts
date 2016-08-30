@@ -9,21 +9,15 @@ import { Flush } from './../classes/hands/Flush'
 import { Quads } from './../classes/hands/Quads'
 import { StraightFlush } from './../classes/hands/StraightFlush'
 import { Card, CardClass, HandParams,  Suit, CardValue } from './../classes/hands/_interfaces'
+import { card } from './helpers/methods'
 
 describe('HandRankSearch', function() {
   
   describe('when given hand with high card', function() {
   let hand: HandRankSearch;
     beforeEach(function() {
-      hand = new HandRankSearch(
-        [ 
-          { suit: 'spade', value: CardValue.ace  }, 
-          { suit: 'diamond', value: CardValue.jack  }, 
-          { suit: 'club', value: CardValue.king  }, 
-          { suit: 'club', value: CardValue.queen  }, 
-          { suit: 'club', value: CardValue.duce  }
-        ]
-      )
+      let params: Card[] = [card('aceOfSpades'), card('jackOfDiamonds'), card('kingOfClubs'), card('queenOfClubs'), card('duceOfClubs')]
+      hand = new HandRankSearch(params)
     });
       
     it('instance should return instance of class Pair', function() {
@@ -34,15 +28,8 @@ describe('HandRankSearch', function() {
   describe('when given hand including pair', function() {
   let hand: HandRankSearch;
     beforeEach(function() {
-      hand = new HandRankSearch(
-        [ 
-          { suit: 'spade', value: CardValue.ace  }, 
-          { suit: 'diamond', value: CardValue.ace  }, 
-          { suit: 'club', value: CardValue.king  }, 
-          { suit: 'club', value: CardValue.queen  }, 
-          { suit: 'club', value: CardValue.duce  }
-        ]
-      )
+      let params: Card[] = [card('aceOfSpades'), card('aceOfDiamonds'), card('kingOfClubs'), card('queenOfClubs'), card('duceOfClubs')]
+      hand = new HandRankSearch(params)
     });
       
     it('instance should return instance of class Pair', function() {
@@ -53,15 +40,8 @@ describe('HandRankSearch', function() {
   describe('when given hand including two pair', function() {
   let hand: HandRankSearch;
     beforeEach(function() {
-      hand = new HandRankSearch(
-        [ 
-          { suit: 'spade', value: CardValue.ace  }, 
-          { suit: 'diamond', value: CardValue.ace  }, 
-          { suit: 'club', value: CardValue.king  }, 
-          { suit: 'club', value: CardValue.king  }, 
-          { suit: 'club', value: CardValue.duce  }
-        ]
-      )
+      let params: Card[] = [card('aceOfSpades'), card('aceOfDiamonds'), card('kingOfClubs'), card('kingOfHearts'), card('duceOfClubs')]
+      hand = new HandRankSearch(params)
     });
       
     it('instance should return instance of class two pair', function() {
@@ -72,15 +52,8 @@ describe('HandRankSearch', function() {
   describe('when given hand including trips', function() {
   let hand: HandRankSearch;
     beforeEach(function() {
-      hand = new HandRankSearch(
-        [ 
-          { suit: 'spade', value: CardValue.ace  }, 
-          { suit: 'diamond', value: CardValue.ace  }, 
-          { suit: 'club', value: CardValue.ace  }, 
-          { suit: 'club', value: CardValue.king  }, 
-          { suit: 'club', value: CardValue.duce  }
-        ]
-      )
+      let params: Card[] = [card('aceOfSpades'), card('aceOfDiamonds'), card('aceOfClubs'), card('kingOfHearts'), card('duceOfClubs')]
+      hand = new HandRankSearch(params)
     });
       
     it('instance should return instance of class trips', function() {
@@ -91,15 +64,8 @@ describe('HandRankSearch', function() {
   describe('when given hand including straight', function() {
   let hand: HandRankSearch;
     beforeEach(function() {
-      hand = new HandRankSearch(
-        [ 
-          { suit: 'spade', value: CardValue.ace  }, 
-          { suit: 'diamond', value: CardValue.king  }, 
-          { suit: 'club', value: CardValue.queen  }, 
-          { suit: 'club', value: CardValue.jack  }, 
-          { suit: 'club', value: CardValue.ten  }
-        ]
-      )
+      let params: Card[] = [ card('aceOfSpades'), card('kingOfDiamonds'), card('queenOfClubs'), card('jackOfClubs'), card('tenOfClubs')]
+      hand = new HandRankSearch(params)
     });
       
     it('instance should return instance of class straight', function() {
@@ -110,15 +76,8 @@ describe('HandRankSearch', function() {
   describe('when given hand including wheel straight', function() {
   let hand: HandRankSearch;
     beforeEach(function() {
-      hand = new HandRankSearch(
-        [ 
-          { suit: 'spade', value: CardValue.ace  }, 
-          { suit: 'diamond', value: CardValue.duce  }, 
-          { suit: 'club', value: CardValue.three  }, 
-          { suit: 'club', value: CardValue.four  }, 
-          { suit: 'club', value: CardValue.five  }
-        ]
-      )
+      let params: Card[] = [ card('aceOfSpades'), card('duceOfDiamonds'), card('threeOfClubs'), card('fourOfClubs'), card('fiveOfClubs')]
+      hand = new HandRankSearch(params)
     });
       
     it('instance should return instance of class straight', function() {
@@ -129,15 +88,8 @@ describe('HandRankSearch', function() {
   describe('when given hand including flush', function() {
   let hand: HandRankSearch;
     beforeEach(function() {
-      hand = new HandRankSearch(
-        [ 
-          { suit: 'club', value: CardValue.ace  }, 
-          { suit: 'club', value: CardValue.king  }, 
-          { suit: 'club', value: CardValue.queen  }, 
-          { suit: 'club', value: CardValue.jack  }, 
-          { suit: 'club', value: CardValue.duce  }
-        ]
-      ) 
+      let params: Card[] = [ card('aceOfClubs'), card('kingOfClubs'), card('queenOfClubs'), card('jackOfClubs'), card('duceOfClubs')]
+      hand = new HandRankSearch(params) 
     });
       
     it('instance should return instance of class flush', function() {
@@ -148,15 +100,8 @@ describe('HandRankSearch', function() {
   describe('when given hand including fullhouse', function() {
   let hand: HandRankSearch;
     beforeEach(function() {
-      hand = new HandRankSearch(
-        [ 
-          { suit: 'club', value: CardValue.ace  }, 
-          { suit: 'club', value: CardValue.ace  }, 
-          { suit: 'club', value: CardValue.duce  }, 
-          { suit: 'club', value: CardValue.duce  }, 
-          { suit: 'spade', value: CardValue.duce  }
-        ]
-      )
+      let params: Card[] = [card('aceOfSpades'), card('aceOfDiamonds'), card('aceOfClubs'), card('kingOfHearts'), card('kingOfClubs')]
+      hand = new HandRankSearch(params)
     });
       
     it('instance should return instance of class fullhouse', function() {
@@ -166,16 +111,9 @@ describe('HandRankSearch', function() {
 
   describe('when given hand including quads', function() {
   let hand: HandRankSearch;
+  let params: Card[] = [card('aceOfSpades'), card('aceOfDiamonds'), card('aceOfClubs'), card('aceOfHearts'), card('duceOfClubs')]
     beforeEach(function() {
-      hand = new HandRankSearch(
-        [ 
-          { suit: 'club', value: CardValue.ace  }, 
-          { suit: 'club', value: CardValue.ace  }, 
-          { suit: 'club', value: CardValue.ace  }, 
-          { suit: 'club', value: CardValue.ace  }, 
-          { suit: 'spade', value: CardValue.duce  }
-        ]
-      )
+      hand = new HandRankSearch(params )
     });
       
     it('instance should return instance of class quads', function() {
@@ -186,15 +124,8 @@ describe('HandRankSearch', function() {
   describe('when given hand including straightflush', function() {
   let hand: HandRankSearch;
     beforeEach(function() {
-      hand = new HandRankSearch(
-        [ 
-          { suit: 'club', value: CardValue.ace  }, 
-          { suit: 'club', value: CardValue.king  }, 
-          { suit: 'club', value: CardValue.queen  }, 
-          { suit: 'club', value: CardValue.jack  }, 
-          { suit: 'club', value: CardValue.ten  }
-        ]
-      )
+      let params: Card[] = [ card('aceOfClubs'), card('kingOfClubs'), card('queenOfClubs'), card('jackOfClubs'), card('tenOfClubs')]
+      hand = new HandRankSearch(params)
     });
       
     it('instance should return instance of class straightflush', function() {

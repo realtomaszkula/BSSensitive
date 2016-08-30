@@ -1,4 +1,4 @@
-import { Card, CardClass, HandStrength, HandParams,  Suit, CardValue, Search,
+import { CardClass, HandStrength, HandParams,  Suit, CardValue, Search,
   HighCardParams, PairParams, TwoPairParams, TripsParams, StraightParams, FlushParams, FullHouseParams, QuadsParams, StraightFlushParams,
   SearchesOnceAndRemembers } from './_interfaces'
 import { HighCard } from './HighCard'
@@ -10,19 +10,30 @@ import { Flush } from './Flush'
 import { FullHouse } from './FullHouse'
 import { Quads } from './Quads'
 import { StraightFlush } from './StraightFlush'
+import { Card } from './Card'
 import { returnFiveCast } from './../../typecasting/arrays'
 
+
 export class HandRankSearch {
+  private _cards: Card[];
   private _handRank: CardClass;
   private _sortedValues: CardValue[];
   private _paired: number[][];
   private _suits: Suit[];
 
-  constructor( private _cards: Card[] ) { 
+  constructor( cards: Card[] ) { 
+    this.cards = cards;
     this.sortValues();
     this.extractSuits();
     this.pairSort();
     this._handRank = this.figureOutHandRank();
+  }
+
+  set cards(cards: Card[]) {
+    for (let card of cards) {
+      if (card instanceof Card) throw new Error('constructor accepts array of Cards')
+    }
+    this._cards = cards
   }
 
   get result(): CardClass {

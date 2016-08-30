@@ -11,6 +11,11 @@ import { HighCard } from './HighCard'
 type Suit = 's' | 'c' | 'd' | 'h' | 'spade' | 'club' | 'diamond' | 'heart' | 'S' | 'C' | 'D' | 'H'
 type CardClass = Pair | TwoPair | Trips | Straight | Flush | FullHouse | Quads | StraightFlush | HighCard
 
+interface Card {
+  value: CardValue,
+  suit: Suit
+}
+
 enum HandStrength {
   highCard,
   pair,
@@ -37,11 +42,6 @@ enum CardValue {
   queen, 
   king,
   ace
-}
-
-interface Card {
-  value: CardValue,
-  suit: Suit
 }
 
 interface Search {
