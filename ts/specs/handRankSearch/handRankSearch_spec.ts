@@ -10,22 +10,26 @@ import { Quads } from './../../classes/hands/Quads'
 import { StraightFlush } from './../../classes/hands/StraightFlush'
 import { Card, CardClass, HandParams,  Suit, CardValue } from './../../classes/hands/_interfaces'
 import { card } from './../helpers/methods'
-
+import { customMatchers } from './../helpers/customMatchers'
 describe('HandRankSearch', function() {
-let hand: HandRankSearch;
-let params: [Card, Card, Card, Card];
+
+  beforeEach(function() {
+      jasmine.addMatchers(customMatchers as any)
+  });
   
+  let hand: HandRankSearch;
+  let params: [Card, Card, Card, Card];
   describe('when given hand with high card', function() {
     beforeEach(function() {
       params = [card('aceOfSpades'), card('jackOfDiamonds'), card('kingOfClubs'), card('queenOfClubs'), card('duceOfClubs')]
     });
-    it('instance should return instance of class Pair', function() {
+    it('instance should return instance of class HighCard', function() {
       hand = new HandRankSearch(params)
-      expect(hand.result instanceof HighCard ).toBe(true)
+      expect(hand.result).toBeCardClassOf(HighCard)
     });
-    it('instance should return instance of class Pair', function() {
+    it('instance should return instance of class HighCard', function() {
       hand = new HandRankSearch(params.reverse())
-      expect(hand.result instanceof HighCard ).toBe(true)
+      expect(hand.result).toBeCardClassOf(HighCard)
     });
   });
 
@@ -35,11 +39,11 @@ let params: [Card, Card, Card, Card];
     });
     it('instance should return instance of class Pair', function() {
       hand = new HandRankSearch(params)
-      expect(hand.result instanceof Pair ).toBe(true)
+      expect(hand.result).toBeCardClassOf(Pair)
     });
     it('instance should return instance of class Pair', function() {
       hand = new HandRankSearch(params.reverse())
-      expect(hand.result instanceof Pair ).toBe(true)
+      expect(hand.result).toBeCardClassOf(Pair)
     });
   });
 
@@ -49,11 +53,11 @@ let params: [Card, Card, Card, Card];
     });
     it('instance should return instance of class two pair', function() {
       hand = new HandRankSearch(params)
-      expect(hand.result instanceof TwoPair ).toBe(true)
+      expect(hand.result).toBeCardClassOf(TwoPair)
     });
     it('instance should return instance of class two pair', function() {
       hand = new HandRankSearch(params.reverse())
-      expect(hand.result instanceof TwoPair ).toBe(true)
+      expect(hand.result).toBeCardClassOf(TwoPair)
     });
   });
 
@@ -63,11 +67,11 @@ let params: [Card, Card, Card, Card];
     });
     it('instance should return instance of class trips', function() {
       hand = new HandRankSearch(params)
-      expect(hand.result instanceof Trips ).toBe(true)
+      expect(hand.result).toBeCardClassOf(Trips)
     });
     it('instance should return instance of class trips', function() {
       hand = new HandRankSearch(params.reverse())
-      expect(hand.result instanceof Trips ).toBe(true)
+      expect(hand.result).toBeCardClassOf(Trips)
     });
   });
 
@@ -77,11 +81,11 @@ let params: [Card, Card, Card, Card];
     });
     it('instance should return instance of class straight', function() {
       hand = new HandRankSearch(params)
-      expect(hand.result instanceof Straight ).toBe(true)
+      expect(hand.result).toBeCardClassOf(Straight)
     });
     it('instance should return instance of class straight', function() {
       hand = new HandRankSearch(params.reverse())
-      expect(hand.result instanceof Straight ).toBe(true)
+      expect(hand.result).toBeCardClassOf(Straight)
     });
   });
 
@@ -91,11 +95,11 @@ let params: [Card, Card, Card, Card];
     });
     it('instance should return instance of class straight', function() {
       hand = new HandRankSearch(params)
-      expect(hand.result instanceof Straight ).toBe(true)
+      expect(hand.result).toBeCardClassOf(Straight)
     });
     it('instance should return instance of class straight', function() {
       hand = new HandRankSearch(params.reverse())
-      expect(hand.result instanceof Straight ).toBe(true)
+      expect(hand.result).toBeCardClassOf(Straight)
     });
   });
 
@@ -105,11 +109,11 @@ let params: [Card, Card, Card, Card];
     });
     it('instance should return instance of class flush', function() {
       hand = new HandRankSearch(params)
-      expect(hand.result instanceof Flush ).toBe(true)
+      expect(hand.result).toBeCardClassOf(Flush)
     });
     it('instance should return instance of class flush', function() {
       hand = new HandRankSearch(params.reverse())
-      expect(hand.result instanceof Flush ).toBe(true)
+      expect(hand.result).toBeCardClassOf(Flush)
     });
   });
 
@@ -119,11 +123,11 @@ let params: [Card, Card, Card, Card];
     });
     it('instance should return instance of class fullhouse', function() {
       hand = new HandRankSearch(params)
-      expect(hand.result instanceof FullHouse ).toBe(true)
+      expect(hand.result).toBeCardClassOf(FullHouse)
     });
     it('instance should return instance of class fullhouse', function() {
       hand = new HandRankSearch(params.reverse())
-      expect(hand.result instanceof FullHouse ).toBe(true)
+      expect(hand.result).toBeCardClassOf(FullHouse)
     });
   });
 
@@ -133,11 +137,11 @@ let params: [Card, Card, Card, Card];
     });
     it('instance should return instance of class quads', function() {
       hand = new HandRankSearch(params)
-      expect(hand.result instanceof Quads ).toBe(true)
+      expect(hand.result).toBeCardClassOf(Quads)
     });
     it('instance should return instance of class quads', function() {
       hand = new HandRankSearch(params.reverse())
-      expect(hand.result instanceof Quads ).toBe(true)
+      expect(hand.result).toBeCardClassOf(Quads)
     });
   });
 
@@ -147,11 +151,11 @@ let params: [Card, Card, Card, Card];
     });
     it('instance should return instance of class straightflush', function() {
       hand = new HandRankSearch(params)
-      expect(hand.result instanceof StraightFlush ).toBe(true)
+      expect(hand.result).toBeCardClassOf(StraightFlush)
     });
     it('instance should return instance of class straightflush', function() {
       hand = new HandRankSearch(params.reverse())
-      expect(hand.result instanceof StraightFlush ).toBe(true)
+      expect(hand.result).toBeCardClassOf(StraightFlush)
     });
   });
 
