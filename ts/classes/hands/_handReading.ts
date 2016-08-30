@@ -31,7 +31,7 @@ export class HandRankSearch {
 
   set cards(cards: Card[]) {
     for (let card of cards) {
-      if (card instanceof Card) throw new Error('constructor accepts array of Cards')
+      if (!(card instanceof Card)) throw new Error('constructor accepts array of Cards')
     }
     this._cards = cards
   }

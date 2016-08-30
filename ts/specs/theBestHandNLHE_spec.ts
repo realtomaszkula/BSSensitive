@@ -11,7 +11,7 @@ import { Quads } from './../classes/hands/Quads'
 import { StraightFlush } from './../classes/hands/StraightFlush'
 import { card } from './helpers/methods'
 
-describe('TheBestHand', function() {
+xdescribe('TheBestHand', function() {
   
   describe('NLHE', function() {
     describe('when given 5 board cards', function() {
