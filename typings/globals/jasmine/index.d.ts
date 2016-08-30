@@ -280,7 +280,7 @@ declare namespace jasmine {
         spec: Env;
         isNot?: boolean;
         message(): any;
-
+        
         toBe(expected: any, expectationFailOutput?: any): boolean;
         toEqual(expected: any, expectationFailOutput?: any): boolean;
         toMatch(expected: string | RegExp, expectationFailOutput?: any): boolean;

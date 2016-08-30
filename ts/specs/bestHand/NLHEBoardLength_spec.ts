@@ -42,7 +42,7 @@ describe('TheBestHand', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
         });
         it('should return instance of class Pair', function() {
-          expect(theBestHand.result).toBeCardClassOf()
+          expect(theBestHand.result).toBeCardClassOf(Pair)
         });
       });
 
