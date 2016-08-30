@@ -12,449 +12,430 @@ import { StraightFlush } from './../../classes/hands/StraightFlush'
 import { card } from './../helpers/methods'
 import { customMatchers } from './../helpers/customMatchers'
 
-xdescribe('TheBestHand', function() {
-  
+describe('TheBestHand', function() {
   beforeEach(function() {
     jasmine.addMatchers(customMatchers as any)
   });
     
   describe('Omaha', function() {
+    let playerCards: OmahaHoleCards;
+    let theBestHand: TheBestHand;
     describe('when given 5 board cards', function() {
-      
+      let boardCards: FlopTurnRiver;
       describe('and hand of high card', function() {
-      let theBestHand: TheBestHand;
         beforeEach(function() {
-          let playerCards: OmahaHoleCards = [ card('aceOfSpades'), card('jackOfDiamonds'), card('kingOfClubs'), card('queenOfspades') ]
-          let boardCards: BoardCards = [ card('threeOfSpades'), card('fourOfClubs'), card('fiveOfDiamonds'), card('sevenOfDiamonds'), card('nineOfDiamonds') ]
+          playerCards = [ card('aceOfSpades'), card('jackOfDiamonds'), card('kingOfClubs'), card('queenOfspades') ]
+          boardCards = [ card('threeOfSpades'), card('fourOfClubs'), card('fiveOfDiamonds'), card('sevenOfDiamonds'), card('nineOfDiamonds') ]
           
         });
         it('should return instance of class HighCard', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
           expect(theBestHand.result).toBeCardClassOf(HighCard)
         });
       });
 
       describe('and hand including pair', function() {
-        let theBestHand: TheBestHand;
         beforeEach(function() {
-          let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('aceOfDiamonds'), card('kingOfClubs'), card('queenOfspades')]
-          let boardCards: BoardCards = [card('threeOfSpades'), card('fourOfClubs'), card('fiveOfDiamonds'), card('sevenOfDiamonds'), card('nineOfDiamonds')  ]
-          
+          playerCards = [card('aceOfSpades'), card('aceOfDiamonds'), card('kingOfClubs'), card('queenOfspades')]
+          boardCards = [card('threeOfSpades'), card('fourOfClubs'), card('fiveOfDiamonds'), card('sevenOfDiamonds'), card('nineOfDiamonds')  ]
         });
           
         it('should return instance of class Pair', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
           expect( theBestHand.result ).toBeCardClassOf(Pair)
         });
       });
 
       describe('and hand including two pair', function() {
-        let theBestHand: TheBestHand;
         beforeEach(function() {
-          let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('kingOfspades'), card('threeOfSpades'), card('fourOfClubs')]
-          let boardCards: BoardCards = [ card('aceOfDiamonds'), card('kingOfClubs'), card('fiveOfDiamonds'), card('sevenOfDiamonds'), card('nineOfDiamonds')] 
-          
+          playerCards = [card('aceOfSpades'), card('kingOfspades'), card('threeOfSpades'), card('fourOfClubs')]
+          boardCards = [ card('aceOfDiamonds'), card('kingOfClubs'), card('fiveOfDiamonds'), card('sevenOfDiamonds'), card('nineOfDiamonds')] 
         });
           
         it('should return instance of class TwoPair', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
           expect( theBestHand.result ).toBeCardClassOf(TwoPair)
         });
       });
 
       describe('and hand including trips', function() {
-        let theBestHand: TheBestHand;
         beforeEach(function() {
-          let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('aceOfDiamonds'), card('queenOfspades'), card('fiveOfDiamonds')]
-          let boardCards: BoardCards = [card('threeOfSpades'), card('fourOfClubs'), card('aceOfClubs'), card('sevenOfDiamonds'), card('nineOfDiamonds')]
-          
+          playerCards = [card('aceOfSpades'), card('aceOfDiamonds'), card('queenOfspades'), card('fiveOfDiamonds')]
+          boardCards = [card('threeOfSpades'), card('fourOfClubs'), card('aceOfClubs'), card('sevenOfDiamonds'), card('nineOfDiamonds')]
         });
           
         it('should return instance of class Trips', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
           expect( theBestHand.result ).toBeCardClassOf(Trips)
         });
       });
 
       describe('and hand including straight', function() {
-        let theBestHand: TheBestHand;
         beforeEach(function() {
-          let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('kingOfDiamonds'), card('fourOfClubs'), card('fiveOfDiamonds')]
-          let boardCards: BoardCards = [card('queenOfClubs'), card('jackOfspades'), card('tenOfSpades'), card('sevenOfDiamonds'), card('nineOfDiamonds')]
-          
+          playerCards = [card('aceOfSpades'), card('kingOfDiamonds'), card('fourOfClubs'), card('fiveOfDiamonds')]
+          boardCards = [card('queenOfClubs'), card('jackOfspades'), card('tenOfSpades'), card('sevenOfDiamonds'), card('nineOfDiamonds')]
         });
           
         it('should return instance of class Straight', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
           expect( theBestHand.result ).toBeCardClassOf(Straight)
         });
       });
 
       describe('and hand including wheel straight', function() {
-        let theBestHand: TheBestHand;
         beforeEach(function() {
-          let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('kingOfDiamonds'), card('queenOfClubs'), card('duceOfspades')]
-          let boardCards: BoardCards = [card('threeOfSpades'), card('fourOfClubs'), card('fiveOfDiamonds'),  card('sevenOfDiamonds'), card('nineOfDiamonds')]
-          
+          playerCards = [card('aceOfSpades'), card('kingOfDiamonds'), card('queenOfClubs'), card('duceOfspades')]
+          boardCards = [card('threeOfSpades'), card('fourOfClubs'), card('fiveOfDiamonds'),  card('sevenOfDiamonds'), card('nineOfDiamonds')]
         });
           
         it('should return instance of class Straight', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
           expect( theBestHand.result ).toBeCardClassOf(Straight)
         });
       });
 
       describe('and hand including flush', function() {
-        let theBestHand: TheBestHand;
         beforeEach(function() {
-          let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('kingOfSpades'), card('queenOfClubs') , card('nineOfDiamonds'),]
-          let boardCards: BoardCards = [card('threeOfSpades'), card('fourOfClubs'), card('fiveOfSpades'), card('sevenOfDiamonds') , card('eightOfSpades')]
-          
+          playerCards = [card('aceOfSpades'), card('kingOfSpades'), card('queenOfClubs') , card('nineOfDiamonds'),]
+          boardCards = [card('threeOfSpades'), card('fourOfClubs'), card('fiveOfSpades'), card('sevenOfDiamonds') , card('eightOfSpades')]
         });
           
         it('should return instance of class Flush', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
           expect( theBestHand.result ).toBeCardClassOf(Flush)
         });
       });
 
       describe('and hand including fullhouse', function() {
-        let theBestHand: TheBestHand;
         beforeEach(function() {
-          let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('aceOfDiamonds'),  card('sevenOfDiamonds') , card('eightOfSpades')]
-          let boardCards: BoardCards = [card('threeOfSpades'), card('queenOfClubs'), card('fiveOfDiamonds'), card('aceOfClubs'), card('queenOfspades')]
-          
+          playerCards = [card('aceOfSpades'), card('aceOfDiamonds'),  card('sevenOfDiamonds') , card('eightOfSpades')]
+          boardCards = [card('threeOfSpades'), card('queenOfClubs'), card('fiveOfDiamonds'), card('aceOfClubs'), card('queenOfspades')]
         });
           
         it('should return instance of class FullHouse', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
           expect( theBestHand.result ).toBeCardClassOf(FullHouse)
         });
       });
 
       describe('and hand including quads', function() {
-        let theBestHand: TheBestHand;
         beforeEach(function() {
-          let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('aceOfDiamonds'), card('sevenOfDiamonds') , card('eightOfSpades')]
-          let boardCards: BoardCards = [card('threeOfSpades'), card('queenOfClubs'), card('fiveOfDiamonds'), card('aceOfClubs'), card('aceOfHearts')]
-          
+          playerCards = [card('aceOfSpades'), card('aceOfDiamonds'), card('sevenOfDiamonds') , card('eightOfSpades')]
+          boardCards = [card('threeOfSpades'), card('queenOfClubs'), card('fiveOfDiamonds'), card('aceOfClubs'), card('aceOfHearts')]
         });
           
         it('should return instance of class Quads', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
           expect( theBestHand.result ).toBeCardClassOf(Quads)
         });
       });
 
       describe('and hand including straightflush', function() {
-        let theBestHand: TheBestHand;
         beforeEach(function() {
-          let playerCards: OmahaHoleCards = [ card('aceOfSpades'), card('kingOfSpades'), card('sevenOfDiamonds') , card('eightOfSpades')]
-          let boardCards: BoardCards = [card('tenOfSpades'), card('fourOfClubs'), card('fiveOfDiamonds'), card('queenOfSpades'), card('jackOfSpades') ]
-          
+          playerCards = [ card('aceOfSpades'), card('kingOfSpades'), card('sevenOfDiamonds') , card('eightOfSpades')]
+          boardCards = [card('tenOfSpades'), card('fourOfClubs'), card('fiveOfDiamonds'), card('queenOfSpades'), card('jackOfSpades') ]
         });
           
         it('should return instance of class StraightFlush', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
+          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
           expect(theBestHand.result).toBeCardClassOf(StraightFlush)
         });
       });
 
       
       describe('and hand including wheel straightflush', function() {
-        let theBestHand: TheBestHand;
         beforeEach(function() {
-        let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('duceOfSpades') ,card('kingOfSpades'), card('sevenOfDiamonds') ]
-          let boardCards: BoardCards = [card('fourOfSpades'), card('fiveOfSpades'), card('queenOfSpades'), card('threeOfSpades'), card('eightOfSpades')]
-          
+          playerCards = [card('aceOfSpades'), card('duceOfSpades') ,card('kingOfSpades'), card('sevenOfDiamonds') ]
+          boardCards = [card('fourOfSpades'), card('fiveOfSpades'), card('queenOfSpades'), card('threeOfSpades'), card('eightOfSpades')]
         });
           
         it('should return instance of class StraightFlush', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
           expect( theBestHand.result ).toBeCardClassOf(StraightFlush)
         });
       });
     }); // desc 5 board
     
     describe('when given 4 boad cards', function() {
+      let boardCards: FlopTurn;
       describe('and hand of high card', function() {
-      let theBestHand: TheBestHand;
         beforeEach(function() {
-          let playerCards: OmahaHoleCards = [ card('aceOfSpades'), card('jackOfDiamonds'), card('kingOfClubs'), card('queenOfspades') ]
-          let boardCards: BoardCards = [ card('threeOfSpades'), card('fourOfClubs'), card('fiveOfDiamonds'), card('sevenOfDiamonds') ]
+          playerCards = [ card('aceOfSpades'), card('jackOfDiamonds'), card('kingOfClubs'), card('queenOfspades') ]
+          boardCards = [ card('threeOfSpades'), card('fourOfClubs'), card('fiveOfDiamonds'), card('sevenOfDiamonds') ]
           
         });
         it('should return instance of class HighCard', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
           expect( theBestHand.result ).toBeCardClassOf(HighCard)
         });
       });
 
       describe('and hand including pair', function() {
-        let theBestHand: TheBestHand;
         beforeEach(function() {
-          let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('aceOfDiamonds'), card('kingOfClubs'), card('queenOfspades')]
-          let boardCards: BoardCards = [card('threeOfSpades'), card('fourOfClubs'), card('fiveOfDiamonds'), card('sevenOfDiamonds')  ]
+          playerCards = [card('aceOfSpades'), card('aceOfDiamonds'), card('kingOfClubs'), card('queenOfspades')]
+          boardCards = [card('threeOfSpades'), card('fourOfClubs'), card('fiveOfDiamonds'), card('sevenOfDiamonds')  ]
           
         });
           
         it('should return instance of class Pair', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
           expect(theBestHand.result).toBeCardClassOf(Pair)
         });
       });
 
       describe('and hand including two pair', function() {
-        let theBestHand: TheBestHand;
         beforeEach(function() {
-          let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('kingOfspades'), card('threeOfSpades'), card('fourOfClubs')]
-          let boardCards: BoardCards = [ card('aceOfDiamonds'), card('kingOfClubs'), card('fiveOfDiamonds'), card('sevenOfDiamonds')] 
+          playerCards = [card('aceOfSpades'), card('kingOfspades'), card('threeOfSpades'), card('fourOfClubs')]
+          boardCards = [ card('aceOfDiamonds'), card('kingOfClubs'), card('fiveOfDiamonds'), card('sevenOfDiamonds')] 
           
         });
           
         it('should return instance of class TwoPair', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
           expect( theBestHand.result ).toBeCardClassOf(TwoPair)
         });
       });
 
       describe('and hand including trips', function() {
-        let theBestHand: TheBestHand;
         beforeEach(function() {
-          let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('aceOfDiamonds'), card('queenOfspades'), card('fiveOfDiamonds')]
-          let boardCards: BoardCards = [card('threeOfSpades'), card('fourOfClubs'), card('aceOfClubs'), card('sevenOfDiamonds')]
+          playerCards = [card('aceOfSpades'), card('aceOfDiamonds'), card('queenOfspades'), card('fiveOfDiamonds')]
+          boardCards = [card('threeOfSpades'), card('fourOfClubs'), card('aceOfClubs'), card('sevenOfDiamonds')]
           
         });
           
         it('should return instance of class Trips', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
           expect( theBestHand.result ).toBeCardClassOf(Trips)
         });
       });
 
       describe('and hand including straight', function() {
-        let theBestHand: TheBestHand;
         beforeEach(function() {
-          let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('kingOfDiamonds'), card('fourOfClubs'), card('fiveOfDiamonds')]
-          let boardCards: BoardCards = [card('queenOfClubs'), card('jackOfspades'), card('tenOfSpades'), card('sevenOfDiamonds')]
+          playerCards = [card('aceOfSpades'), card('kingOfDiamonds'), card('fourOfClubs'), card('fiveOfDiamonds')]
+          boardCards = [card('queenOfClubs'), card('jackOfspades'), card('tenOfSpades'), card('sevenOfDiamonds')]
           
         });
           
         it('should return instance of class Straight', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
           expect( theBestHand.result ).toBeCardClassOf(Straight)
         });
       });
 
       describe('and hand including wheel straight', function() {
-        let theBestHand: TheBestHand;
         beforeEach(function() {
-          let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('kingOfDiamonds'), card('queenOfClubs'), card('duceOfspades')]
-          let boardCards: BoardCards = [card('threeOfSpades'), card('fourOfClubs'), card('fiveOfDiamonds'),  card('sevenOfDiamonds')]
+          playerCards = [card('aceOfSpades'), card('kingOfDiamonds'), card('queenOfClubs'), card('duceOfspades')]
+          boardCards = [card('threeOfSpades'), card('fourOfClubs'), card('fiveOfDiamonds'),  card('sevenOfDiamonds')]
           
         });
           
         it('should return instance of class Straight', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
           expect( theBestHand.result ).toBeCardClassOf(Straight)
         });
       });
 
       describe('and hand including flush', function() {
-        let theBestHand: TheBestHand;
         beforeEach(function() {
-          let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('kingOfSpades'), card('queenOfClubs') , card('nineOfDiamonds'),]
-          let boardCards: BoardCards = [card('threeOfSpades'), card('fourOfClubs'), card('fiveOfSpades'), card('eightOfSpades')]
+          playerCards = [card('aceOfSpades'), card('kingOfSpades'), card('queenOfClubs') , card('nineOfDiamonds'),]
+          boardCards = [card('threeOfSpades'), card('fourOfClubs'), card('fiveOfSpades'), card('eightOfSpades')]
           
         });
           
         it('should return instance of class Flush', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
           expect( theBestHand.result ).toBeCardClassOf(Flush)
         });
       });
 
       describe('and hand including fullhouse', function() {
-        let theBestHand: TheBestHand;
         beforeEach(function() {
-          let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('aceOfDiamonds'),  card('sevenOfDiamonds') , card('eightOfSpades')]
-          let boardCards: BoardCards = [card('queenOfClubs'), card('fiveOfDiamonds'), card('aceOfClubs'), card('queenOfspades')]
+          playerCards = [card('aceOfSpades'), card('aceOfDiamonds'),  card('sevenOfDiamonds') , card('eightOfSpades')]
+          boardCards = [card('queenOfClubs'), card('fiveOfDiamonds'), card('aceOfClubs'), card('queenOfspades')]
           
         });
           
         it('should return instance of class FullHouse', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
           expect( theBestHand.result ).toBeCardClassOf(FullHouse)
         });
       });
 
       describe('and hand including quads', function() {
-        let theBestHand: TheBestHand;
         beforeEach(function() {
-          let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('aceOfDiamonds'), card('sevenOfDiamonds') , card('eightOfSpades')]
-          let boardCards: BoardCards = [card('threeOfSpades'),  card('fiveOfDiamonds'), card('aceOfClubs'), card('aceOfHearts')]
+          playerCards = [card('aceOfSpades'), card('aceOfDiamonds'), card('sevenOfDiamonds') , card('eightOfSpades')]
+          boardCards = [card('threeOfSpades'),  card('fiveOfDiamonds'), card('aceOfClubs'), card('aceOfHearts')]
           
         });
           
         it('should return instance of class Quads', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
           expect( theBestHand.result ).toBeCardClassOf(Quads)
         });
       });
 
       describe('and hand including straightflush', function() {
-        let theBestHand: TheBestHand;
         beforeEach(function() {
-          let playerCards: OmahaHoleCards = [ card('aceOfSpades'), card('kingOfSpades'), card('sevenOfDiamonds') , card('eightOfSpades')]
-          let boardCards: BoardCards = [card('tenOfSpades'), card('fourOfClubs'), card('queenOfSpades'), card('jackOfSpades') ]
+          playerCards = [ card('aceOfSpades'), card('kingOfSpades'), card('sevenOfDiamonds') , card('eightOfSpades')]
+          boardCards = [card('tenOfSpades'), card('fourOfClubs'), card('queenOfSpades'), card('jackOfSpades') ]
           
         });
           
         it('should return instance of class StraightFlush', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
           expect( theBestHand.result ).toBeCardClassOf(StraightFlush)
         });
       });
 
       
       describe('and hand including wheel straightflush', function() {
-        let theBestHand: TheBestHand;
         beforeEach(function() {
-        let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('duceOfSpades') ,card('kingOfSpades'), card('sevenOfDiamonds') ]
-          let boardCards: BoardCards = [card('fourOfSpades'), card('fiveOfSpades'), card('queenOfSpades'), card('threeOfSpades')]
-          
+          playerCards = [card('aceOfSpades'), card('duceOfSpades') ,card('kingOfSpades'), card('sevenOfDiamonds') ]
+          boardCards = [card('fourOfSpades'), card('fiveOfSpades'), card('queenOfSpades'), card('threeOfSpades')]
         });
           
         it('should return instance of class StraightFlush', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
           expect( theBestHand.result ).toBeCardClassOf(StraightFlush)
         });
       });
     }); // desc 4 board cards
     
     describe('when given 3 board cards', function() {
+      let boardCards: Flop;
       describe('and hand of high card', function() {
-      let theBestHand: TheBestHand;
         beforeEach(function() {
-          let playerCards: OmahaHoleCards = [ card('aceOfSpades'), card('jackOfDiamonds'), card('kingOfClubs'), card('queenOfspades') ]
-          let boardCards: BoardCards = [ card('threeOfSpades'), card('fourOfClubs'), card('fiveOfDiamonds') ]
-          
+          playerCards = [ card('aceOfSpades'), card('jackOfDiamonds'), card('kingOfClubs'), card('queenOfspades') ]
+          boardCards = [ card('threeOfSpades'), card('fourOfClubs'), card('fiveOfDiamonds') ]
         });
         it('should return instance of class HighCard', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
           expect( theBestHand.result ).toBeCardClassOf(HighCard)
         });
       });
 
       describe('and hand including pair', function() {
-        let theBestHand: TheBestHand;
         beforeEach(function() {
-          let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('aceOfDiamonds'), card('kingOfClubs'), card('queenOfspades')]
-          let boardCards: BoardCards = [card('threeOfSpades'), card('fourOfClubs'), card('fiveOfDiamonds')  ]
-          
+          playerCards = [card('aceOfSpades'), card('aceOfDiamonds'), card('kingOfClubs'), card('queenOfspades')]
+          boardCards = [card('threeOfSpades'), card('fourOfClubs'), card('fiveOfDiamonds')  ]
         });
           
         it('should return instance of class Pair', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
           expect(theBestHand.result).toBeCardClassOf(Pair)
         });
       });
 
       describe('and hand including two pair', function() {
-        let theBestHand: TheBestHand;
         beforeEach(function() {
-          let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('kingOfspades'), card('threeOfSpades'), card('fourOfClubs')]
-          let boardCards: BoardCards = [ card('aceOfDiamonds'), card('kingOfClubs'), card('fiveOfDiamonds')] 
-          
+          playerCards = [card('aceOfSpades'), card('kingOfspades'), card('threeOfSpades'), card('fourOfClubs')]
+          boardCards = [ card('aceOfDiamonds'), card('kingOfClubs'), card('fiveOfDiamonds')] 
         });
           
         it('should return instance of class TwoPair', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
           expect( theBestHand.result ).toBeCardClassOf(TwoPair)
         });
       });
 
       describe('and hand including trips', function() {
-        let theBestHand: TheBestHand;
         beforeEach(function() {
-          let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('aceOfDiamonds'), card('queenOfspades'), card('fiveOfDiamonds')]
-          let boardCards: BoardCards = [card('threeOfSpades'), card('fourOfClubs'), card('aceOfClubs')]
-          
+          playerCards = [card('aceOfSpades'), card('aceOfDiamonds'), card('queenOfspades'), card('fiveOfDiamonds')]
+          boardCards = [card('threeOfSpades'), card('fourOfClubs'), card('aceOfClubs')]
         });
           
         it('should return instance of class Trips', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
           expect( theBestHand.result ).toBeCardClassOf(Trips)
         });
       });
 
       describe('and hand including straight', function() {
-        let theBestHand: TheBestHand;
         beforeEach(function() {
-          let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('kingOfDiamonds'), card('fourOfClubs'), card('fiveOfDiamonds')]
-          let boardCards: BoardCards = [card('queenOfClubs'), card('jackOfspades'), card('tenOfSpades')]
-          
+          playerCards = [card('aceOfSpades'), card('kingOfDiamonds'), card('fourOfClubs'), card('fiveOfDiamonds')]
+          boardCards = [card('queenOfClubs'), card('jackOfspades'), card('tenOfSpades')]
         });
           
         it('should return instance of class Straight', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
           expect( theBestHand.result ).toBeCardClassOf(Straight)
         });
       });
 
       describe('and hand including wheel straight', function() {
-        let theBestHand: TheBestHand;
         beforeEach(function() {
-          let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('kingOfDiamonds'), card('queenOfClubs'), card('duceOfspades')]
-          let boardCards: BoardCards = [card('threeOfSpades'), card('fourOfClubs'), card('fiveOfDiamonds')]
-          
+          playerCards = [card('aceOfSpades'), card('kingOfDiamonds'), card('queenOfClubs'), card('duceOfspades')]
+          boardCards = [card('threeOfSpades'), card('fourOfClubs'), card('fiveOfDiamonds')]
         });
           
         it('should return instance of class Straight', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
           expect( theBestHand.result ).toBeCardClassOf(Straight)
         });
       });
 
       describe('and hand including flush', function() {
-        let theBestHand: TheBestHand;
         beforeEach(function() {
-          let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('kingOfSpades'), card('queenOfClubs') , card('nineOfDiamonds'),]
-          let boardCards: BoardCards = [card('threeOfSpades'), card('fiveOfSpades'), card('eightOfSpades')]
-          
+          playerCards = [card('aceOfSpades'), card('kingOfSpades'), card('queenOfClubs') , card('nineOfDiamonds'),]
+          boardCards = [card('threeOfSpades'), card('fiveOfSpades'), card('eightOfSpades')]
         });
           
         it('should return instance of class Flush', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
           expect( theBestHand.result ).toBeCardClassOf(Flush)
         });
       });
 
       describe('and hand including fullhouse', function() {
-        let theBestHand: TheBestHand;
         beforeEach(function() {
-          let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('aceOfDiamonds'),  card('sevenOfDiamonds') , card('eightOfSpades')]
-          let boardCards: BoardCards = [card('queenOfClubs'), card('aceOfClubs'), card('queenOfspades')]
-          
+          playerCards = [card('aceOfSpades'), card('aceOfDiamonds'),  card('sevenOfDiamonds') , card('eightOfSpades')]
+          boardCards = [card('queenOfClubs'), card('aceOfClubs'), card('queenOfspades')]
         });
           
         it('should return instance of class FullHouse', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
           expect( theBestHand.result ).toBeCardClassOf(FullHouse)
         });
       });
 
       describe('and hand including quads', function() {
-        let theBestHand: TheBestHand;
         beforeEach(function() {
-          let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('aceOfDiamonds'), card('sevenOfDiamonds') , card('eightOfSpades')]
-          let boardCards: BoardCards = [card('threeOfSpades'), card('aceOfClubs'), card('aceOfHearts')]
-          
+          playerCards = [card('aceOfSpades'), card('aceOfDiamonds'), card('sevenOfDiamonds') , card('eightOfSpades')]
+          boardCards = [card('threeOfSpades'), card('aceOfClubs'), card('aceOfHearts')]
         });
           
         it('should return instance of class Quads', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
           expect( theBestHand.result ).toBeCardClassOf(Quads)
         });
       });
 
       describe('and hand including straightflush', function() {
-        let theBestHand: TheBestHand;
         beforeEach(function() {
-          let playerCards: OmahaHoleCards = [ card('aceOfSpades'), card('kingOfSpades'), card('sevenOfDiamonds') , card('eightOfSpades')]
-          let boardCards: BoardCards = [card('tenOfSpades'), card('queenOfSpades'), card('jackOfSpades') ]
-          
+          playerCards = [ card('aceOfSpades'), card('kingOfSpades'), card('sevenOfDiamonds') , card('eightOfSpades')]
+          boardCards = [card('tenOfSpades'), card('queenOfSpades'), card('jackOfSpades') ]
         });
           
         it('should return instance of class StraightFlush', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
           expect( theBestHand.result ).toBeCardClassOf(StraightFlush)
         });
       });
 
       
       describe('and hand including wheel straightflush', function() {
-        let theBestHand: TheBestHand;
         beforeEach(function() {
-        let playerCards: OmahaHoleCards = [card('aceOfSpades'), card('duceOfSpades') ,card('kingOfSpades'), card('sevenOfDiamonds') ]
-          let boardCards: BoardCards = [card('fourOfSpades'), card('fiveOfSpades'), card('threeOfSpades')]
-          
+          playerCards = [card('aceOfSpades'), card('duceOfSpades') ,card('kingOfSpades'), card('sevenOfDiamonds') ]
+          boardCards = [card('fourOfSpades'), card('fiveOfSpades'), card('threeOfSpades')]
         });
           
         it('should return instance of class StraightFlush', function() {
+          theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards })
           expect( theBestHand.result ).toBeCardClassOf(StraightFlush)
         });
       });
     }); // desc 3 board cards
-    
     
   });  // NLHE
 
