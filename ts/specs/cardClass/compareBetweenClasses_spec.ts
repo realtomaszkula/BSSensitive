@@ -1,17 +1,17 @@
-import { HighCard } from './../classes/hands/HighCard'
-import { Pair } from './../classes/hands/Pair'
-import { TwoPair } from './../classes/hands/TwoPair'
-import { Trips } from './../classes/hands/Trips'
-import { Straight } from './../classes/hands/Straight'
-import { Flush } from './../classes/hands/Flush'
-import { FullHouse } from './../classes/hands/FullHouse'
-import { Quads } from './../classes/hands/Quads'
-import { StraightFlush } from './../classes/hands/StraightFlush'
-import { card } from './helpers/methods'
+import { HighCard } from './../../classes/hands/HighCard'
+import { Pair } from './../../classes/hands/Pair'
+import { TwoPair } from './../../classes/hands/TwoPair'
+import { Trips } from './../../classes/hands/Trips'
+import { Straight } from './../../classes/hands/Straight'
+import { Flush } from './../../classes/hands/Flush'
+import { FullHouse } from './../../classes/hands/FullHouse'
+import { Quads } from './../../classes/hands/Quads'
+import { StraightFlush } from './../../classes/hands/StraightFlush'
+import { card } from './../helpers/methods'
 
 import { Card, CardClass, HandStrength, HandParams,  Suit, CardValue, Search,
   PairParams, TwoPairParams, TripsParams, StraightParams, FlushParams, FullHouseParams, QuadsParams, StraightFlushParams,
-  HighCardParams } from './../classes/hands/_interfaces'
+  HighCardParams } from './../../classes/hands/_interfaces'
 
 
 describe('Hand', function() {

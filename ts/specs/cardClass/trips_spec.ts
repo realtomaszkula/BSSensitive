@@ -1,8 +1,8 @@
-import { HandRankSearch } from './../classes/hands/_handReading'
-import { Trips } from './../classes/hands/Trips'
+import { HandRankSearch } from './../../classes/hands/_handReading'
+import { Trips } from './../../classes/hands/Trips'
 import { Card, CardClass, HandStrength, HandParams,  Suit, CardValue, 
-  Search, TripsParams } from './../classes/hands/_interfaces'
-import { card } from './helpers/methods'
+  Search, TripsParams } from './../../classes/hands/_interfaces'
+import { card } from './../helpers/methods'
 
 
 describe('Trips', function() {

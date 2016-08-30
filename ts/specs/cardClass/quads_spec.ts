@@ -1,8 +1,8 @@
-import { HandRankSearch } from './../classes/hands/_handReading'
-import { Quads } from './../classes/hands/Quads'
+import { HandRankSearch } from './../../classes/hands/_handReading'
+import { Quads } from './../../classes/hands/Quads'
 import { Card, CardClass, HandStrength, HandParams,  Suit, CardValue, 
-  Search, QuadsParams } from './../classes/hands/_interfaces'
-import { card } from './helpers/methods'
+  Search, QuadsParams } from './../../classes/hands/_interfaces'
+import { card } from './../helpers/methods'
 
 
 describe('Quads', function() {

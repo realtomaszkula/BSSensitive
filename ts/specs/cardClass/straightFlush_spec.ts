@@ -1,8 +1,8 @@
-import { HandRankSearch } from './../classes/hands/_handReading'
-import { StraightFlush } from './../classes/hands/StraightFlush'
+import { HandRankSearch } from './../../classes/hands/_handReading'
+import { StraightFlush } from './../../classes/hands/StraightFlush'
 import { Card, CardClass, HandStrength, HandParams,  Suit, CardValue, 
-  Search, StraightFlushParams } from './../classes/hands/_interfaces'
-import { card } from './helpers/methods'
+  Search, StraightFlushParams } from './../../classes/hands/_interfaces'
+import { card } from './../helpers/methods'
 
 
 describe('StraightFlush', function() {

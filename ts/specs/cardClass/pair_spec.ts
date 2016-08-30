@@ -1,10 +1,10 @@
-import { HandRankSearch } from './../classes/hands/_handReading'
-import { Pair } from './../classes/hands/Pair'
+import { HandRankSearch } from './../../classes/hands/_handReading'
+import { Pair } from './../../classes/hands/Pair'
 import { Card, CardClass, HandStrength, HandParams,  Suit, CardValue, 
   Search, PairParams, TwoPairParams, TripsParams, StraightParams, FlushParams, FullHouseParams, QuadsParams, StraightFlushParams,
-  SearchesOnceAndRemembers } from './../classes/hands/_interfaces'
-import { card, getPair } from './helpers/methods'
-import { returnFiveCast } from './../typecasting/arrays'
+  SearchesOnceAndRemembers } from './../../classes/hands/_interfaces'
+import { card, getPair } from './../helpers/methods'
+import { returnFiveCast } from './../../typecasting/arrays'
 
 describe('Pair', function() {
 

@@ -1,8 +1,8 @@
-import { HandRankSearch } from './../classes/hands/_handReading'
-import { Straight } from './../classes/hands/Straight'
+import { HandRankSearch } from './../../classes/hands/_handReading'
+import { Straight } from './../../classes/hands/Straight'
 import { Card, CardClass, HandStrength, HandParams,  Suit, CardValue, 
-  Search, StraightParams } from './../classes/hands/_interfaces'
-import { card } from './helpers/methods'
+  Search, StraightParams } from './../../classes/hands/_interfaces'
+import { card } from './../helpers/methods'
 
 
 describe('Straight', function() {
