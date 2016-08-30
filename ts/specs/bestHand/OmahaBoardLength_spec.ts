@@ -10,8 +10,14 @@ import { FullHouse } from './../../classes/hands/FullHouse'
 import { Quads } from './../../classes/hands/Quads'
 import { StraightFlush } from './../../classes/hands/StraightFlush'
 import { card } from './../helpers/methods'
-xdescribe('TheBestHand', function() {
+import { customMatchers } from './../helpers/customMatchers'
+
+describe('TheBestHand', function() {
   
+  beforeEach(function() {
+    jasmine.addMatchers(customMatchers as any)
+  });
+    
   describe('Omaha', function() {
     describe('when given 5 board cards', function() {
       
@@ -23,7 +29,7 @@ xdescribe('TheBestHand', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
         });
         it('should return instance of class HighCard', function() {
-          expect(theBestHand.result instanceof HighCard ).toBe(true)
+          expect(theBestHand.result).toBeCardClassOf(HighCard)
         });
       });
 
@@ -36,7 +42,7 @@ xdescribe('TheBestHand', function() {
         });
           
         it('should return instance of class Pair', function() {
-          expect(theBestHand.result instanceof Pair ).toBe(true)
+          expect( theBestHand.result ).toBeCardClassOf(Pair)
         });
       });
 
@@ -49,7 +55,7 @@ xdescribe('TheBestHand', function() {
         });
           
         it('should return instance of class TwoPair', function() {
-          expect(theBestHand.result instanceof TwoPair ).toBe(true)
+          expect( theBestHand.result ).toBeCardClassOf(TwoPair)
         });
       });
 
@@ -62,7 +68,7 @@ xdescribe('TheBestHand', function() {
         });
           
         it('should return instance of class Trips', function() {
-          expect(theBestHand.result instanceof Trips ).toBe(true)
+          expect( theBestHand.result ).toBeCardClassOf(Trips)
         });
       });
 
@@ -75,7 +81,7 @@ xdescribe('TheBestHand', function() {
         });
           
         it('should return instance of class Straight', function() {
-          expect(theBestHand.result instanceof Straight ).toBe(true)
+          expect( theBestHand.result ).toBeCardClassOf(Straight)
         });
       });
 
@@ -88,7 +94,7 @@ xdescribe('TheBestHand', function() {
         });
           
         it('should return instance of class Straight', function() {
-          expect(theBestHand.result instanceof Straight ).toBe(true)
+          expect( theBestHand.result ).toBeCardClassOf(Straight)
         });
       });
 
@@ -101,7 +107,7 @@ xdescribe('TheBestHand', function() {
         });
           
         it('should return instance of class Flush', function() {
-          expect(theBestHand.result instanceof Flush ).toBe(true)
+          expect( theBestHand.result ).toBeCardClassOf(Flush)
         });
       });
 
@@ -114,7 +120,7 @@ xdescribe('TheBestHand', function() {
         });
           
         it('should return instance of class FullHouse', function() {
-          expect(theBestHand.result instanceof FullHouse ).toBe(true)
+          expect( theBestHand.result ).toBeCardClassOf(FullHouse)
         });
       });
 
@@ -127,7 +133,7 @@ xdescribe('TheBestHand', function() {
         });
           
         it('should return instance of class Quads', function() {
-          expect(theBestHand.result instanceof Quads ).toBe(true)
+          expect( theBestHand.result ).toBeCardClassOf(Quads)
         });
       });
 
@@ -140,7 +146,7 @@ xdescribe('TheBestHand', function() {
         });
           
         it('should return instance of class StraightFlush', function() {
-          expect(theBestHand.result instanceof StraightFlush ).toBe(true)
+          expect(theBestHand.result).toBeCardClassOf(StraightFlush)
         });
       });
 
@@ -154,7 +160,7 @@ xdescribe('TheBestHand', function() {
         });
           
         it('should return instance of class StraightFlush', function() {
-          expect(theBestHand.result instanceof StraightFlush ).toBe(true)
+          expect( theBestHand.result ).toBeCardClassOf(StraightFlush)
         });
       });
     }); // desc 5 board
@@ -168,7 +174,7 @@ xdescribe('TheBestHand', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
         });
         it('should return instance of class HighCard', function() {
-          expect(theBestHand.result instanceof HighCard ).toBe(true)
+          expect( theBestHand.result ).toBeCardClassOf(HighCard)
         });
       });
 
@@ -181,8 +187,7 @@ xdescribe('TheBestHand', function() {
         });
           
         it('should return instance of class Pair', function() {
-          expect(theBestHand.result instanceof Pair ).toBe(true)
-          console.log( theBestHand.constructor.name)
+          expect(theBestHand.result).toBeCardClassOf(Pair)
         });
       });
 
@@ -195,7 +200,7 @@ xdescribe('TheBestHand', function() {
         });
           
         it('should return instance of class TwoPair', function() {
-          expect(theBestHand.result instanceof TwoPair ).toBe(true)
+          expect( theBestHand.result ).toBeCardClassOf(TwoPair)
         });
       });
 
@@ -208,7 +213,7 @@ xdescribe('TheBestHand', function() {
         });
           
         it('should return instance of class Trips', function() {
-          expect(theBestHand.result instanceof Trips ).toBe(true)
+          expect( theBestHand.result ).toBeCardClassOf(Trips)
         });
       });
 
@@ -221,7 +226,7 @@ xdescribe('TheBestHand', function() {
         });
           
         it('should return instance of class Straight', function() {
-          expect(theBestHand.result instanceof Straight ).toBe(true)
+          expect( theBestHand.result ).toBeCardClassOf(Straight)
         });
       });
 
@@ -234,7 +239,7 @@ xdescribe('TheBestHand', function() {
         });
           
         it('should return instance of class Straight', function() {
-          expect(theBestHand.result instanceof Straight ).toBe(true)
+          expect( theBestHand.result ).toBeCardClassOf(Straight)
         });
       });
 
@@ -247,7 +252,7 @@ xdescribe('TheBestHand', function() {
         });
           
         it('should return instance of class Flush', function() {
-          expect(theBestHand.result instanceof Flush ).toBe(true)
+          expect( theBestHand.result ).toBeCardClassOf(Flush)
         });
       });
 
@@ -260,7 +265,7 @@ xdescribe('TheBestHand', function() {
         });
           
         it('should return instance of class FullHouse', function() {
-          expect(theBestHand.result instanceof FullHouse ).toBe(true)
+          expect( theBestHand.result ).toBeCardClassOf(FullHouse)
         });
       });
 
@@ -273,7 +278,7 @@ xdescribe('TheBestHand', function() {
         });
           
         it('should return instance of class Quads', function() {
-          expect(theBestHand.result instanceof Quads ).toBe(true)
+          expect( theBestHand.result ).toBeCardClassOf(Quads)
         });
       });
 
@@ -286,7 +291,7 @@ xdescribe('TheBestHand', function() {
         });
           
         it('should return instance of class StraightFlush', function() {
-          expect(theBestHand.result instanceof StraightFlush ).toBe(true)
+          expect( theBestHand.result ).toBeCardClassOf(StraightFlush)
         });
       });
 
@@ -300,7 +305,7 @@ xdescribe('TheBestHand', function() {
         });
           
         it('should return instance of class StraightFlush', function() {
-          expect(theBestHand.result instanceof StraightFlush ).toBe(true)
+          expect( theBestHand.result ).toBeCardClassOf(StraightFlush)
         });
       });
     }); // desc 4 board cards
