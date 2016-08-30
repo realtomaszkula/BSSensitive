@@ -1,4 +1,4 @@
-import { Card, CardClass, HandParams,  Suit, CardValue , HoldemHoleCards, OmahaHoleCards, HoleCards, HandCards, Flop, FlopTurn, FlopTurnRiver, BoardCards, TheBestHandParams} from './../classes/hands/_interfaces'
+import { Card, CardClass, HandParams,  Suit, CardValue , HoldemHoleCards, OmahaHoleCards, HoleCards, HandCards, Flop, FlopTurn, FlopTurnRiver, BoardCards, TheBestHandParams} from './../../classes/hands/_interfaces'
 import { TheBestHand } from './../../classes/hands/_theBestHand'
 import { HighCard } from './../../classes/hands/HighCard'
 import { Pair } from './../../classes/hands/Pair'
@@ -10,9 +10,14 @@ import { FullHouse } from './../../classes/hands/FullHouse'
 import { Quads } from './../../classes/hands/Quads'
 import { StraightFlush } from './../../classes/hands/StraightFlush'
 import { card } from './../helpers/methods'
+import { customMatchers } from './../helpers/customMatchers'
 
 describe('TheBestHand', function() {
   
+  beforeEach(function() {
+    jasmine.addMatchers(customMatchers as any)
+  });
+    
   describe('NLHE', function() {
     describe('when given 5 board cards', function() {
       describe('and hand of high card', function() {
@@ -37,7 +42,7 @@ describe('TheBestHand', function() {
           theBestHand = new TheBestHand({playerCards: playerCards, boardCards: boardCards})
         });
         it('should return instance of class Pair', function() {
-          expect(theBestHand.result instanceof Pair ).toBe(true)
+          expect(theBestHand.result).toBeCardClassOf()
         });
       });
 
