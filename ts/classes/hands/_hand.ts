@@ -8,8 +8,33 @@ export class Hand {
 
 
   constructor( params: HandParams ){
-    this._cards = params.cards;
-    this._handStrength = params.handStrength;
+    this.checkParams(params);
+    this.cards = params.cards;
+    this.handStrength = params.handStrength;
+  }
+
+  private checkParams(params: HandParams) {
+    if (typeof params !== 'object') throw new Error('Params must be an object: { cards: Card[], handStrength: -1..14 }')
+    if(!params.hasOwnProperty('cards')) throw new Error('Params must have property of cards')
+    if(!params.hasOwnProperty('handStrength')) throw new Error('Params must have property of handStrength')
+  }
+
+  protected set cards(cards: Card[]) {
+    if (cards.length !== 5){
+      throw new Error('params.cards[] must have the length of 5')
+    }
+    for (let i = 0; i < cards.length; i++) {
+      if (typeof cards[i] !== 'object') throw new Error(`params.cards[${i}] must be an object: { value: 0..14, suit: spade | club | diamond | heart }`)
+      if (!(cards[i].value)) throw new Error(`params.cards[${i}] must have property of value`)
+      if (!(cards[i].suit)) throw new Error(`params.cards[${i}] must have property of suit`)
+    }
+    this._cards = cards;
+  }
+
+  set handStrength(handStrength: HandStrength) {
+    if (handStrength < -1 || handStrength > 14) 
+      throw new Error('hand strength must be between -1 and 14')
+    this._handStrength = handStrength
   }
 
   get handStrength () {
