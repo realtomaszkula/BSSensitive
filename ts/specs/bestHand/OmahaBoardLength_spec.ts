@@ -1,4 +1,4 @@
-import { Card, CardClass, HandParams,  Suit, CardValue , OmahaHoleCards, HoleCards, HandCards, Flop, FlopTurn, FlopTurnRiver, BoardCards, TheBestHandParams} from './../../classes/hands/_interfaces'
+import { Card, CardClass, HandParams,  Suit, CardValue , OmahaHoleCards, HoleCards, HandCards, Flop, FlopTurn, FlopTurnRiver, BoardCards, TheBestHandParams} from './../../classes/_interfaces'
 import { TheBestHand } from './../../classes/hands/_theBestHand'
 import { HighCard } from './../../classes/hands/HighCard'
 import { Pair } from './../../classes/hands/Pair'

@@ -11,7 +11,7 @@ import { card } from './../helpers/methods'
 
 import { Card, CardClass, HandStrength, HandParams,  Suit, CardValue, Search,
   PairParams, TwoPairParams, TripsParams, StraightParams, FlushParams, FullHouseParams, QuadsParams, StraightFlushParams,
-  HighCardParams } from './../../classes/hands/_interfaces'
+  HighCardParams } from './../../classes/_interfaces'
 
 
 describe('Hand', function() {

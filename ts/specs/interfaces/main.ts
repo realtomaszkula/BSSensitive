@@ -1,4 +1,4 @@
-import { HandStrength, CardValue, Card} from './../../classes/hands/_interfaces'
+import { HandStrength, CardValue, Card} from './../../classes/_interfaces'
 
 interface stepPairDefault {
   pair: CardValue,

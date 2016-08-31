@@ -1,7 +1,7 @@
 import { HandRankSearch } from './../../classes/hands/_handReading'
 import { Quads } from './../../classes/hands/Quads'
 import { Card, CardClass, HandStrength, HandParams,  Suit, CardValue, 
-  Search, QuadsParams } from './../../classes/hands/_interfaces'
+  Search, QuadsParams } from './../../classes/_interfaces'
 import { card } from './../helpers/methods'
 
 

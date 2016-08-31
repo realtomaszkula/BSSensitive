@@ -1,7 +1,7 @@
 import { HandRankSearch } from './../../classes/hands/_handReading'
 import { TwoPair } from './../../classes/hands/TwoPair'
 import { Card, CardClass, HandStrength, HandParams,  Suit, CardValue, 
-  Search, TwoPairParams } from './../../classes/hands/_interfaces'
+  Search, TwoPairParams } from './../../classes/_interfaces'
 import { card } from './../helpers/methods'
 
 

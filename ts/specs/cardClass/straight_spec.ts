@@ -1,7 +1,7 @@
 import { HandRankSearch } from './../../classes/hands/_handReading'
 import { Straight } from './../../classes/hands/Straight'
 import { Card, CardClass, HandStrength, HandParams,  Suit, CardValue, 
-  Search, StraightParams } from './../../classes/hands/_interfaces'
+  Search, StraightParams } from './../../classes/_interfaces'
 import { card } from './../helpers/methods'
 
 

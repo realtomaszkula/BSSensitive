@@ -1,13 +1,13 @@
-import { Pair } from './Pair'
-import { TwoPair } from './TwoPair'
-import { Trips } from './Trips'
-import { Straight } from './Straight'
-import { Flush } from './Flush'
-import { FullHouse } from './FullHouse'
-import { Quads } from './Quads'
-import { StraightFlush } from './StraightFlush'
-import { HighCard } from './HighCard'
-import { Card }  from './Card'
+import { Pair } from './hands/Pair'
+import { TwoPair } from './hands/TwoPair'
+import { Trips } from './hands/Trips'
+import { Straight } from './hands/Straight'
+import { Flush } from './hands/Flush'
+import { FullHouse } from './hands/FullHouse'
+import { Quads } from './hands/Quads'
+import { StraightFlush } from './hands/StraightFlush'
+import { HighCard } from './hands/HighCard'
+import { Card }  from './hands/Card'
 type Suit = 's' | 'c' | 'd' | 'h' | 'spade' | 'club' | 'diamond' | 'heart' | 'S' | 'C' | 'D' | 'H'
 type CardClass = Pair | TwoPair | Trips | Straight | Flush | FullHouse | Quads | StraightFlush | HighCard
 
@@ -102,9 +102,18 @@ interface CardParams {
   suit: Suit
 }
 
+interface BoardType {
+  monotone: boolean,
+  paired: boolean,
+}
+
+interface BoardParams {
+  cards: BoardCards,
+}
+
 
 export { HandClass, Card, CardClass, HandStrength, HandParams,  Suit, CardValue, Search, 
   PairParams, TwoPairParams, TripsParams, StraightParams, FlushParams, FullHouseParams, QuadsParams, StraightFlushParams, HighCardParams
   , SearchesOnceAndRemembers ,
-  HoldemHoleCards, OmahaHoleCards, HoleCards, HandCards, Flop, FlopTurn, FlopTurnRiver, BoardCards, TheBestHandParams, CardParams
+  HoldemHoleCards, OmahaHoleCards, HoleCards, HandCards, Flop, FlopTurn, FlopTurnRiver, BoardCards, TheBestHandParams, CardParams, BoardParams, BoardType
 }

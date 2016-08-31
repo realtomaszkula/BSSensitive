@@ -1,6 +1,6 @@
 import { CardClass, HandStrength, HandParams,  Suit, CardValue, 
   Search, PairParams, TwoPairParams, TripsParams, StraightParams, FlushParams, FullHouseParams, QuadsParams, StraightFlushParams,
-  SearchesOnceAndRemembers, CardParams } from './../../classes/hands/_interfaces'
+  SearchesOnceAndRemembers, CardParams } from './../../classes/_interfaces'
 import { Pair } from './../../classes/hands/Pair'
 import { castSuit } from './../../typecasting/arrays'
 import { step, stepPairDefault } from './../interfaces/main'

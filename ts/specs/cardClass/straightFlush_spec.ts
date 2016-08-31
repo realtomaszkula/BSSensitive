@@ -1,7 +1,7 @@
 import { HandRankSearch } from './../../classes/hands/_handReading'
 import { StraightFlush } from './../../classes/hands/StraightFlush'
 import { Card, CardClass, HandStrength, HandParams,  Suit, CardValue, 
-  Search, StraightFlushParams } from './../../classes/hands/_interfaces'
+  Search, StraightFlushParams } from './../../classes/_interfaces'
 import { card } from './../helpers/methods'
 
 

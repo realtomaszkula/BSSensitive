@@ -1,7 +1,7 @@
 import { HandRankSearch } from './../../classes/hands/_handReading'
 import { Flush } from './../../classes/hands/Flush'
 import { Card, CardClass, HandStrength, HandParams,  Suit, CardValue, 
-  Search, FlushParams } from './../../classes/hands/_interfaces'
+  Search, FlushParams } from './../../classes/_interfaces'
 import { card } from './../helpers/methods'
 
 

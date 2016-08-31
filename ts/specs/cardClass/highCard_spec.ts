@@ -1,7 +1,7 @@
 import { HandRankSearch } from './../../classes/hands/_handReading'
 import { HighCard } from './../../classes/hands/HighCard'
 import { Card, CardClass, HandStrength, HandParams,  Suit, CardValue, 
-  Search, HighCardParams } from './../../classes/hands/_interfaces'
+  Search, HighCardParams } from './../../classes/_interfaces'
 import { card } from './../helpers/methods'
 
 

@@ -1,4 +1,4 @@
-import { CardClass } from './../../classes/hands/_interfaces'
+import { CardClass } from './../../classes/_interfaces'
 import { Pair } from './../../classes/hands/Pair'
 import { TwoPair } from './../../classes/hands/TwoPair'
 import { Trips } from './../../classes/hands/Trips'

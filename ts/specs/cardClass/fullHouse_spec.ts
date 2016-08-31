@@ -1,7 +1,7 @@
 import { HandRankSearch } from './../../classes/hands/_handReading'
 import { FullHouse } from './../../classes/hands/FullHouse'
 import { Card, CardClass, HandStrength, HandParams,  Suit, CardValue, 
-  Search, FullHouseParams } from './../../classes/hands/_interfaces'
+  Search, FullHouseParams } from './../../classes/_interfaces'
 import { card } from './../helpers/methods'
 
 
