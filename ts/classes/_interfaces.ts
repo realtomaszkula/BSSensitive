@@ -121,7 +121,7 @@ interface BoardByStreet {
   river: Card
 }
 
-interface BoardTypeReaderParams {
+interface TextureReaderParams {
   boardObject: BoardByStreet,
 }
 
@@ -130,9 +130,23 @@ interface BoardParams{
   boardTextures?: BoardTextures
 }
 
+interface TypeCheck {
+  isMonotone: () => boolean;
+  isTwoTone: () => boolean;
+  isRainbow: () => boolean;
+  isOneStraight: () => boolean;
+  isTwoStraight: () => boolean;
+  isThreeStraight: () => boolean;
+  isPaired: () => boolean;
+  isDoublePaired?: () => boolean;
+  isSingleBroadway?: () => boolean;
+  isDoubleBroadWay?: () => boolean;
+  isTrippleBroadWay?: () => boolean;
+}
+
 export { HandClass, Card, CardClass, HandStrength, HandParams,  Suit, CardValue, Search, 
   PairParams, TwoPairParams, TripsParams, StraightParams, FlushParams, FullHouseParams, QuadsParams, StraightFlushParams, HighCardParams
   , SearchesOnceAndRemembers ,
   HoldemHoleCards, OmahaHoleCards, HoleCards, HandCards, Flop, FlopTurn, FlopTurnRiver, BoardCards, TheBestHandParams, CardParams, 
-  BoardTypeReaderParams, BoardTextures, BoardParams, BoardByStreet
+  TextureReaderParams, BoardTextures, BoardParams, BoardByStreet, TypeCheck
 }

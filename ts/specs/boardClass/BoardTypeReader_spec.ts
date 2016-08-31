@@ -1,12 +1,12 @@
-import { BoardTypeReader } from './../../classes/boards/BoardTypeReader'
+import { TextureReader } from './../../classes/boards/TextureReader'
 import { Board } from './../../classes/boards/Board'
-import { BoardTextures, BoardParams, BoardTypeReaderParams, BoardCards, Flop, FlopTurn, FlopTurnRiver } from './../../classes/_interfaces'
+import { BoardTextures, BoardParams, TextureReaderParams, BoardCards, Flop, FlopTurn, FlopTurnRiver } from './../../classes/_interfaces'
 import { card } from './../helpers/methods'
 
 
-describe('BoardTypeReader', function() {
-  let boardTypeReader: BoardTypeReader;
-  let params: BoardTypeReaderParams;
+describe('TextureReader', function() {
+  let boardTypeReader: TextureReader;
+  let params: TextureReaderParams;
   describe('FLOP', function() {
     let boardCards: Flop;
     describe('when given monotone cards', function() {
@@ -16,7 +16,7 @@ describe('BoardTypeReader', function() {
       });
         
       it('should return board instance with board texture set to monotone ', function() {
-        boardTypeReader = new BoardTypeReader(params)
+        boardTypeReader = new TextureReader(params)
         expect(boardTypeReader.result.monotone).toBe(true)
       });
     });
