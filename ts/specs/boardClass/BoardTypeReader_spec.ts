@@ -15,7 +15,7 @@ describe('BoardTypeReader', function() {
         params = { cards: boardCards}
       });
         
-      it('should set monotone: true on results object', function() {
+      it('should return board instance with board texture set to monotone ', function() {
         boardTypeReader = new BoardTypeReader(params)
         expect(boardTypeReader.result.monotone).toBe(true)
       });

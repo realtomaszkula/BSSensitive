@@ -11,14 +11,24 @@ export class Board implements ParamsGuard, CardGuard, ArrayGuard {
   checkArray: (params: ArrayGuardParams) => any;
 
   private _boardTextures: BoardTextures;
+  private _cards: BoardCards;
+
   constructor(params: BoardParams) {
     this.checkParams({ actualParams: params, expectedKeys: ['cards', 'boardTextures']});
-    this.checkCards(params.cards)
     this.initializeBoardTextures(params.boardTextures);
     this.initializeCards(params.cards)
   }
 
+  get cards(): BoardCards {
+    return this._cards;
+  }
+
+  get textures(): BoardTextures {
+    return this._boardTextures;
+  }
+
   private checkCards(cards: Card[]) {
+  // catches errors from guards and appends params to the error msg for easier debug
     try {
       this.checkArray({typeName: 'Card', arr: cards, minLength: 3, maxLength: 5})
     } catch (e) {
@@ -28,17 +38,19 @@ export class Board implements ParamsGuard, CardGuard, ArrayGuard {
       try {
         this.checkCard(card)
       } catch (e) {
-        throw new ParamsError(`${e.message} | Failed at index: ${i}` , cards)
+        throw new ParamsError(`${e.message} | Failed at index: ${i}`, cards)
       }
     })
   }
 
   private initializeCards(cards: BoardCards) {
-
+    this.checkCards(cards)
+    this._cards = cards;
   }
 
   private initializeBoardTextures(textures: BoardTextures) {
-
+    // add some checks...
+    this._boardTextures = textures;
   }
 }
 
