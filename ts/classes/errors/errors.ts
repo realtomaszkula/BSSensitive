@@ -6,5 +6,4 @@ class ParamsError extends Error {
   }
 }
 
-
 export { ParamsError }

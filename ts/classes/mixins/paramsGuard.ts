@@ -7,16 +7,20 @@ interface ParamsGuardParams {
 
 class ParamsGuard {
   checkParams(params: ParamsGuardParams): void {
-    if (typeof params !== 'object') throw new Error('params must be an object');
+    let { actualParams, expectedKeys } = params;
 
-    let expectedKeys = params.expectedKeys;
-    let actualKeys = Object.keys(params.actualParams);
+    if (!actualParams) throw new ParamsError('Object constructor called without params.')
+
+    let isJSON = Object.getPrototypeOf({}) === Object.getPrototypeOf(actualParams)
+    if (!isJSON) throw new ParamsError('Object constructor accepts {} params');
+
+    let actualKeys = Object.keys(actualParams);
 
     let missingKeys = expectedKeys.filter( expectedKey => {
       return !actualKeys.some( actualKey => actualKey === expectedKey)
     })
 
-    if( missingKeys.length > 0 ) throw new ParamsError('params missing key(s): ' + missingKeys.join(', '))
+    if( missingKeys.length > 0 ) throw new ParamsError('Params missing key(s): ' + missingKeys.join(', '))
   }
 }
 

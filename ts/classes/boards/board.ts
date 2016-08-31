@@ -1,15 +1,32 @@
-import { Flop, FlopTurn, FlopTurnRiver, BoardCards, BoardTextures,  BoardParams } from './../_interfaces'
+import { Flop, FlopTurn, FlopTurnRiver, BoardCards, BoardTextures,  BoardParams, Card } from './../_interfaces'
 import { ParamsGuard, ParamsGuardParams } from './../mixins/paramsGuard'
+import { CardGuard } from './../mixins/CardGuard'
+import { ArrayGuard, ArrayGuardParams } from './../mixins/ArrayGuard'
 import { applyMixins } from './../mixins/_apply'
+import { ParamsError } from './../errors/errors'
 
-export class Board implements ParamsGuard{
+export class Board implements ParamsGuard, CardGuard, ArrayGuard {
   checkParams: (params: ParamsGuardParams) => any;
+  checkCard: (params: Card) => any;
+  checkArray: (params: ArrayGuardParams) => any;
 
   private _boardTextures: BoardTextures;
   constructor(params: BoardParams) {
     this.checkParams({ actualParams: params, expectedKeys: ['cards', 'boardTextures']});
+    this.checkCards(params.cards)
     this.initializeBoardTextures(params.boardTextures);
     this.initializeCards(params.cards)
+  }
+
+  private checkCards(cards: Card[]) {
+    this.checkArray({typeName: 'Card', arr: cards, minLength: 3, maxLength: 5, customErrorClass: <ErrorConstructor>ParamsError})
+    cards.forEach( (card, i) => {
+      try {
+        this.checkCard(card)
+      } catch (e) {
+        throw new ParamsError(e.message + ', failed at index ' + i)
+      }
+    })
   }
 
   private initializeCards(cards: BoardCards) {
@@ -21,4 +38,4 @@ export class Board implements ParamsGuard{
   }
 }
 
-applyMixins(Board, [ParamsGuard])
+applyMixins(Board, [ParamsGuard, CardGuard, ArrayGuard])

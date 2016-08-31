@@ -7,5 +7,9 @@ import { Board } from './classes/boards/Board'
 import { applyMixins } from './classes/mixins/_apply'
 import { ParamsGuard } from './classes/mixins/paramsGuard'
 
-
-let b = new Board({cards: []})
+let cards = [card('aceOfSpades'), card('aceOfSpades'), { value: 5 }];
+let boardTextures =  {
+  monotone: true,
+  paired: true
+} 
+let b = new Board({cards: cards as any , boardTextures: boardTextures })
