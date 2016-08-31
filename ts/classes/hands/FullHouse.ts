@@ -1,4 +1,4 @@
-import { Card, CardClass, HandParams,  Suit, CardValue, FullHouseParams, HandClass } from './_interfaces'
+import { Card, CardClass, HandParams,  Suit, CardValue, FullHouseParams, HandClass } from './../_interfaces'
 import { Hand } from './_hand'
 
 export class FullHouse extends Hand implements HandClass {

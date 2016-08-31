@@ -1,4 +1,4 @@
-import { Suit, CardValue, CardParams } from './_interfaces'
+import { Suit, CardValue, CardParams } from './../_interfaces'
 
 export class Card {
   private _suit: Suit;

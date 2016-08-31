@@ -1,4 +1,4 @@
-import { HandClass, Card, CardClass,  Suit, CardValue, FlushParams } from './_interfaces'
+import { HandClass, Card, CardClass,  Suit, CardValue, FlushParams } from './../_interfaces'
 import { Hand } from './_hand'
 
 export class Flush extends Hand implements HandClass {

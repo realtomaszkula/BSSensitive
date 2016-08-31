@@ -1,6 +1,6 @@
 import { CardClass, HandStrength, HandParams,  Suit, CardValue, Search,
   HighCardParams, PairParams, TwoPairParams, TripsParams, StraightParams, FlushParams, FullHouseParams, QuadsParams, StraightFlushParams,
-  SearchesOnceAndRemembers } from './_interfaces'
+  SearchesOnceAndRemembers } from './../_interfaces'
 import { HighCard } from './HighCard'
 import { Pair } from './Pair'
 import { TwoPair } from './TwoPair'

@@ -1,4 +1,4 @@
-import { HandClass, Card, CardClass, HandParams,  Suit, CardValue, StraightFlushParams } from './_interfaces'
+import { HandClass, Card, CardClass, HandParams,  Suit, CardValue, StraightFlushParams } from './../_interfaces'
 import { Hand } from './_hand'
 import { Straight } from './Straight'
 

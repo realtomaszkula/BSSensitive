@@ -1,4 +1,4 @@
-import { Card, CardClass, HandParams, HandStrength,  Suit, CardValue } from './_interfaces'
+import { Card, CardClass, HandParams, HandStrength,  Suit, CardValue } from './../_interfaces'
 
 export class Hand {
   protected _handStrength: HandStrength;

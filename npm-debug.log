@@ -2206,8 +2206,8 @@
 801 silly gunzTarPerm modified mode [ 'mutable.js', 436, 438 ]
 802 silly gunzTarPerm extractEntry test.js
 803 silly gunzTarPerm modified mode [ 'test.js', 436, 438 ]
-804 silly gunzTarPerm extractEntry dist/interfaces.js
-805 silly gunzTarPerm modified mode [ 'dist/interfaces.js', 420, 438 ]
+804 silly gunzTarPerm extractEntry dist/_interfaces.js
+805 silly gunzTarPerm modified mode [ 'dist/_interfaces.js', 420, 438 ]
 806 silly gunzTarPerm extractEntry example/meat.js
 807 silly gunzTarPerm modified mode [ 'example/meat.js', 420, 438 ]
 808 silly gunzTarPerm extractEntry test/break.js
@@ -2657,8 +2657,8 @@
 1174 verbose write writing to C:\Users\Tomasz\AppData\Roaming\npm\node_modules\typings\node_modules\wordwrap\package.json
 1175 silly gunzTarPerm extractEntry dist/install.spec.js.map
 1176 silly gunzTarPerm modified mode [ 'dist/install.spec.js.map', 420, 438 ]
-1177 silly gunzTarPerm extractEntry dist/interfaces/dependencies.js
-1178 silly gunzTarPerm modified mode [ 'dist/interfaces/dependencies.js', 420, 438 ]
+1177 silly gunzTarPerm extractEntry dist/_interfaces/dependencies.js
+1178 silly gunzTarPerm modified mode [ 'dist/_interfaces/dependencies.js', 420, 438 ]
 1179 silly gunzTarPerm extractEntry js/release/direct_resolve.js
 1180 silly gunzTarPerm modified mode [ 'js/release/direct_resolve.js', 436, 438 ]
 1181 silly gunzTarPerm extractEntry js/release/race.js
@@ -2715,10 +2715,10 @@
 1232 silly gunzTarPerm modified mode [ 'js/release/bluebird.js', 436, 438 ]
 1233 info install listify@1.0.0
 1234 verbose write writing to C:\Users\Tomasz\AppData\Roaming\npm\node_modules\typings\node_modules\archy\package.json
-1235 silly gunzTarPerm extractEntry dist/interfaces/config.js
-1236 silly gunzTarPerm modified mode [ 'dist/interfaces/config.js', 420, 438 ]
-1237 silly gunzTarPerm extractEntry dist/interfaces/emitter.js
-1238 silly gunzTarPerm modified mode [ 'dist/interfaces/emitter.js', 420, 438 ]
+1235 silly gunzTarPerm extractEntry dist/_interfaces/config.js
+1236 silly gunzTarPerm modified mode [ 'dist/_interfaces/config.js', 420, 438 ]
+1237 silly gunzTarPerm extractEntry dist/_interfaces/emitter.js
+1238 silly gunzTarPerm modified mode [ 'dist/_interfaces/emitter.js', 420, 438 ]
 1239 verbose readDependencies loading dependencies from C:\Users\Tomasz\AppData\Roaming\npm\node_modules\typings\node_modules\wordwrap\package.json
 1240 info postinstall listify@1.0.0
 1241 silly gunzTarPerm extractEntry register/es6-promise.d.ts
@@ -2769,10 +2769,10 @@
 1274 verbose linkMans xtend@4.0.1
 1275 verbose rebuildBundles xtend@4.0.1
 1276 info install xtend@4.0.1
-1277 silly gunzTarPerm extractEntry dist/interfaces/rc.js
-1278 silly gunzTarPerm modified mode [ 'dist/interfaces/rc.js', 420, 438 ]
-1279 silly gunzTarPerm extractEntry dist/interfaces/emitter.d.ts
-1280 silly gunzTarPerm modified mode [ 'dist/interfaces/emitter.d.ts', 420, 438 ]
+1277 silly gunzTarPerm extractEntry dist/_interfaces/rc.js
+1278 silly gunzTarPerm modified mode [ 'dist/_interfaces/rc.js', 420, 438 ]
+1279 silly gunzTarPerm extractEntry dist/_interfaces/emitter.d.ts
+1280 silly gunzTarPerm modified mode [ 'dist/_interfaces/emitter.d.ts', 420, 438 ]
 1281 verbose readDependencies loading dependencies from C:\Users\Tomasz\AppData\Roaming\npm\node_modules\typings\node_modules\archy\package.json
 1282 silly install resolved []
 1283 verbose about to build C:\Users\Tomasz\AppData\Roaming\npm\node_modules\typings\node_modules\wordwrap
@@ -2800,10 +2800,10 @@
 1305 verbose rebuildBundles wordwrap@1.0.0
 1306 info install wordwrap@1.0.0
 1307 info postinstall wordwrap@1.0.0
-1308 silly gunzTarPerm extractEntry dist/interfaces/dependencies.js.map
-1309 silly gunzTarPerm modified mode [ 'dist/interfaces/dependencies.js.map', 420, 438 ]
-1310 silly gunzTarPerm extractEntry dist/interfaces/config.js.map
-1311 silly gunzTarPerm modified mode [ 'dist/interfaces/config.js.map', 420, 438 ]
+1308 silly gunzTarPerm extractEntry dist/_interfaces/dependencies.js.map
+1309 silly gunzTarPerm modified mode [ 'dist/_interfaces/dependencies.js.map', 420, 438 ]
+1310 silly gunzTarPerm extractEntry dist/_interfaces/config.js.map
+1311 silly gunzTarPerm modified mode [ 'dist/_interfaces/config.js.map', 420, 438 ]
 1312 verbose unlock done using C:\Users\Tomasz\AppData\Roaming\npm-cache\_locks\wordwrap-d70872bb822656fb.lock for C:\Users\Tomasz\AppData\Roaming\npm\node_modules\typings\node_modules\wordwrap
 1313 info linkStuff archy@1.0.0
 1314 silly linkStuff archy@1.0.0 has C:\Users\Tomasz\AppData\Roaming\npm\node_modules\typings\node_modules as its parent node_modules
@@ -2837,28 +2837,28 @@
 1342 silly gunzTarPerm modified mode [ 'register/when.d.ts', 436, 438 ]
 1343 silly gunzTarPerm extractEntry register/promise.d.ts
 1344 silly gunzTarPerm modified mode [ 'register/promise.d.ts', 436, 438 ]
-1345 silly gunzTarPerm extractEntry dist/interfaces/dependencies.d.ts
-1346 silly gunzTarPerm modified mode [ 'dist/interfaces/dependencies.d.ts', 420, 438 ]
-1347 silly gunzTarPerm extractEntry dist/interfaces/emitter.js.map
-1348 silly gunzTarPerm modified mode [ 'dist/interfaces/emitter.js.map', 420, 438 ]
+1345 silly gunzTarPerm extractEntry dist/_interfaces/dependencies.d.ts
+1346 silly gunzTarPerm modified mode [ 'dist/_interfaces/dependencies.d.ts', 420, 438 ]
+1347 silly gunzTarPerm extractEntry dist/_interfaces/emitter.js.map
+1348 silly gunzTarPerm modified mode [ 'dist/_interfaces/emitter.js.map', 420, 438 ]
 1349 silly gunzTarPerm extractEntry register.d.ts
 1350 silly gunzTarPerm modified mode [ 'register.d.ts', 436, 438 ]
 1351 silly gunzTarPerm extractEntry index.d.ts
 1352 silly gunzTarPerm modified mode [ 'index.d.ts', 436, 438 ]
-1353 silly gunzTarPerm extractEntry dist/interfaces/rc.d.ts
-1354 silly gunzTarPerm modified mode [ 'dist/interfaces/rc.d.ts', 420, 438 ]
-1355 silly gunzTarPerm extractEntry dist/interfaces/config.d.ts
-1356 silly gunzTarPerm modified mode [ 'dist/interfaces/config.d.ts', 420, 438 ]
+1353 silly gunzTarPerm extractEntry dist/_interfaces/rc.d.ts
+1354 silly gunzTarPerm modified mode [ 'dist/_interfaces/rc.d.ts', 420, 438 ]
+1355 silly gunzTarPerm extractEntry dist/_interfaces/config.d.ts
+1356 silly gunzTarPerm modified mode [ 'dist/_interfaces/config.d.ts', 420, 438 ]
 1357 silly gunzTarPerm extractEntry js/release/map.js
 1358 silly gunzTarPerm modified mode [ 'js/release/map.js', 436, 438 ]
-1359 silly gunzTarPerm extractEntry dist/interfaces/rc.js.map
-1360 silly gunzTarPerm modified mode [ 'dist/interfaces/rc.js.map', 420, 438 ]
-1361 silly gunzTarPerm extractEntry dist/interfaces.d.ts
-1362 silly gunzTarPerm modified mode [ 'dist/interfaces.d.ts', 420, 438 ]
+1359 silly gunzTarPerm extractEntry dist/_interfaces/rc.js.map
+1360 silly gunzTarPerm modified mode [ 'dist/_interfaces/rc.js.map', 420, 438 ]
+1361 silly gunzTarPerm extractEntry dist/_interfaces.d.ts
+1362 silly gunzTarPerm modified mode [ 'dist/_interfaces.d.ts', 420, 438 ]
 1363 silly gunzTarPerm extractEntry dist/init.d.ts
 1364 silly gunzTarPerm modified mode [ 'dist/init.d.ts', 420, 438 ]
-1365 silly gunzTarPerm extractEntry dist/interfaces.js.map
-1366 silly gunzTarPerm modified mode [ 'dist/interfaces.js.map', 420, 438 ]
+1365 silly gunzTarPerm extractEntry dist/_interfaces.js.map
+1366 silly gunzTarPerm modified mode [ 'dist/_interfaces.js.map', 420, 438 ]
 1367 silly gunzTarPerm extractEntry dist/lib/dependencies.js
 1368 silly gunzTarPerm modified mode [ 'dist/lib/dependencies.js', 420, 438 ]
 1369 silly gunzTarPerm extractEntry dist/lib/compile.spec.js

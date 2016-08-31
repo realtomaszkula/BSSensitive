@@ -3,7 +3,7 @@ import { CardClass, HandStrength, HandParams,  Suit, CardValue,
   SearchesOnceAndRemembers, CardParams } from './../../classes/_interfaces'
 import { Pair } from './../../classes/hands/Pair'
 import { castSuit } from './../../typecasting/arrays'
-import { step, stepPairDefault } from './../interfaces/main'
+import { step, stepPairDefault } from './../_interfaces/main'
 import { Card } from './../../classes/hands/Card'
 
 function card(name: string): Card {
