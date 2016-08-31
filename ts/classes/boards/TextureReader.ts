@@ -1,7 +1,6 @@
 import { TypeCheck, Card, Suit, CardValue, Flop, FlopTurn, FlopTurnRiver, BoardCards, BoardTextures,  TextureReaderParams, BoardParams, BoardByStreet } from './../_interfaces'
 import { Board } from './Board'
 
-
 export abstract class TextureReader {
   protected _result: Board;
   protected _boardObject: BoardByStreet;
@@ -10,56 +9,53 @@ export abstract class TextureReader {
   protected _suits: Suit[];
   protected _values: CardValue[];
   
-  abstract setSuits(): void;
-  abstract setValues(): void;
+  abstract checkParams(params: TextureReaderParams): void 
+  abstract setCards(): void;
   abstract setTypeCheck(): TypeCheck;
 
   constructor(params: TextureReaderParams){
     this.checkParams(params);
     this.initialize(params);
-    this.setSuits();
-    this.setValues();
     this.createBoard();
   }
 
-  protected checkParams(params: TextureReaderParams): void {
-    //... some logic to check params
-  }
-  
   protected initialize(params: TextureReaderParams): void {
     this._typeCheck = this.setTypeCheck();
     this._boardObject = params.boardObject
+    this.setSuits();
+    this.setCards();
+    this.setValues();
   }
 
+  protected setSuits(): void {
+    this._suits = this._cards.map(c => c.suit)
+  }
+  protected setValues(): void {
+    this._values = this._cards.map(c => c.value)
+  }
 
-  get cards(): BoardCards {
+  protected get cards(): BoardCards {
     return this._cards;
   }
-
+  protected get suits(): Suit[] {
+    return this._suits
+  }
+  protected get values(): CardValue[] {
+    return this._values;
+  }
   get boardObject(): BoardByStreet {
     return this._boardObject;
   }
-
   get result(): Board {
     return this._result;
   }
 
-  protected get suits(): Suit[] {
-    return this._suits
-  }
-
-  protected get values(): CardValue[] {
-    return this._values;
-  }
   protected createBoard() {
     let boardTextures = this.setBoardTypes();
-    let cards = this.cards;
-
     let board = new Board({
-      cards: cards,
+      cards: this.cards,
       boardTextures: boardTextures
     })
-
     this._result = board;
   }
 

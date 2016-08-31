@@ -2,14 +2,13 @@ import { TypeCheck, Card, Suit, CardValue, Flop, FlopTurn, FlopTurnRiver, BoardC
 import { TextureReader } from './TextureReader'
 
 class TextureReaderFlop extends TextureReader {
-  private _suit: [Suit, Suit, Suit];
-  private _value: [CardValue, CardValue, CardValue]
 
-  setSuits() {
-
+  checkParams() {
+    
   }
 
-  setValues() {
+  setCards() {
+    this._cards = [...this._boardObject.flop] as [Card, Card, Card]
   }
 
   setTypeCheck(): TypeCheck {
