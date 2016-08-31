@@ -1,7 +1,11 @@
 class ParamsError extends Error {
-  constructor(message) {
+  constructor(message, params?: {}) {
     super(message);
-    this.message = message;
+    if (params) {
+      this.message = `${message} | PARAMS: ${JSON.stringify(params)}`
+    } else {
+      this.message = message;
+    }
     this.name = 'ParamsError';
   }
 }

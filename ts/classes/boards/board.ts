@@ -19,12 +19,16 @@ export class Board implements ParamsGuard, CardGuard, ArrayGuard {
   }
 
   private checkCards(cards: Card[]) {
-    this.checkArray({typeName: 'Card', arr: cards, minLength: 3, maxLength: 5, customErrorClass: <ErrorConstructor>ParamsError})
+    try {
+      this.checkArray({typeName: 'Card', arr: cards, minLength: 3, maxLength: 5})
+    } catch (e) {
+        throw new ParamsError(`${e.message}`, cards)
+    }
     cards.forEach( (card, i) => {
       try {
         this.checkCard(card)
       } catch (e) {
-        throw new ParamsError(e.message + ', failed at index ' + i)
+        throw new ParamsError(`${e.message} | Failed at index: ${i}` , cards)
       }
     })
   }
