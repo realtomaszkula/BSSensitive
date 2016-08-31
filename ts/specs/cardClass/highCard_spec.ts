@@ -10,7 +10,7 @@ describe('HighCard', function() {
   describe('when comparing to another HighCard', function() {
     let firstHand: HighCard;
     let secondHand: HighCard;
-    
+   
     describe('made of the same five cards', function() {
       beforeEach(function() {
         let firstParams: HighCardParams = {

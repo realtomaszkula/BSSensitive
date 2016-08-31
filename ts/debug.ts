@@ -3,5 +3,9 @@ import { TheBestHand } from './classes/hands/_theBestHand'
 import { CardValue } from './classes/_interfaces'
 import { Pair } from './classes/hands/Pair'
 import { card } from './specs/helpers/methods'
+import { Board } from './classes/boards/Board'
+import { applyMixins } from './classes/mixins/_apply'
+import { ParamsGuard } from './classes/mixins/paramsGuard'
 
-// let p = new Pair({cards: Array.of( { value: -5 , suit: 'spade'},), handStrength: ''});
+
+let b = new Board({cards: []})

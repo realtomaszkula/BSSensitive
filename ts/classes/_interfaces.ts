@@ -102,18 +102,23 @@ interface CardParams {
   suit: Suit
 }
 
-interface BoardType {
+interface BoardTextures {
   monotone: boolean,
   paired: boolean,
 }
 
-interface BoardParams {
+interface BoardTypeReaderParams {
   cards: BoardCards,
 }
 
+interface BoardParams{
+  cards: BoardCards, 
+  boardTextures: BoardTextures
+}
 
 export { HandClass, Card, CardClass, HandStrength, HandParams,  Suit, CardValue, Search, 
   PairParams, TwoPairParams, TripsParams, StraightParams, FlushParams, FullHouseParams, QuadsParams, StraightFlushParams, HighCardParams
   , SearchesOnceAndRemembers ,
-  HoldemHoleCards, OmahaHoleCards, HoleCards, HandCards, Flop, FlopTurn, FlopTurnRiver, BoardCards, TheBestHandParams, CardParams, BoardParams, BoardType
+  HoldemHoleCards, OmahaHoleCards, HoleCards, HandCards, Flop, FlopTurn, FlopTurnRiver, BoardCards, TheBestHandParams, CardParams, 
+  BoardTypeReaderParams, BoardTextures, BoardParams
 }
