@@ -1,22 +1,21 @@
 import { Card, CardClass, HandParams, HandStrength,  Suit, CardValue } from './../_interfaces'
+import { ParamsGuard, ParamsGuardParams } from './../mixins/paramsGuard'
+import { applyMixins } from './../mixins/_apply'
 
-export class Hand {
+export class Hand implements ParamsGuard {
+
+  // params guard mixin
+  checkParams: (params: ParamsGuardParams) => void;
+
   protected _handStrength: HandStrength;
   protected _cards: Card[]
   protected _values: CardValue[]
   protected _kickers: CardValue[]
 
-
   constructor( params: HandParams ){
-    this.checkParams(params);
+    this.checkParams({actualParams: params, expectedKeys: ['cards', 'handStrength']});
     this.cards = params.cards;
     this.handStrength = params.handStrength;
-  }
-
-  private checkParams(params: HandParams) {
-    if (typeof params !== 'object') throw new Error('Params must be an object: { cards: Card[], handStrength: -1..14 }')
-    if(!params.hasOwnProperty('cards')) throw new Error('Params must have property of cards')
-    if(!params.hasOwnProperty('handStrength')) throw new Error('Params must have property of handStrength')
   }
 
   protected set cards(cards: Card[]) {
@@ -101,4 +100,6 @@ export class Hand {
     }
   }
 }
+
+applyMixins(Hand, [ParamsGuard])
 
