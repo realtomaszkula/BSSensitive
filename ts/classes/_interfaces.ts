@@ -116,9 +116,9 @@ interface BoardTextures {
 }
 
 interface BoardByStreet {
-  flop: [Card, Card, Card],
-  turn: Card,
-  river: Card
+  flop?: [Card, Card, Card],
+  turn?: Card,
+  river?: Card
 }
 
 interface TextureReaderParams {

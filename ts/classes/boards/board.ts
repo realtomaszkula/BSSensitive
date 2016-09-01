@@ -19,6 +19,7 @@ export class Board implements ParamsGuard, CardGuard, ArrayGuard {
     this.initializeCards(params.cards)
   }
 
+
   get cards(): BoardCards {
     return this._cards;
   }

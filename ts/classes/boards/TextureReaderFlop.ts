@@ -1,7 +1,7 @@
 import { TypeCheck, Card, Suit, CardValue, Flop, FlopTurn, FlopTurnRiver, BoardCards, BoardTextures,  TextureReaderParams, BoardParams, BoardByStreet } from './../_interfaces'
 import { TextureReader } from './TextureReader'
 
-class TextureReaderFlop extends TextureReader {
+export class TextureReaderFlop extends TextureReader {
 
   private _firstGap: number;
   private _secondGap: number;
