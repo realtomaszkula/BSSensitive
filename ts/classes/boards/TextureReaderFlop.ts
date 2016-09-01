@@ -10,6 +10,14 @@ export class TextureReaderFlop extends TextureReader {
 
   constructor(params: TextureReaderParams) {
     super(params)
+    this.initialize(params);
+    this.createBoard();
+  }
+
+  initialize(params: TextureReaderParams) {
+    this.setCards();
+    this.setSuits();
+    this.setValues();
     this.setGaps();
     this.setNumOfBroadways();
   }

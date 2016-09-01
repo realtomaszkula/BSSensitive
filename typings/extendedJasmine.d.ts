@@ -1,5 +1,6 @@
 declare module jasmine {
   export interface Matchers {
-    toBeCardClassOf(expected: {})
+    toBeCardClassOf(expected: {}),
+    toBeTextureOf(expected: string)
   }
 }

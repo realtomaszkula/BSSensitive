@@ -9,6 +9,7 @@ import { Quads } from './../../classes/hands/Quads'
 import { StraightFlush } from './../../classes/hands/StraightFlush'
 import { HighCard } from './../../classes/hands/HighCard'
 import { Card }  from './../../classes/hands/Card' 
+import { Texture }  from './../../classes/_interfaces' 
 
 function isCardClass(obj): boolean {
   let allowedClassNames = [ 'Pair', 'TwoPair', 'Trips', 'Straight', 'Flush', 'FullHouse', 'Quads', 'StraightFlush', 'HighCard' ]
@@ -46,6 +47,24 @@ export let customMatchers = {
 
         return {
           pass: passed,
+          message: message
+        }
+      }
+    }
+  }, 
+  toBeTextureOf: (expected: Texture) => {
+    return {
+      compare: (actual: Texture, expected: () => any) => {
+        console.log(expected)
+        let passed: boolean = expected === actual as any;
+        let message: string;
+        if (passed) {
+          message = `Expected ${actual} NOT to be equal ${JSON.stringify(expected)}`;
+        } else {
+          message = `Expected ${actual} to be equal ${JSON.stringify(expected)}`;
+        }
+        return {
+          pass: passed, 
           message: message
         }
       }

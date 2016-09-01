@@ -12,19 +12,11 @@ export abstract class TextureReader {
   abstract checkParams(params: TextureReaderParams): void 
   abstract setCards(): void;
   abstract setTypeCheck(): TypeCheck;
+  abstract initialize(params: TextureReaderParams): void;
 
   constructor(params: TextureReaderParams){
-    this.checkParams(params);
-    this.initialize(params);
-    this.createBoard();
-  }
-
-  protected initialize(params: TextureReaderParams): void {
-    this._typeCheck = this.setTypeCheck();
     this._boardObject = params.boardObject
-    this.setSuits();
-    this.setCards();
-    this.setValues();
+    this._typeCheck = this.setTypeCheck();
   }
 
   protected setSuits(): void {
@@ -61,7 +53,7 @@ export abstract class TextureReader {
 
   protected createBoardTextureObject(types: string[]): BoardTextures {
     let result = {} as BoardTextures;
-    for(let type in types){
+    for(let type of types){
       result[type] = true;
     }
     return result;

@@ -144,9 +144,12 @@ interface TypeCheck {
   isTrippleBroadWay?: () => boolean;
 }
 
+type Texture =  'Monotone'| 'TwoTone'| 'Rainbow'| 'OneStraight'| 'TwoStraight'| 'ThreeStraight'| 'Paired'| 'DoublePaired'| 'SingleBroadway'| 'DoubleBroadWay'| 'TrippleBroadWay';
+
+
 export { HandClass, Card, CardClass, HandStrength, HandParams,  Suit, CardValue, Search, 
   PairParams, TwoPairParams, TripsParams, StraightParams, FlushParams, FullHouseParams, QuadsParams, StraightFlushParams, HighCardParams
   , SearchesOnceAndRemembers ,
   HoldemHoleCards, OmahaHoleCards, HoleCards, HandCards, Flop, FlopTurn, FlopTurnRiver, BoardCards, TheBestHandParams, CardParams, 
-  TextureReaderParams, BoardTextures, BoardParams, BoardByStreet, TypeCheck
+  TextureReaderParams, BoardTextures, BoardParams, BoardByStreet, TypeCheck, Texture
 }
