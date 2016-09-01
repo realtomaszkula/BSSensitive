@@ -102,17 +102,28 @@ interface CardParams {
   suit: Suit
 }
 
-interface BoardTextures {
-  monotone: boolean,
-  paired: boolean,
+interface StraightTextures {
   oneStraight: boolean,
   twoStraight: boolean,
-  threeStraight: boolean,
+  threeStraight: boolean
+}
+
+interface SuitTextures {
+  monotone: boolean,
   rainbow: boolean,
-  twotone: boolean,
+  twotone: boolean
+}
+
+interface BroadwayTextures {
   oneBroadway: boolean,
   twoBroadway: boolean,
   threeBoardway: boolean
+}
+
+interface BoardTextures {
+  straight: StraightTextures,
+  suit: SuitTextures,
+  broadway: BroadwayTextures
 }
 
 interface BoardByStreet {
@@ -131,25 +142,31 @@ interface BoardParams{
 }
 
 interface TypeCheck {
-  isMonotone: () => boolean;
-  isTwoTone: () => boolean;
-  isRainbow: () => boolean;
-  isOneStraight: () => boolean;
-  isTwoStraight: () => boolean;
-  isThreeStraight: () => boolean;
+  straight: {
+    isOneStraight: () => boolean;
+    isTwoStraight: () => boolean;
+    isThreeStraight: () => boolean;
+  },
+  suit:  {
+    isMonotone: () => boolean;
+    isTwoTone: () => boolean;
+    isRainbow: () => boolean;
+  },
+  broadway: {
+    isSingleBroadway?: () => boolean;
+    isDoubleBroadWay?: () => boolean;
+    isTrippleBroadWay?: () => boolean;
+  }
   isPaired: () => boolean;
   isDoublePaired?: () => boolean;
-  isSingleBroadway?: () => boolean;
-  isDoubleBroadWay?: () => boolean;
-  isTrippleBroadWay?: () => boolean;
 }
 
-type Texture =  'Monotone'| 'TwoTone'| 'Rainbow'| 'OneStraight'| 'TwoStraight'| 'ThreeStraight'| 'Paired'| 'DoublePaired'| 'SingleBroadway'| 'DoubleBroadWay'| 'TrippleBroadWay';
+type Texture =  'Monotone'| 'Twotone'| 'Rainbow'| 'OneStraight'| 'TwoStraight'| 'ThreeStraight'| 'Paired'| 'DoublePaired'| 'SingleBroadway'| 'DoubleBroadway'| 'TrippleBroadway';
 
 
 export { HandClass, Card, CardClass, HandStrength, HandParams,  Suit, CardValue, Search, 
   PairParams, TwoPairParams, TripsParams, StraightParams, FlushParams, FullHouseParams, QuadsParams, StraightFlushParams, HighCardParams
   , SearchesOnceAndRemembers ,
   HoldemHoleCards, OmahaHoleCards, HoleCards, HandCards, Flop, FlopTurn, FlopTurnRiver, BoardCards, TheBestHandParams, CardParams, 
-  TextureReaderParams, BoardTextures, BoardParams, BoardByStreet, TypeCheck, Texture
+  TextureReaderParams, BoardTextures, BoardParams, BoardByStreet, TypeCheck, Texture, StraightTextures, SuitTextures, BroadwayTextures
 }

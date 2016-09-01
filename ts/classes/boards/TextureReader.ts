@@ -1,5 +1,8 @@
-import { TypeCheck, Card, Suit, CardValue, Flop, FlopTurn, FlopTurnRiver, BoardCards, BoardTextures,  TextureReaderParams, BoardParams, BoardByStreet } from './../_interfaces'
-import { Board } from './Board'
+import { TypeCheck, Card, Suit, CardValue, Flop, FlopTurn, FlopTurnRiver, 
+  BoardCards, BoardTextures,  TextureReaderParams, BoardParams, BoardByStreet, 
+  Texture, StraightTextures, SuitTextures, BroadwayTextures
+} from './../_interfaces'
+import { Board } from './board'
 
 export abstract class TextureReader {
   protected _result: Board;
@@ -43,7 +46,7 @@ export abstract class TextureReader {
   }
 
   protected createBoard() {
-    let boardTextures = this.setBoardTypes();
+    let boardTextures = this.setBoardTextures();
     let board = new Board({
       cards: this.cards,
       boardTextures: boardTextures
@@ -52,20 +55,36 @@ export abstract class TextureReader {
   }
 
   protected createBoardTextureObject(types: string[]): BoardTextures {
-    let result = {} as BoardTextures;
+    let result = {};
     for(let type of types){
       result[type] = true;
     }
     return result;
   }
 
-  protected setBoardTypes(): BoardTextures {
-    let allowedTypes = ['Paired', 'Monotone'];
-    let actualTypes = allowedTypes.filter( type => {
-      let r = this._typeCheck['is' + type]();
-      if (typeof r !== 'boolean') throw new Error('tried to check for non existent board type');
-      return r
-    })
-    return this.createBoardTextureObject(actualTypes)
+  protected checkTextures(textures: Texture[], group: string): StraightTextures | SuitTextures | BroadwayTextures {
+    // each texture in a group makes other textures impossible so return as soon as we get true
+    let results = {}
+    for(let texture in textures) {
+      let isOfTextureType = this._typeCheck[group]['is' + texture];
+      if (isOfTextureType) {
+        results[texture] = true;
+        return results;
+      }
+    }
+  }
+
+  protected setBoardTextures(): BoardTextures {
+    let suitsTextures: Texture[] = ['Monotone', 'Twotone', 'Rainbow'];
+    let straightsTextures: Texture[] = ['OneStraight', 'TwoStraight', 'ThreeStraight'];
+    let broadwayTextures: Texture[] = ['SingleBroadway', 'DoubleBroadway', 'TrippleBroadway' ]
+
+    let boardCharacteristics = [ 
+          ...this.checkTextures(suitsTextures, 'suits'), 
+          ...this.checkTextures(straightsTextures, 'straights'),
+          ...this.checkTextures(broadwayTextures, 'broadway')
+    ]
+   
+    return this.createBoardTextureObject(boardCharacteristics)
   }
 }

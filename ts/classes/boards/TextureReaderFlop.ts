@@ -47,6 +47,25 @@ export class TextureReaderFlop extends TextureReader {
 
   setTypeCheck(): TypeCheck {
     return {
+      straight: {
+        isOneStraight: () =>  {
+          // T96, T76, T86 ... and special cases QJT, A23, AKQ
+          let isQJT = this.cards[0].value === 12 && this.cards[1].value === 11 && this.cards[2].value === 10
+          let isA23 = this.cards[0].value === 14 && this.cards[1].value === 2 && this.cards[2].value === 3
+          let isAKQ = this.cards[0].value === 14 && this.cards[1].value === 13 && this.cards[2].value === 12
+          return (this._firstGap === 0 && this._secondGap === 2) || (this._firstGap === 2 && this._secondGap === 0) || 
+                  (this._firstGap === 1 && this._secondGap === 1) || isQJT || isA23 || isAKQ
+        },
+        isTwoStraight: () => {
+          // T97, T87 
+          return (this._firstGap === 1 && this._secondGap === 0) || (this._firstGap === 0 && this._secondGap === 1)
+        },
+        isThreeStraight: () => {
+          // 456, 678, 789
+          return this._firstGap === 0 && this._secondGap === 0
+        }
+      },
+    suit: {
       isMonotone: () => {
         return this._numOfSuitRepetition === 3;
       },
@@ -55,29 +74,9 @@ export class TextureReaderFlop extends TextureReader {
       },
       isRainbow: () => {
         return this._numOfSuitRepetition === 1;
-      },   
-      isPaired: () =>  {
-        let firstValue = this.values[0];
-        let filtered = this.values.filter(v => v === firstValue)
-        let isPaired = filtered.length === 1;
-        return isPaired;
-      },
-      isOneStraight: () =>  {
-        // T96, T76, T86 ... and special cases QJT, A23, AKQ
-        let isQJT = this.cards[0].value === 12 && this.cards[1].value === 11 && this.cards[2].value === 10
-        let isA23 = this.cards[0].value === 14 && this.cards[1].value === 2 && this.cards[2].value === 3
-        let isAKQ = this.cards[0].value === 14 && this.cards[1].value === 13 && this.cards[2].value === 12
-        return (this._firstGap === 0 && this._secondGap === 2) || (this._firstGap === 2 && this._secondGap === 0) || 
-                (this._firstGap === 1 && this._secondGap === 1) || isQJT || isA23 || isAKQ
-      },
-      isTwoStraight: () => {
-        // T97, T87 
-        return (this._firstGap === 1 && this._secondGap === 0) || (this._firstGap === 0 && this._secondGap === 1)
-      },
-      isThreeStraight: () => {
-        // 456, 678, 789
-        return this._firstGap === 0 && this._secondGap === 0
-      },
+      }
+    },
+    broadway: {
       isSingleBroadway: () => {
         return this._numOfBroadways === 1
       },
@@ -86,6 +85,13 @@ export class TextureReaderFlop extends TextureReader {
       },
       isTrippleBroadWay: () => {
         return this._numOfBroadways === 3
+      },
+    },
+      isPaired: () =>  {
+        let firstValue = this.values[0];
+        let filtered = this.values.filter(v => v === firstValue)
+        let isPaired = filtered.length === 1;
+        return isPaired;
       },
     }
   }
