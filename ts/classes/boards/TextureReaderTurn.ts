@@ -8,6 +8,7 @@ class TextureReaderTurn extends TextureReader {
   }
 
   setCards() {
+    this._cards = [...this.boardObject.flop, this.boardObject.turn] as [Card, Card, Card, Card]
   }
 
   setTypeCheck(): TypeCheck {

@@ -4,10 +4,10 @@ import { TextureReader } from './TextureReader'
 class TextureReaderRiver extends TextureReader {
 
   checkParams(){
-    
   }
 
   setCards() {
+    this._cards = [...this.boardObject.flop, this.boardObject.turn, this._boardObject.river] as [Card, Card, Card, Card, Card]
   }
 
   setTypeCheck(): TypeCheck {

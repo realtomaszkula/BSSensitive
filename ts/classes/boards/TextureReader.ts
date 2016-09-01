@@ -31,7 +31,7 @@ export abstract class TextureReader {
     this._suits = this._cards.map(c => c.suit)
   }
   protected setValues(): void {
-    this._values = this._cards.map(c => c.value)
+    this._values = this._cards.map(c => c.value).sort( (a, b) => b - a)
   }
 
   protected get cards(): BoardCards {
