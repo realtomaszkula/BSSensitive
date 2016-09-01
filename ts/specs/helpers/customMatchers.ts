@@ -54,14 +54,13 @@ export let customMatchers = {
   }, 
   toBeTextureOf: (expected: Texture) => {
     return {
-      compare: (actual: Texture, expected: () => any) => {
-        console.log(expected)
-        let passed: boolean = expected === actual as any;
+      compare: (actual: {}, expected: () => any) => {
+        let passed: boolean = !!actual[expected] 
         let message: string;
         if (passed) {
-          message = `Expected ${actual} NOT to be equal ${JSON.stringify(expected)}`;
+          message = `Expected ${JSON.stringify(actual)} NOT to be equal ${expected}`;
         } else {
-          message = `Expected ${actual} to be equal ${JSON.stringify(expected)}`;
+          message = `Expected ${JSON.stringify(actual)} to be ${expected}`;
         }
         return {
           pass: passed, 

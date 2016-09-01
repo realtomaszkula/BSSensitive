@@ -26,7 +26,7 @@ describe('TextureReader', function() {
         
       it('should return board instance with board texture set to monotone ', function() {
         board = new TextureReaderFlop(params).result
-        expect(board.textures.monotone).toBeTextureOf('Monotone')
+        expect(board.textures).toBeTextureOf('Monotone')
       });
     });
       

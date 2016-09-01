@@ -20,6 +20,7 @@ export class TextureReaderFlop extends TextureReader {
     this.setValues();
     this.setGaps();
     this.setNumOfBroadways();
+    this.setNumOfSuitRepetition();
   }
 
   checkParams() {
@@ -47,13 +48,13 @@ export class TextureReaderFlop extends TextureReader {
   setTypeCheck(): TypeCheck {
     return {
       isMonotone: () => {
-        return this._numOfSuitRepetition === 0;
+        return this._numOfSuitRepetition === 3;
       },
       isTwoTone: () => {
-        return this._numOfSuitRepetition === 1;
+        return this._numOfSuitRepetition === 2;
       },
       isRainbow: () => {
-        return this._numOfSuitRepetition === 2;
+        return this._numOfSuitRepetition === 1;
       },   
       isPaired: () =>  {
         let firstValue = this.values[0];
