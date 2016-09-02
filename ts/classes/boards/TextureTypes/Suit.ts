@@ -1,7 +1,7 @@
 import { TypeCheckFunctions, TypeCheckFunction, TextureTypes } from './abstract'
 import {Suit, Texture, SuitTexture, StraightTexture, PairedTexture} from './../../_interfaces'
 
-class SuitTextureType extends TextureTypes {
+export class SuitTextureType extends TextureTypes {
 
   private _suits: Suit[];
   private _repeats: number;
@@ -10,7 +10,8 @@ class SuitTextureType extends TextureTypes {
   constructor(params: { suits: Suit[] }) {
     super(params);
     this._suits = params.suits;
-    this.setDefaultTextureType();
+    this.setTypeCheckFunctions(); // check if this 
+    this.setDefaultTextureType(); // can be moved to parent
     this.findType();
   }
 

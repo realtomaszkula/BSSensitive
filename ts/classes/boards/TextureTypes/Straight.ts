@@ -1,7 +1,7 @@
 import { TypeCheckFunctions, TypeCheckFunction, TextureTypes } from './abstract'
 import {Suit, Texture, SuitTexture, StraightTexture, PairedTexture} from './../../_interfaces'
 
-class StraightTextureType extends TextureTypes {
+export class StraightTextureType extends TextureTypes {
 
   private _values: number[];
   _defaultType: StraightTexture;
@@ -13,12 +13,14 @@ class StraightTextureType extends TextureTypes {
   constructor(params: { values: number[] }) {
     super(params);
     this._values = params.values;
+    this.setTypeCheckFunctions();
     this.setDefaultTextureType();
     this.findType();
   }
 
   setTypeCheckFunctions() {
     this._typeCheckFunctions = [
+      this.isOneStraight, this.isTwoStraight, this.isThreeStraight
     ]
   }
 
@@ -62,7 +64,7 @@ class StraightTextureType extends TextureTypes {
       type: 'TwoStraight'
     }
   }
-  
+
   isThreeStraight (): TypeCheckFunction {
     // 456, 678, 789
     let isRegularStr8 = this._gaps.first === 0 && this._gaps.second === 0
