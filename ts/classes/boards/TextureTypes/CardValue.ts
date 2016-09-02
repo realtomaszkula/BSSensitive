@@ -1,17 +1,22 @@
-import { TypeCheckFunctions, TypeCheckFunction, TextureTypes } from './abstract'
+import { TypeCheckFunctions, TypeCheckFunction, TextureTypes } from './_TextureTypes'
 import { Suit, Texture, CardValueTexture} from './../../_interfaces'
 
 export class CardValueTextureType extends TextureTypes {
 
-  _defaultType: CardValueTexture;
-  _values: number[];
-  _numOfBroadways: number;
+  protected _type: CardValueTexture;
+  protected _defaultType: CardValueTexture;
+  protected _values: number[];
+  protected _numOfBroadways: number;
 
   constructor(params: { values: number[]}) {
     super(params);
     this.values = params.values;
     this.setNumOfBroadways();
     this.findType();
+  }
+
+  get type() {
+    return this._type;
   }
 
   private set values(values) {

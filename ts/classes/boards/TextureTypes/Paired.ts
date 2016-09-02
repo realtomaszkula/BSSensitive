@@ -1,15 +1,20 @@
-import { TypeCheckFunctions, TypeCheckFunction, TextureTypes } from './abstract'
+import { TypeCheckFunctions, TypeCheckFunction, TextureTypes } from './_TextureTypes'
 import { Suit, Texture, PairedTexture} from './../../_interfaces'
 
 export class PairedTextureType extends TextureTypes {
 
+  protected _type: PairedTexture;
+  protected _defaultType: PairedTexture;
   private _values: number[];
-  _defaultType: PairedTexture;
 
   constructor(params: { values: number[] }) {
     super(params);
     this.values = params.values;
     this.findType();
+  }
+
+  get type() {
+    return this._type;
   }
 
   private set values(values) {

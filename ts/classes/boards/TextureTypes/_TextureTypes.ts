@@ -26,7 +26,7 @@ abstract class TextureTypes {
     return this._defaultTextureType;
   }
 
-  protected get type() {
+  get type() {
     return this._type;
   }
 

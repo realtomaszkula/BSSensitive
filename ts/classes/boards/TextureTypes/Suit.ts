@@ -1,16 +1,21 @@
-import { TypeCheckFunctions, TypeCheckFunction, TextureTypes } from './abstract'
+import { TypeCheckFunctions, TypeCheckFunction, TextureTypes } from './_TextureTypes'
 import { Suit, Texture, SuitTexture } from './../../_interfaces'
 
 export class SuitTextureType extends TextureTypes {
-
+  
+  protected _type: SuitTexture;
   private _suits: Suit[];
   private _repeats: number;
-  _defaultType: SuitTexture;
+  protected _defaultType: SuitTexture;
 
   constructor(params: { suits: Suit[] }) {
     super(params);
     this._suits = params.suits;
     this.findType();
+  }
+
+  get type() {
+    return this._type;
   }
 
   setTypeCheckFunctions() {

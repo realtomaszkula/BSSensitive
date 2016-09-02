@@ -1,5 +1,5 @@
-import { TypeCheck, Card, Suit, CardValue, Flop, FlopTurn, FlopTurnRiver, BoardCards, BoardTextures,  TextureReaderParams, BoardParams, BoardByStreet } from './../../_interfaces'
-import { TextureReader } from './abstract'
+import {  Card, Suit, CardValue, Flop, FlopTurn, FlopTurnRiver, BoardCards, BoardTextures,  TextureReaderParams, BoardParams, BoardByStreet } from './../../_interfaces'
+import { TextureReader } from '\./_TextureReader'
 
 class TextureReaderTurn extends TextureReader {
 
@@ -7,31 +7,12 @@ class TextureReaderTurn extends TextureReader {
     
   }
 
-  setCards() {
-    this._cards = [...this.boardObject.flop, this.boardObject.turn] as [Card, Card, Card, Card]
+  initialize() {
+    
   }
 
-  setTypeCheck(): TypeCheck {
-    return {
-      isMonotone: (): boolean => {
-        return true
-      },
-      isTwoTone: (): boolean => {
-        return true
-      },
-      isRainbow: (): boolean => {
-        return true
-      },   
-      isPaired: (): boolean =>  {
-        return true
-      },
-      isOneStraight: () => false,
-      isTwoStraight: () => false,
-      isThreeStraight: () => false,
-      isDoublePaired: () => false,
-      isSingleBroadway: () => false,
-      isDoubleBroadWay: () => false,
-      isTrippleBroadWay: () => false,
-    }
+  setCards() {
+    this._cards = [...this._boardObject.flop, this._boardObject.turn] as [Card, Card, Card, Card]
   }
+
 }

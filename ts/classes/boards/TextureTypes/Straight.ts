@@ -1,10 +1,10 @@
-import { TypeCheckFunctions, TypeCheckFunction, TextureTypes } from './abstract'
+import { TypeCheckFunctions, TypeCheckFunction, TextureTypes } from './_TextureTypes'
 import { Suit, Texture, StraightTexture } from './../../_interfaces'
 
 export class StraightTextureType extends TextureTypes {
-
+  protected _type: StraightTexture;
   private _values: number[];
-  _defaultType: StraightTexture;
+  protected _defaultType: StraightTexture;
   private _gaps: {
     first: number,
     second: number  
@@ -15,6 +15,10 @@ export class StraightTextureType extends TextureTypes {
     this._values = params.values;
     this.setGaps();
     this.findType();
+  }
+
+  get type() {
+    return this._type;
   }
 
   setTypeCheckFunctions() {
