@@ -1,20 +1,23 @@
 import { TypeCheckFunctions, TypeCheckFunction, TextureTypes } from './_TextureTypes'
 import { Suit, Texture, StraightTexture } from './../../_interfaces'
 
+interface gaps {
+  first: number,
+  second: number
+}
+
 export class StraightTextureType extends TextureTypes {
   protected _type: StraightTexture;
-  private _values: number[];
   protected _defaultType: StraightTexture;
-  private _gaps: {
-    first: number,
-    second: number  
-  };
+  private _values: number[];
+  private _gaps: gaps;
   
   constructor(params: { values: number[] }) {
     super(params);
     this._values = params.values;
     this.setGaps();
-    this.findType();
+    this.setTypeCheckFunctions();
+    this._type = this.findType();
   }
 
   get type() {
@@ -39,41 +42,51 @@ export class StraightTextureType extends TextureTypes {
     return this._values;
   }
 
-  private setGaps(): void {
-    let [first, second, third] = this.values;
-    this._gaps.first = first - second - 1;
-    this._gaps.second = second - third - 1;
+  private get gaps() {
+    return this._gaps;
   }
 
-  isOneStraight (): TypeCheckFunction  {
+  private setGaps(): void {
     let values = this.values;
+    let [first, second, third] = values;
+    this._gaps = {
+      first: first - second - 1,
+      second: second - third - 1
+    }
+  }
+
+  private isOneStraight = (): TypeCheckFunction => {
+    let values = this.values;
+    let gaps = this.gaps;
     // T96, T76, T86 ... and special cases QJT, A23, AKQ
-    let isQJT = this.values[0] === 12 && this.values[1] === 11 && this.values[2] === 10;
-    let isA23 = this.values[0] === 14 && this.values[1] === 2 && this.values[2] === 3;
-    let isAKQ = this.values[0] === 14 && this.values[1] === 13 && this.values[2] === 12;
-    let isRegularStr8 = (this._gaps.first === 0 && this._gaps.second === 2) || (this._gaps.first === 2 && this._gaps.second === 0) || 
-            (this._gaps.first === 1 && this._gaps.second === 1); 
+    let isQJT = values[0] === 12 && values[1] === 11 && values[2] === 10;
+    let isA23 = values[0] === 14 && values[1] === 2 && values[2] === 3;
+    let isAKQ = values[0] === 14 && values[1] === 13 && values[2] === 12;
+    let isRegularStr8 = (gaps.first === 0 && gaps.second === 2) || (gaps.first === 2 && gaps.second === 0) || 
+            (gaps.first === 1 && gaps.second === 1); 
     return {
       isOfType: isRegularStr8 || isQJT || isA23 || isAKQ,
       type: 'OneStraight'
     }
   }
-
-  isTwoStraight (): TypeCheckFunction {
+  private isTwoStraight = (): TypeCheckFunction => {
     // T97, T87 
-    let isRegularStr8 = (this._gaps.first === 1 && this._gaps.second === 0) || (this._gaps.first === 0 && this._gaps.second === 1)
+    let gaps = this.gaps;
+    let isRegularStr8 = (gaps.first === 1 && gaps.second === 0) || (gaps.first === 0 && gaps.second === 1)
     return {
       isOfType: isRegularStr8,
       type: 'TwoStraight'
     }
   }
-
-  isThreeStraight (): TypeCheckFunction {
+  private isThreeStraight = (): TypeCheckFunction => {
     // 456, 678, 789
-    let isRegularStr8 = this._gaps.first === 0 && this._gaps.second === 0
+    let gaps = this.gaps;
+    let isRegularStr8 = gaps.first === 0 && gaps.second === 0
     return {
       isOfType: isRegularStr8,
       type: 'ThreeStraight'
     }
-  }  
+  }
+
+
 }

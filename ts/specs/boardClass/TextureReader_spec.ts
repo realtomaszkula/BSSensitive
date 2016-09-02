@@ -1,5 +1,5 @@
-import { TextureReaderFlop } from './../../classes/boards/TextureReaderFlop'
-import { Board } from './../../classes/boards/Board'
+import { TextureReaderFlop } from './../../classes/boards/TextureReader/Flop'
+import { Board } from './../../classes/boards/board'
 import { BoardTextures, BoardParams, TextureReaderParams, BoardCards, Flop, FlopTurn, FlopTurnRiver } from './../../classes/_interfaces'
 import { card } from './../helpers/methods'
 import { customMatchers } from './../helpers/customMatchers'

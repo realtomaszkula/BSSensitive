@@ -11,7 +11,8 @@ export class SuitTextureType extends TextureTypes {
   constructor(params: { suits: Suit[] }) {
     super(params);
     this._suits = params.suits;
-    this.findType();
+    this.setTypeCheckFunctions();
+    this._type = this.findType();
   }
 
   get type() {
@@ -38,13 +39,13 @@ export class SuitTextureType extends TextureTypes {
     this._repeats = filtered.length;
   }
 
-  private isMonotone(): TypeCheckFunction {
+  private isMonotone = (): TypeCheckFunction => {
     return {
       isOfType: this._repeats === 3,
       type: 'Monotone'
     }
   }
-  private isTwoTone(): TypeCheckFunction  {
+  private isTwoTone = (): TypeCheckFunction => {
     return {
       isOfType: this._repeats === 2,
       type: 'TwoTone'

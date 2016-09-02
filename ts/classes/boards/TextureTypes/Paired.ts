@@ -10,7 +10,8 @@ export class PairedTextureType extends TextureTypes {
   constructor(params: { values: number[] }) {
     super(params);
     this.values = params.values;
-    this.findType();
+    this.setTypeCheckFunctions();
+    this._type = this.findType();
   }
 
   get type() {
@@ -22,7 +23,7 @@ export class PairedTextureType extends TextureTypes {
   }
 
   private get values() {
-    return this.values;
+    return this._values;
   }
 
   setTypeCheckFunctions() {
@@ -35,7 +36,7 @@ export class PairedTextureType extends TextureTypes {
     this._defaultTextureType = 'NotPaired';
   }
 
-  private isPaired(): TypeCheckFunction {
+  private isPaired = (): TypeCheckFunction => {
     let filtered = this.values.filter(v => v === this.values[0])
     let isPaired = filtered.length === 1;
     return {

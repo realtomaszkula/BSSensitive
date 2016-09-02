@@ -12,7 +12,8 @@ export class CardValueTextureType extends TextureTypes {
     super(params);
     this.values = params.values;
     this.setNumOfBroadways();
-    this.findType();
+    this.setTypeCheckFunctions();
+    this._type = this.findType();
   }
 
   get type() {
@@ -40,26 +41,24 @@ export class CardValueTextureType extends TextureTypes {
   private setNumOfBroadways(): void {
     this._numOfBroadways = this.values.filter(v => v >= 10).length
   }
-  isSingleBroadway(): TypeCheckFunction {
-     
+
+  isSingleBroadway = (): TypeCheckFunction => {
      return {
        isOfType: this._numOfBroadways === 1, 
        type: 'OneBroadway'
      }
   }
-  isDoubleBroadway(): TypeCheckFunction {
+  isDoubleBroadway = (): TypeCheckFunction => {
      return {
        isOfType: this._numOfBroadways === 2, 
        type: 'TwoBroadway'
      }
   }
-  isTrippleBroadway(): TypeCheckFunction {
+  isTrippleBroadway = (): TypeCheckFunction => {
      return {
        isOfType: this._numOfBroadways === 3, 
        type: 'ThreeBroadway'
      }
   }
-
-
   
 }
