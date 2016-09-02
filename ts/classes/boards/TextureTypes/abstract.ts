@@ -14,6 +14,8 @@ abstract class TextureTypes {
   abstract setTypeCheckFunctions();
 
   constructor(params: {}) {
+    this.setTypeCheckFunctions();
+    this.setDefaultTextureType();
   }
 
   protected findType() {

@@ -1,5 +1,5 @@
 import { TypeCheckFunctions, TypeCheckFunction, TextureTypes } from './abstract'
-import {Suit, Texture, SuitTexture, StraightTexture, PairedTexture} from './../../_interfaces'
+import { Suit, Texture, StraightTexture } from './../../_interfaces'
 
 export class StraightTextureType extends TextureTypes {
 
@@ -13,8 +13,7 @@ export class StraightTextureType extends TextureTypes {
   constructor(params: { values: number[] }) {
     super(params);
     this._values = params.values;
-    this.setTypeCheckFunctions();
-    this.setDefaultTextureType();
+    this.setGaps();
     this.findType();
   }
 

@@ -158,12 +158,13 @@ interface TypeCheck {
 type SuitTexture = 'Monotone'| 'TwoTone'| 'Rainbow'
 type StraightTexture = 'OneStraight'| 'TwoStraight'| 'ThreeStraight' | 'ZeroStraight'
 type PairedTexture = 'Paired'| 'DoublePaired' | 'NotPaired'
-type Texture = SuitTexture | StraightTexture | PairedTexture
+type CardValueTexture = 'OneBroadway'| 'TwoBroadway' | 'ThreeBroadway' | 'ZeroBroadway'
+type Texture = SuitTexture | StraightTexture | PairedTexture | CardValueTexture
 
 
 export { HandClass, Card, CardClass, HandStrength, HandParams,  Suit, CardValue, Search, 
   PairParams, TwoPairParams, TripsParams, StraightParams, FlushParams, FullHouseParams, QuadsParams, StraightFlushParams, HighCardParams
   , SearchesOnceAndRemembers ,
   HoldemHoleCards, OmahaHoleCards, HoleCards, HandCards, Flop, FlopTurn, FlopTurnRiver, BoardCards, TheBestHandParams, CardParams, 
-  TextureReaderParams, BoardTextures, BoardParams, BoardByStreet, TypeCheck, Texture, SuitTexture, StraightTexture, PairedTexture
+  TextureReaderParams, BoardTextures, BoardParams, BoardByStreet, TypeCheck, Texture, SuitTexture, StraightTexture, PairedTexture, CardValueTexture
 }
