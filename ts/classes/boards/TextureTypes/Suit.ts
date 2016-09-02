@@ -35,19 +35,15 @@ class SuitTextureType extends TextureTypes {
   }
 
   private isMonotone(): TypeCheckFunction {
-    let isOfType = this._repeats === 3;
-    let type = 'Monotone' as Texture
     return {
-      isOfType: isOfType,
-      type: type
+      isOfType: this._repeats === 3,
+      type: 'Monotone'
     }
   }
   private isTwoTone(): TypeCheckFunction  {
-        let isOfType = this._repeats === 2;
-    let type = 'Monotone' as Texture
     return {
-      isOfType: isOfType,
-      type: type
+      isOfType: this._repeats === 2,
+      type: 'TwoTone'
     }
   }
 }

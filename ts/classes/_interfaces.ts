@@ -155,8 +155,8 @@ interface TypeCheck {
   }
 }
 
-type SuitTexture = 'Monotone'| 'Twotone'| 'Rainbow'
-type StraightTexture = 'OneStraight'| 'TwoStraight'| 'ThreeStraight' | 'NoStraight'
+type SuitTexture = 'Monotone'| 'TwoTone'| 'Rainbow'
+type StraightTexture = 'OneStraight'| 'TwoStraight'| 'ThreeStraight' | 'ZeroStraight'
 type PairedTexture = 'Paired'| 'DoublePaired' | 'NotPaired'
 type Texture = SuitTexture | StraightTexture | PairedTexture
 
