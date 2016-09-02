@@ -1,14 +1,13 @@
-import { TypeCheck, Card, Suit, CardValue, Flop, FlopTurn, FlopTurnRiver, BoardCards, BoardTextures,  TextureReaderParams, BoardParams, BoardByStreet } from './../_interfaces'
-import { TextureReader } from './TextureReader'
+import { TypeCheck, Card, Suit, CardValue, Flop, FlopTurn, FlopTurnRiver, BoardCards, BoardTextures,  TextureReaderParams, BoardParams, BoardByStreet } from './../../_interfaces'
+import { TextureReader } from './abstract'
 
-class TextureReaderTurn extends TextureReader {
+class TextureReaderRiver extends TextureReader {
 
-  checkParams() {
-    
+  checkParams(){
   }
 
   setCards() {
-    this._cards = [...this.boardObject.flop, this.boardObject.turn] as [Card, Card, Card, Card]
+    this._cards = [...this.boardObject.flop, this.boardObject.turn, this._boardObject.river] as [Card, Card, Card, Card, Card]
   }
 
   setTypeCheck(): TypeCheck {

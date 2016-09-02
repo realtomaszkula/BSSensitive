@@ -1,8 +1,8 @@
 import { TypeCheck, Card, Suit, CardValue, Flop, FlopTurn, FlopTurnRiver, 
   BoardCards, BoardTextures,  TextureReaderParams, BoardParams, BoardByStreet, 
-  Texture, StraightTextures, SuitTextures, BroadwayTextures
-} from './../_interfaces'
-import { Board } from './board'
+  Texture
+} from './../../_interfaces'
+import { Board } from './../board'
 
 export abstract class TextureReader {
   protected _result: Board;
@@ -55,34 +55,34 @@ export abstract class TextureReader {
   }
 
   protected createBoardTextureObject(types: string[]): BoardTextures {
-    let result = {};
+    let result = {} as BoardTextures;
     for(let type of types){
       result[type] = true;
     }
     return result;
   }
 
-  protected checkTextures(textures: Texture[], group: string): StraightTextures | SuitTextures | BroadwayTextures {
+  protected checkTextures(textures: Texture[], group: string): Texture {
     // each texture in a group makes other textures impossible so return as soon as we get true
-    let results = {}
-    for(let texture in textures) {
+    for(let texture of textures) {
       let isOfTextureType = this._typeCheck[group]['is' + texture];
       if (isOfTextureType) {
-        results[texture] = true;
-        return results;
+        return texture;
       }
     }
   }
 
   protected setBoardTextures(): BoardTextures {
     let suitsTextures: Texture[] = ['Monotone', 'Twotone', 'Rainbow'];
-    let straightsTextures: Texture[] = ['OneStraight', 'TwoStraight', 'ThreeStraight'];
-    let broadwayTextures: Texture[] = ['SingleBroadway', 'DoubleBroadway', 'TrippleBroadway' ]
+    let straightsTextures: Texture[] = ['OneStraight', 'TwoStraight', 'ThreeStraight', 'ZeroStraight'];
+    let broadwaysTextures: Texture[] = ['SingleBroadway', 'DoubleBroadway', 'TrippleBroadway', 'ZeroBroadway' ];
+    let pairedTextures: Texture[] = ['Paired', 'NotPaired'];
 
     let boardCharacteristics = [ 
-          ...this.checkTextures(suitsTextures, 'suits'), 
-          ...this.checkTextures(straightsTextures, 'straights'),
-          ...this.checkTextures(broadwayTextures, 'broadway')
+          this.checkTextures(suitsTextures, 'suits'), 
+          this.checkTextures(straightsTextures, 'straights'),
+          this.checkTextures(broadwaysTextures, 'broadways'),
+          this.checkTextures(broadwaysTextures, 'paired')
     ]
    
     return this.createBoardTextureObject(boardCharacteristics)

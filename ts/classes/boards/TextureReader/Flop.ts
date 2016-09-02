@@ -1,5 +1,5 @@
-import { TypeCheck, Card, Suit, CardValue, Flop, FlopTurn, FlopTurnRiver, BoardCards, BoardTextures,  TextureReaderParams, BoardParams, BoardByStreet } from './../_interfaces'
-import { TextureReader } from './TextureReader'
+import { TypeCheck, Card, Suit, CardValue, Flop, FlopTurn, FlopTurnRiver, BoardCards, BoardTextures,  TextureReaderParams, BoardParams, BoardByStreet } from './../../_interfaces'
+import { TextureReader } from './abstract'
 
 export class TextureReaderFlop extends TextureReader {
 
@@ -18,9 +18,6 @@ export class TextureReaderFlop extends TextureReader {
     this.setCards();
     this.setSuits();
     this.setValues();
-    this.setGaps();
-    this.setNumOfBroadways();
-    this.setNumOfSuitRepetition();
   }
 
   checkParams() {
@@ -39,15 +36,11 @@ export class TextureReaderFlop extends TextureReader {
   private setNumOfBroadways(): void {
     this._numOfBroadways = this.values.filter(v => v >= 10).length
   }
-  private setNumOfSuitRepetition(): void {
-    let firstSuit = this.suits[0];
-    let filtered = this.suits.filter(s => s === firstSuit);
-    this._numOfSuitRepetition = filtered.length;
-  }
+
 
   setTypeCheck(): TypeCheck {
     return {
-      straight: {
+      straights: {
         isOneStraight: () =>  {
           // T96, T76, T86 ... and special cases QJT, A23, AKQ
           let isQJT = this.cards[0].value === 12 && this.cards[1].value === 11 && this.cards[2].value === 10
@@ -63,9 +56,12 @@ export class TextureReaderFlop extends TextureReader {
         isThreeStraight: () => {
           // 456, 678, 789
           return this._firstGap === 0 && this._secondGap === 0
+        },
+        isZeroStraight: () => {
+          return true
         }
       },
-    suit: {
+    suits: {
       isMonotone: () => {
         return this._numOfSuitRepetition === 3;
       },
@@ -73,26 +69,34 @@ export class TextureReaderFlop extends TextureReader {
         return this._numOfSuitRepetition === 2;
       },
       isRainbow: () => {
-        return this._numOfSuitRepetition === 1;
+        return true
       }
     },
-    broadway: {
+    broadways: {
       isSingleBroadway: () => {
         return this._numOfBroadways === 1
       },
-      isDoubleBroadWay: () => {
+      isDoubleBroadway: () => {
         return this._numOfBroadways === 2
       },
-      isTrippleBroadWay: () => {
+      isTrippleBroadway: () => {
         return this._numOfBroadways === 3
       },
+      isZeroBroadway: () => {
+        return true
+      }
     },
+    paired: {
       isPaired: () =>  {
         let firstValue = this.values[0];
         let filtered = this.values.filter(v => v === firstValue)
         let isPaired = filtered.length === 1;
         return isPaired;
       },
+      isNotPaired: () => {
+        return true;
+      }
+    }
     }
   }
 }

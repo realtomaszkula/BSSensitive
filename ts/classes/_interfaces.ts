@@ -101,29 +101,18 @@ interface CardParams {
   value: number,
   suit: Suit
 }
-
-interface StraightTextures {
+interface BoardTextures {
   oneStraight: boolean,
   twoStraight: boolean,
-  threeStraight: boolean
-}
-
-interface SuitTextures {
+  threeStraight: boolean,
   monotone: boolean,
   rainbow: boolean,
-  twotone: boolean
-}
-
-interface BroadwayTextures {
+  twotone: boolean,
   oneBroadway: boolean,
   twoBroadway: boolean,
-  threeBoardway: boolean
-}
-
-interface BoardTextures {
-  straight: StraightTextures,
-  suit: SuitTextures,
-  broadway: BroadwayTextures
+  threeBoardway: boolean,
+  paired: boolean,
+  notPaired: boolean
 }
 
 interface BoardByStreet {
@@ -142,31 +131,39 @@ interface BoardParams{
 }
 
 interface TypeCheck {
-  straight: {
+  straights: {
+    isZeroStraight: () => boolean;
     isOneStraight: () => boolean;
     isTwoStraight: () => boolean;
     isThreeStraight: () => boolean;
   },
-  suit:  {
-    isMonotone: () => boolean;
-    isTwoTone: () => boolean;
+  suits:  {
     isRainbow: () => boolean;
+    isTwoTone: () => boolean;
+    isMonotone: () => boolean;
   },
-  broadway: {
-    isSingleBroadway?: () => boolean;
-    isDoubleBroadWay?: () => boolean;
-    isTrippleBroadWay?: () => boolean;
+  broadways: {
+    isZeroBroadway: () => boolean;
+    isSingleBroadway: () => boolean;
+    isDoubleBroadway: () => boolean;
+    isTrippleBroadway: () => boolean;
+  },
+  paired: {
+    isPaired: () => boolean;
+    // ... leaving the possibility of checking for trip, double paired boards etc.
+    isNotPaired: () => boolean;
   }
-  isPaired: () => boolean;
-  isDoublePaired?: () => boolean;
 }
 
-type Texture =  'Monotone'| 'Twotone'| 'Rainbow'| 'OneStraight'| 'TwoStraight'| 'ThreeStraight'| 'Paired'| 'DoublePaired'| 'SingleBroadway'| 'DoubleBroadway'| 'TrippleBroadway';
+type SuitTexture = 'Monotone'| 'Twotone'| 'Rainbow'
+type StraightTexture = 'OneStraight'| 'TwoStraight'| 'ThreeStraight' | 'NoStraight'
+type PairedTexture = 'Paired'| 'DoublePaired' | 'NotPaired'
+type Texture = SuitTexture | StraightTexture | PairedTexture
 
 
 export { HandClass, Card, CardClass, HandStrength, HandParams,  Suit, CardValue, Search, 
   PairParams, TwoPairParams, TripsParams, StraightParams, FlushParams, FullHouseParams, QuadsParams, StraightFlushParams, HighCardParams
   , SearchesOnceAndRemembers ,
   HoldemHoleCards, OmahaHoleCards, HoleCards, HandCards, Flop, FlopTurn, FlopTurnRiver, BoardCards, TheBestHandParams, CardParams, 
-  TextureReaderParams, BoardTextures, BoardParams, BoardByStreet, TypeCheck, Texture, StraightTextures, SuitTextures, BroadwayTextures
+  TextureReaderParams, BoardTextures, BoardParams, BoardByStreet, TypeCheck, Texture, SuitTexture, StraightTexture, PairedTexture
 }
