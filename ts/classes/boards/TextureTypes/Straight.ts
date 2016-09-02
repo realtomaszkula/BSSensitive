@@ -7,7 +7,6 @@ interface gaps {
 }
 
 export class StraightTextureType extends TextureTypes {
-  protected _type: StraightTexture;
   protected _defaultType: StraightTexture;
   private _values: number[];
   private _gaps: gaps;
@@ -20,17 +19,13 @@ export class StraightTextureType extends TextureTypes {
     this._type = this.findType();
   }
 
-  get type() {
-    return this._type;
-  }
-
-  setTypeCheckFunctions() {
+  protected setTypeCheckFunctions() {
     this._typeCheckFunctions = [
       this.isOneStraight, this.isTwoStraight, this.isThreeStraight
     ]
   }
 
-  setDefaultTextureType() {
+  protected setDefaultTextureType() {
     this._defaultTextureType = 'ZeroStraight'
   }
 

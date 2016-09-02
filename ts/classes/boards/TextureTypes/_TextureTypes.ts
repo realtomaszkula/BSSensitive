@@ -10,8 +10,8 @@ abstract class TextureTypes {
   protected _defaultTextureType: Texture;
   protected _typeCheckFunctions: TypeCheckFunctions[]
 
-  abstract setDefaultTextureType();
-  abstract setTypeCheckFunctions();
+  protected abstract setDefaultTextureType();
+  protected abstract setTypeCheckFunctions();
 
   constructor(params: {}) {
     this.setDefaultTextureType();

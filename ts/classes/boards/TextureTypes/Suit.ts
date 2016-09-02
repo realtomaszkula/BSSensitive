@@ -3,7 +3,6 @@ import { Suit, Texture, SuitTexture } from './../../_interfaces'
 
 export class SuitTextureType extends TextureTypes {
   
-  protected _type: SuitTexture;
   private _suits: Suit[];
   private _repeats: number;
   protected _defaultType: SuitTexture;
@@ -11,21 +10,18 @@ export class SuitTextureType extends TextureTypes {
   constructor(params: { suits: Suit[] }) {
     super(params);
     this._suits = params.suits;
+    this.setSuitsRepeats();
     this.setTypeCheckFunctions();
     this._type = this.findType();
   }
 
-  get type() {
-    return this._type;
-  }
-
-  setTypeCheckFunctions() {
+  protected setTypeCheckFunctions() {
     this._typeCheckFunctions = [
       this.isMonotone, this.isTwoTone
     ]
   }
 
-  setDefaultTextureType() {
+  protected setDefaultTextureType() {
     this._defaultTextureType = 'Rainbow'
   }
 

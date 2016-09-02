@@ -3,7 +3,6 @@ import { Suit, Texture, CardValueTexture} from './../../_interfaces'
 
 export class CardValueTextureType extends TextureTypes {
 
-  protected _type: CardValueTexture;
   protected _defaultType: CardValueTexture;
   protected _values: number[];
   protected _numOfBroadways: number;
@@ -16,10 +15,6 @@ export class CardValueTextureType extends TextureTypes {
     this._type = this.findType();
   }
 
-  get type() {
-    return this._type;
-  }
-
   private set values(values) {
     this._values = values.sort((a, b) => b - a);
   }
@@ -28,13 +23,13 @@ export class CardValueTextureType extends TextureTypes {
     return this._values;
   }
 
-  setTypeCheckFunctions() {
+  protected setTypeCheckFunctions() {
     this._typeCheckFunctions = [
       this.isSingleBroadway, this.isDoubleBroadway, this.isTrippleBroadway
     ]
   }
 
-  setDefaultTextureType() {
+  protected setDefaultTextureType() {
     this._defaultTextureType = 'ZeroBroadway';
   }
 

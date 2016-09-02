@@ -3,7 +3,6 @@ import { Suit, Texture, PairedTexture} from './../../_interfaces'
 
 export class PairedTextureType extends TextureTypes {
 
-  protected _type: PairedTexture;
   protected _defaultType: PairedTexture;
   private _values: number[];
 
@@ -14,10 +13,6 @@ export class PairedTextureType extends TextureTypes {
     this._type = this.findType();
   }
 
-  get type() {
-    return this._type;
-  }
-
   private set values(values) {
     this._values = values.sort( (a, b) => b - a);
   }
@@ -26,22 +21,22 @@ export class PairedTextureType extends TextureTypes {
     return this._values;
   }
 
-  setTypeCheckFunctions() {
+  protected setTypeCheckFunctions() {
     this._typeCheckFunctions = [
       this.isPaired
     ]
   }
   
-  setDefaultTextureType() {
+  protected setDefaultTextureType() {
     this._defaultTextureType = 'NotPaired';
   }
 
   private isPaired = (): TypeCheckFunction => {
     let filtered = this.values.filter(v => v === this.values[0])
-    let isPaired = filtered.length === 1;
+    let isPaired = filtered.length === 2;
     return {
-    isOfType: isPaired,
-    type: 'Paired'
+      isOfType: isPaired,
+      type: 'Paired'
     }
   }
 

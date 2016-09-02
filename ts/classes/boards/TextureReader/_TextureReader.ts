@@ -45,11 +45,16 @@ export abstract class TextureReader {
   }
 
   protected createBoard() {
+    let straightType = new StraightTextureType({ values: this.values }).type;
+    let suitType = new SuitTextureType({ suits: this.suits }).type;
+    let pairedType = new PairedTextureType({ values: this.values }).type;
+    let cardValueType = new CardValueTextureType({ values: this.values }).type;
+
     let boardTextures: BoardTextures = {
-      straight: new StraightTextureType({ values: this.values }).type,
-      suit: new SuitTextureType({ suits: this.suits }).type,
-      paired: new PairedTextureType({ values: this.values }).type, 
-      cardValue: new CardValueTextureType({ values: this.values }).type
+      straight: straightType,
+      suit: suitType,
+      paired: pairedType, 
+      cardValue: cardValueType
     }
     
     let board = new Board({
