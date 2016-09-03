@@ -4,13 +4,13 @@ import { Suit, Texture, SuitTexture } from './../../_interfaces'
 export class SuitTextureType extends TextureTypes {
   
   private _suits: Suit[];
-  private _repeats: number;
+  private _uniqSuitsNumber: number;
   protected _defaultType: SuitTexture;
 
   constructor(params: { suits: Suit[] }) {
     super(params);
-    this._suits = params.suits;
-    this.setSuitsRepeats();
+    this.suits = params.suits;
+    this.setUniqSuits();
     this.setTypeCheckFunctions();
     this._type = this.findType();
   }
@@ -25,25 +25,31 @@ export class SuitTextureType extends TextureTypes {
     this._defaultTextureType = 'Rainbow'
   }
 
+  private set suits(suits) {
+    this._suits = suits.sort();
+  }
   private get suits() {
     return this._suits;
   }
 
-  private setSuitsRepeats(): void {
-    let firstSuit = this.suits[0];
-    let filtered = this.suits.filter(s => s === firstSuit);
-    this._repeats = filtered.length;
+  private setUniqSuits(): void {
+    let suits = this.suits;
+    let repeats = 0;
+    for(let i = 1; i < suits.length; i++) {
+      if (suits[i] === suits[i-1]) repeats++;
+    }
+    this._uniqSuitsNumber = suits.length - repeats;
   }
 
   private isMonotone = (): TypeCheckFunction => {
     return {
-      isOfType: this._repeats === 3,
+      isOfType: this._uniqSuitsNumber === 1,
       type: 'Monotone'
     }
   }
   private isTwoTone = (): TypeCheckFunction => {
     return {
-      isOfType: this._repeats === 2,
+      isOfType: this._uniqSuitsNumber === 2,
       type: 'TwoTone'
     }
   }
