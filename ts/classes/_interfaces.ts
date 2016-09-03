@@ -130,9 +130,31 @@ interface BoardTextures {
 }
 
 
+interface PlayerParams {
+  name: string, 
+  stacksize: number,
+  position: Position,
+}
+
+type Position = 'UTG' | 'MP' | 'CO' | 'BTN' | 'SB' | 'BB';
+
+interface PokerStarsParserParams{
+  handHistoryParts: {
+    meta: string;
+    seats: string
+    deadmoney: string;
+    flop?: string,
+    turn?: string,
+    river?: string,
+    summary: string
+  }
+}
+
+
 export { HandClass, Card, CardClass, HandStrength, HandParams,  Suit, CardValue, Search, 
   PairParams, TwoPairParams, TripsParams, StraightParams, FlushParams, FullHouseParams, QuadsParams, StraightFlushParams, HighCardParams
   , SearchesOnceAndRemembers ,
   HoldemHoleCards, OmahaHoleCards, HoleCards, HandCards, Flop, FlopTurn, FlopTurnRiver, BoardCards, TheBestHandParams, CardParams, 
-  TextureReaderParams, BoardTextures, BoardParams, BoardByStreet, Texture, SuitTexture, StraightTexture, PairedTexture, CardValueTexture
+  TextureReaderParams, BoardTextures, BoardParams, BoardByStreet, Texture, SuitTexture, StraightTexture, PairedTexture, CardValueTexture,
+  PlayerParams, Position, PokerStarsParserParams
 }
