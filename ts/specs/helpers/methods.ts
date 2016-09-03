@@ -24,4 +24,15 @@ function getTwoPair() {
 
 }
 
-export { card, getPair, getTwoPair }
+function *permutationOfBoards(cards) {
+  if (cards.length !== 3) throw new Error('Must provide three cards')
+  let [one, two, three] = cards;
+  yield [one, two, three]
+  yield [one, three, two]
+  yield [two, three, one]
+  yield [two, one, three]
+  yield [three, one, two]
+  yield [three, two, one]
+}
+
+export { card, getPair, getTwoPair, permutationOfBoards }
