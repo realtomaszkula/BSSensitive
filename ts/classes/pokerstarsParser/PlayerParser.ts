@@ -3,20 +3,20 @@ import { Player } from './../Player/Player'
 import { Position, PlayerParams } from './../_interfaces'
 
 
-interface SeatsParserParams {
+interface PlayerParserParams {
   hh: {
     meta: string[],
     seats: string[]
   }
 }
 
-class SeatsParser extends HandParser{
+class PlayerParser extends HandParser{
   private _hh: { meta: string[], seats: string[] };
   private _regExp: { buttonSeat: RegExp, playerNicks: RegExp, playerStack: RegExp};
   private _players: Player[];
   private _buttonSeat: number;
   
-  constructor(params: SeatsParserParams) {
+  constructor(params: PlayerParserParams) {
     super();
     this._hh.meta = params.hh.meta;
     this._hh.seats = params.hh.seats;

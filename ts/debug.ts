@@ -9,5 +9,13 @@ import { ParamsGuard } from './classes/mixins/paramsGuard'
 import { TextureReaderFlop } from './classes/boards/TextureReader/Flop'
 import { StraightTextureType } from './classes/boards/TextureTypes/Straight'
 
-let values = [CardValue.ace, CardValue.duce, CardValue.three]
-let textureType = new StraightTextureType({ values: values}).type
+import { hands } from './specs/HandParser/_PlayerParserHands'
+import { PlayerParser } from './classes/HandParser/PlayerParser'
+import { Player } from './classes/Player/Player'
+
+let meta = hands.playersPropertiesSpec.meta.split('\n')
+let seats = hands.playersPropertiesSpec.seats.split('\n')
+let p = new PlayerParser({ hh: { meta: meta, seats: seats }})
+
+let x  = 1;
+let y = 5;

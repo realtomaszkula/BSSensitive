@@ -1,16 +1,16 @@
-import { hands } from './_SeatParserHands'
-import { SeatsParser } from './../../classes/HandParser/SeatsParser'
+import { hands } from './_PlayerParserHands'
+import { PlayerParser } from './../../classes/HandParser/PlayerParser'
 import { Player } from './../../classes/Player/Player'
 
 describe('SeatParser', () => {
 
      describe('when setting properties', () => {
-      let hh: SeatsParser;
+      let hh: PlayerParser;
       let player: Player;
       beforeEach( () => {
         let meta = hands.playersPropertiesSpec.meta.split('\n')
         let seats = hands.playersPropertiesSpec.seats.split('\n')
-        hh = new SeatsParser({ hh: { meta: meta, seats: seats }})
+        hh = new PlayerParser({ hh: { meta: meta, seats: seats }})
       });
        
       describe('of Seat 1 Player', () => {     

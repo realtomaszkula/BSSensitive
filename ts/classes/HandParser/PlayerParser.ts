@@ -3,29 +3,32 @@ import { Player } from './../Player/Player'
 import { Position, PlayerParams } from './../_interfaces'
 
 
-interface SeatsParserParams {
+interface PlayerParserParams {
   hh: {
     meta: string[],
     seats: string[]
   }
 }
 
-export class SeatsParser extends HandParser{
+export class PlayerParser extends HandParser{
   private _hh: { meta: string[], seats: string[] };
   private _regExp: { buttonSeat: RegExp, playerNicks: RegExp, playerStack: RegExp};
   private _players: Player[];
   private _buttonSeat: number;
   
-  constructor(params: SeatsParserParams) {
+  constructor(params: PlayerParserParams) {
     super();
-    this._hh.meta = params.hh.meta;
-    this._hh.seats = params.hh.seats;
-    this._players = [];
+    this._hh = {
+      meta: params.hh.meta,
+      seats: params.hh.seats
+    }
     this._regExp = {
       buttonSeat:  /Seat #(\d) is the button/,
       playerNicks:  /(^.+?)(?=\(\$\d+)/,
       playerStack: /\(\$([\d|\.]+) in chips\)$/gm,
     }
+    this._players = [];
+    this.setPlayers();
    }
 
   get players(): Player[] {
@@ -43,7 +46,7 @@ export class SeatsParser extends HandParser{
 
   private findButtonSeatNumber():string {
     let result = super.firstMatchingGroup(this.regExp.buttonSeat, this.hh.meta.join('\n'));
-    return result[1]
+    return result[0]
   }
 
   private findButtonSeatIndex(btnSeatNumber: string): number {
@@ -69,7 +72,8 @@ export class SeatsParser extends HandParser{
   }
 
   private createPlayers(names: string[], stacks: number[], positions: Position[]) {
-    for(let i = 0; i < names.length; i++) {
+    let length = names.length;
+    for(let i = 0; i < length; i++) {
       let params: PlayerParams = {
         name: names.shift().trim(),
         stacksize: stacks.shift(), 
@@ -86,7 +90,7 @@ export class SeatsParser extends HandParser{
     let playerSeatsStrings = this.getPlayerSeatsStrings(btnIndex)
 
     let playerNames: string[] = super.getMatchesFromArray(this.regExp.playerNicks, playerSeatsStrings);
-    let playerStacks: number[] = super.getMatchesFromArray(this.regExp.playerStack, playerSeatsStrings)
+    let playerStacks: number[] = super.firstMatchingGroup(this.regExp.playerStack, playerSeatsStrings.join('\n'))
                                        .map( e => Number.parseFloat(e))
     let possiblePositions: Position[] = this.getPossiblePositions(playerNames.length)
 

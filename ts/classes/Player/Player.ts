@@ -6,7 +6,10 @@ export class Player {
   private _position: Position;
 
   constructor(params: PlayerParams) {
-
+    this._name = params.name;
+    this._position = params.position;
+    this._stack = params.stacksize
+    ;
   }
 
   get stack() {
