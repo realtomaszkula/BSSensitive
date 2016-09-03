@@ -28,7 +28,7 @@ export class PlayerParser extends HandParser{
       buttonSeat:  /Seat #(\d) is the button/g,
       playerNicks:  /(^.+?)(?=\(\$\d+)/,
       playerStack: /\(\$([\d|\.]+) in chips\)$/gm,
-      heroName: /Dealt to (.+?(?=[[][2-9|T|J|Q|K|A][s|c|d|h]\s[2-9|T|J|Q|K|A][s|c|d|h]))/,
+      heroName: /Dealt to (.+?(?=[[][2-9|T|J|Q|K|A][s|c|d|h]\s[2-9|T|J|Q|K|A][s|c|d|h]))/g,
 
     }
     this._players = [];
@@ -79,6 +79,19 @@ export class PlayerParser extends HandParser{
    }
   }
 
+  private getPlayerNames(playerSeatsStrings: string[]): string[] {
+    return super.getMatchesFromArray(this.regExp.playerNicks, playerSeatsStrings);
+  }
+
+  private getPlayerStacks(playerSeatsStrings: string[]): number[] {
+    return super.firstMatchingGroup(this.regExp.playerStack, playerSeatsStrings.join('\n'))
+                                       .map( e => Number.parseFloat(e))
+  }
+
+  private getHeroName(): string {
+    return super.firstMatchingGroup(this.regExp.heroName, this._hh.hero)[0];
+  }
+
   private createPlayers(names: string[], stacks: number[], positions: Position[], heroName: string) {
     let length = names.length;
     for(let i = 0; i < length; i++) {
@@ -93,16 +106,14 @@ export class PlayerParser extends HandParser{
     }
   }
 
-
   private setPlayers () {
     let btnSeat: string = this.findButtonSeatNumber();
     let btnIndex: number = this.findButtonSeatIndex(btnSeat);
     let playerSeatsStrings: string[] = this.getPlayerSeatsStrings(btnIndex)
-
-    let heroName: string = super.firstMatchingGroup(this.regExp.heroName, this._hh.hero)[0];
-    let playerNames: string[] = super.getMatchesFromArray(this.regExp.playerNicks, playerSeatsStrings);
-    let playerStacks: number[] = super.firstMatchingGroup(this.regExp.playerStack, playerSeatsStrings.join('\n'))
-                                       .map( e => Number.parseFloat(e))
+;
+    let heroName: string = this.getHeroName()
+    let playerNames: string[] = this.getPlayerNames(playerSeatsStrings);
+    let playerStacks: number[] = this.getPlayerStacks(playerSeatsStrings);
     let possiblePositions: Position[] = this.getPossiblePositions(playerNames.length)
 
     this.createPlayers(playerNames, playerStacks, possiblePositions, heroName)
