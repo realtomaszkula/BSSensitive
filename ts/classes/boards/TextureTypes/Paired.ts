@@ -10,8 +10,8 @@ export class PairedTextureType extends TextureTypes {
   constructor(params: { values: number[] }) {
     super(params);
     this.values = params.values;
+    this._uniqValuesNumber = super.getUniqNumber(this.values)
     this.setTypeCheckFunctions();
-    this.setUniqValuesNumber();
     this._type = this.findType();
   }
 
@@ -31,15 +31,6 @@ export class PairedTextureType extends TextureTypes {
   
   protected setDefaultTextureType() {
     this._defaultTextureType = 'NotPaired';
-  }
-
-  private setUniqValuesNumber() {
-    let values = this.values;
-    let repeats = 0;
-    for(let i = 1; i < values.length; i++) {
-      if (values[i] === values[i-1]) repeats++;
-    }
-    this._uniqValuesNumber = values.length - repeats;
   }
 
   private isPaired = (): TypeCheckFunction => {

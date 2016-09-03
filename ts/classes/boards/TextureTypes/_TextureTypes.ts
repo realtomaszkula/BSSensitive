@@ -1,4 +1,4 @@
-import {Texture, SuitTexture, StraightTexture, PairedTexture} from './../../_interfaces'
+import {Texture, SuitTexture, StraightTexture, PairedTexture, Suit, CardValue} from './../../_interfaces'
 
 type TypeCheckFunction = { isOfType: boolean, type: Texture };
 interface TypeCheckFunctions {
@@ -19,6 +19,14 @@ abstract class TextureTypes {
 
   get type() {
     return this._type;
+  }
+
+  protected getUniqNumber(arr: CardValue[] | Suit[]): number {
+    let repeats = 0;
+    for(let i = 1; i < arr.length; i++) {
+      if (arr[i] === arr[i-1]) repeats++;
+    }
+    return arr.length - repeats;
   }
 
   protected findType() {

@@ -10,7 +10,7 @@ export class SuitTextureType extends TextureTypes {
   constructor(params: { suits: Suit[] }) {
     super(params);
     this.suits = params.suits;
-    this.setUniqSuitNumber();
+    this._uniqSuitsNumber = super.getUniqNumber(this.suits);
     this.setTypeCheckFunctions();
     this._type = this.findType();
   }
@@ -32,16 +32,7 @@ export class SuitTextureType extends TextureTypes {
     return this._suits;
   }
 
-  private setUniqSuitNumber(): void {
-    let suits = this.suits;
-    let repeats = 0;
-    for(let i = 1; i < suits.length; i++) {
-      if (suits[i] === suits[i-1]) repeats++;
-    }
-    this._uniqSuitsNumber = suits.length - repeats;
-  }
-
-  private isMonotone = (): TypeCheckFunction => {
+   private isMonotone = (): TypeCheckFunction => {
     return {
       isOfType: this._uniqSuitsNumber === 1,
       type: 'Monotone'
