@@ -8,4 +8,16 @@ export class Player {
   constructor(params: PlayerParams) {
 
   }
+
+  get stack() {
+    return this._stack;
+  }
+
+  get position() {
+    return this._position
+  }
+
+  get name() {
+    return this._name
+  }
 }

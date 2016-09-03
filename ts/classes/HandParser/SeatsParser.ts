@@ -10,7 +10,7 @@ interface SeatsParserParams {
   }
 }
 
-class SeatsParser extends HandParser{
+export class SeatsParser extends HandParser{
   private _hh: { meta: string[], seats: string[] };
   private _regExp: { buttonSeat: RegExp, playerNicks: RegExp, playerStack: RegExp};
   private _players: Player[];
@@ -73,8 +73,7 @@ class SeatsParser extends HandParser{
       let params: PlayerParams = {
         name: names.shift().trim(),
         stacksize: stacks.shift(), 
-        position: positions.shift(),
-        
+        position: positions.shift() 
       }
       this._players.push( new Player(params) )
     }

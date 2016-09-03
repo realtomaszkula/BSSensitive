@@ -133,7 +133,7 @@ interface BoardTextures {
 interface PlayerParams {
   name: string, 
   stacksize: number,
-  position: Position,
+  position: Position
 }
 
 type Position = 'UTG' | 'MP' | 'CO' | 'BTN' | 'SB' | 'BB';
