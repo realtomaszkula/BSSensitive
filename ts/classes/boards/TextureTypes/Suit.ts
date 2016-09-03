@@ -10,7 +10,7 @@ export class SuitTextureType extends TextureTypes {
   constructor(params: { suits: Suit[] }) {
     super(params);
     this.suits = params.suits;
-    this.setUniqSuits();
+    this.setUniqSuitNumber();
     this.setTypeCheckFunctions();
     this._type = this.findType();
   }
@@ -32,7 +32,7 @@ export class SuitTextureType extends TextureTypes {
     return this._suits;
   }
 
-  private setUniqSuits(): void {
+  private setUniqSuitNumber(): void {
     let suits = this.suits;
     let repeats = 0;
     for(let i = 1; i < suits.length; i++) {

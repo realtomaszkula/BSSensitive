@@ -4,12 +4,14 @@ import { Suit, Texture, PairedTexture} from './../../_interfaces'
 export class PairedTextureType extends TextureTypes {
 
   protected _defaultType: PairedTexture;
+  private _uniqValuesNumber: number;
   private _values: number[];
 
   constructor(params: { values: number[] }) {
     super(params);
     this.values = params.values;
     this.setTypeCheckFunctions();
+    this.setUniqValuesNumber();
     this._type = this.findType();
   }
 
@@ -31,11 +33,18 @@ export class PairedTextureType extends TextureTypes {
     this._defaultTextureType = 'NotPaired';
   }
 
+  private setUniqValuesNumber() {
+    let values = this.values;
+    let repeats = 0;
+    for(let i = 1; i < values.length; i++) {
+      if (values[i] === values[i-1]) repeats++;
+    }
+    this._uniqValuesNumber = values.length - repeats;
+  }
+
   private isPaired = (): TypeCheckFunction => {
-    let filtered = this.values.filter(v => v === this.values[0])
-    let isPaired = filtered.length === 2;
     return {
-      isOfType: isPaired,
+      isOfType: this._uniqValuesNumber === 2,
       type: 'Paired'
     }
   }
