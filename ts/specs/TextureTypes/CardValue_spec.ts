@@ -1,7 +1,7 @@
 import { CardValueTextureType } from './../../classes/boards/TextureTypes/CardValue'
-import { card, cardValue } from './../helpers/methods'
+import { card } from './../helpers/methods'
 import { customMatchers } from './../helpers/customMatchers'
-import { Texture } from './../../classes/_interfaces'
+import { Texture, CardValue } from './../../classes/_interfaces'
 
 
 
@@ -10,15 +10,13 @@ describe('CardValueTextureType', function() {
   let values: number[];
   let textureType: Texture;
 
-  
   beforeEach(function() {
     jasmine.addMatchers(customMatchers as any)
   });
     
-  
   describe('when given one broadway cards and two rags', function() {
     beforeEach(function() {
-      values = [cardValue('aceOfSpades'), cardValue('duceOfDiamonds'), cardValue('threeOfClubs')]
+      values = [CardValue.ace, CardValue.duce, CardValue.three]
       textureType = new CardValueTextureType({ values: values}).type
     });
     it('should set type to OneBroadway', function() {
@@ -37,7 +35,7 @@ describe('CardValueTextureType', function() {
 
   describe('when given two broadway cards and one rag', function() {
     beforeEach(function() {
-      values = [cardValue('aceOfSpades'), cardValue('kingOfDiamonds'), cardValue('threeOfClubs')]
+      values = [CardValue.ace, CardValue.king, CardValue.three]
       textureType = new CardValueTextureType({ values: values}).type
     });
     it('should NOT set type to OneBroadway', function() {
@@ -56,7 +54,7 @@ describe('CardValueTextureType', function() {
 
   describe('when given three broadway cards and zero rags', function() {
     beforeEach(function() {
-      values = [cardValue('aceOfSpades'), cardValue('kingOfDiamonds'), cardValue('queenOfClubs')]
+      values = [CardValue.ace, CardValue.king, CardValue.queen]
       textureType = new CardValueTextureType({ values: values}).type
     });
     it('should NOT set type to OneBroadway', function() {
@@ -75,7 +73,7 @@ describe('CardValueTextureType', function() {
 
   describe('when given zero broadway cards and three rags', function() {
     beforeEach(function() {
-      values = [cardValue('fourOfSpades'), cardValue('threeOfDiamonds'), cardValue('duceOfClubs')]
+      values = [CardValue.four, CardValue.three, CardValue.duce]
       textureType = new CardValueTextureType({ values: values}).type
     });
     it('should NOT set type to OneBroadway', function() {

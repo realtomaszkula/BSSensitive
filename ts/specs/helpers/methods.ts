@@ -14,12 +14,6 @@ function card(name: string): Card {
   return new Card( { suit: suit, value: +value} as CardParams)
 }
 
-function cardValue(name: string): number {
-  if (!name.includes('Of')) throw new Error('card name must include Of');
-  let [value , suit] = name.split('Of')
-  return CardValue[value];
-}
-
 function getPair(defaultParams: stepPairDefault, first: step, second: step) {
   let firstParams: PairParams = Object.assign({}, defaultParams, first)
   let secondParams: PairParams = Object.assign({}, defaultParams, second)
@@ -30,4 +24,4 @@ function getTwoPair() {
 
 }
 
-export { card, getPair, getTwoPair, cardValue }
+export { card, getPair, getTwoPair }
