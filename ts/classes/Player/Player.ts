@@ -4,12 +4,18 @@ export class Player {
   private _name: string;
   private _stack: number;
   private _position: Position;
+  private _isHero: boolean;
 
   constructor(params: PlayerParams) {
     this._name = params.name;
     this._position = params.position;
-    this._stack = params.stacksize
+    this._isHero = params.isHero;
+    this._stack = params.stacksize;
     ;
+  }
+
+  get isHero() {
+    return this._isHero;
   }
 
   get stack() {

@@ -15,7 +15,9 @@ import { Player } from './classes/Player/Player'
 
 let meta = hands.playersPropertiesSpec.meta.split('\n')
 let seats = hands.playersPropertiesSpec.seats.split('\n')
-let p = new PlayerParser({ hh: { meta: meta, seats: seats }})
+let hero = hands.playersPropertiesSpec.hero;
+
+let p = new PlayerParser({ hh: { meta: meta, seats: seats, hero: hero }})
 
 let x  = 1;
 let y = 5;

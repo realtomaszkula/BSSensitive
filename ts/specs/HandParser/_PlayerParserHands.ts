@@ -10,7 +10,8 @@ Seat 3: Yoo4 ($100 in chips)
 Seat 4: Teiti14 ($27.49 in chips)
 Seat 5: MiPwnYa ($107.49 in chips)
 Seat 6: reppinR1 ($246.97 in chips)
-`
+`,
+    hero: `Dealt to reppinR1 [3s 9c Ac Td]`
   }
 }
 
@@ -19,6 +20,6 @@ Seat 6: reppinR1 ($246.97 in chips)
 // Teiti14: posts small blind $0.50
 // reppinR1: posts big blind $1
 // *** HOLE CARDS ***
-// Dealt to reppinR1 [3s 9c Ac Td]`
+// 
 
 

@@ -2,7 +2,7 @@ import { hands } from './_PlayerParserHands'
 import { PlayerParser } from './../../classes/HandParser/PlayerParser'
 import { Player } from './../../classes/Player/Player'
 
-describe('SeatParser', () => {
+describe('PlayerParser', () => {
 
   describe('when setting properties', () => {
   let hh: PlayerParser;
@@ -10,13 +10,18 @@ describe('SeatParser', () => {
     beforeEach( () => {
       let meta = hands.playersPropertiesSpec.meta.split('\n')
       let seats = hands.playersPropertiesSpec.seats.split('\n')
-      hh = new PlayerParser({ hh: { meta: meta, seats: seats }})
+      let hero = hands.playersPropertiesSpec.hero;
+      hh = new PlayerParser({ hh: { meta: meta, seats: seats, hero: hero }})
     });
        
     describe('of Seat 1 Player', () => {     
       beforeEach(function() {
         player = hh.players[0]
       });                
+      it('should set isHero', function() {
+        expect(player.isHero).toBeDefined();
+        expect(player.isHero).toEqual(false)
+      });
       it('should set stacksize', function() {
         expect(player.stack).toBeDefined()
         expect(player.stack).toEqual(149.08)
@@ -34,6 +39,10 @@ describe('SeatParser', () => {
       beforeEach(function() {
         player = hh.players[1]
       });        
+      it('should set isHero', function() {
+        expect(player.isHero).toBeDefined();
+        expect(player.isHero).toEqual(false)
+      });
       it('should set stacksize', function() {
         expect(player.stack).toBeDefined()
         expect(player.stack).toEqual(117.77)
@@ -52,6 +61,10 @@ describe('SeatParser', () => {
       beforeEach(function() {
         player = hh.players[2]
       });        
+      it('should set isHero', function() {
+        expect(player.isHero).toBeDefined();
+        expect(player.isHero).toEqual(false)
+      });
       it('should set stacksize', function() {
         expect(player.stack).toBeDefined()
         expect(player.stack).toEqual(100)
@@ -69,6 +82,10 @@ describe('SeatParser', () => {
       beforeEach(function() {
         player = hh.players[3]
       });        
+      it('should set isHero', function() {
+        expect(player.isHero).toBeDefined();
+        expect(player.isHero).toEqual(false)
+      });
       it('should set stacksize', function() {
         expect(player.stack).toBeDefined()
         expect(player.stack).toEqual(27.49)
@@ -86,6 +103,10 @@ describe('SeatParser', () => {
       beforeEach(function() {
         player = hh.players[4]
       });        
+      it('should set isHero', function() {
+        expect(player.isHero).toBeDefined();
+        expect(player.isHero).toEqual(false)
+      });
       it('should set stacksize', function() {
         expect(player.stack).toBeDefined()
         expect(player.stack).toEqual(107.49)
@@ -104,6 +125,10 @@ describe('SeatParser', () => {
       beforeEach(function() {
         player = hh.players[5]
       });        
+      it('should set isHero', function() {
+        expect(player.isHero).toBeDefined();
+        expect(player.isHero).toEqual(true)
+      });
       it('should set stacksize', function() {
         expect(player.stack).toBeDefined()
         expect(player.stack).toEqual(246.97)
