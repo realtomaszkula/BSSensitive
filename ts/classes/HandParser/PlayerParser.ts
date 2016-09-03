@@ -23,7 +23,7 @@ export class PlayerParser extends HandParser{
       seats: params.hh.seats
     }
     this._regExp = {
-      buttonSeat:  /Seat #(\d) is the button/,
+      buttonSeat:  /Seat #(\d) is the button/g,
       playerNicks:  /(^.+?)(?=\(\$\d+)/,
       playerStack: /\(\$([\d|\.]+) in chips\)$/gm,
     }
