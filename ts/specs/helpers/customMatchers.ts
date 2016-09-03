@@ -1,4 +1,5 @@
-import { CardClass } from './../../classes/_interfaces'
+import { CardClass, BoardTextures } from './../../classes/_interfaces'
+import { Board } from './../../classes/boards/board'
 import { Pair } from './../../classes/hands/Pair'
 import { TwoPair } from './../../classes/hands/TwoPair'
 import { Trips } from './../../classes/hands/Trips'
@@ -53,33 +54,28 @@ export let customMatchers = {
         }
       }
     }
-  }, 
-  toBeTextureOf: (expected: () => any) => {
-    return {
-      compare: (actual: {}, expected: Texture) => {
-        let passed: boolean = !!actual[expected] 
-        let message: string;
-        if (passed) {
-          message = `Expected ${JSON.stringify(actual)} NOT to be equal ${expected}`;
-        } else {
-          message = `Expected ${JSON.stringify(actual)} to be ${expected}`;
-        }
-        return {
-          pass: passed, 
-          message: message
-        }
-      }
-    }
   },
   toBeOfTextureType: (expected: () => any) => {
     return {
-      compare: (actual: TextureTypes, expectedTexture: Texture) => {
-        let passed = expectedTexture === actual.type
+      compare: (actual: TextureTypes | Board, expectedTexture: Texture, group) => {
+        let passed: boolean;
         let message: string;
-        if (passed) {
-          message = `Expected ${actual.type} NOT to be of TextureType: ${JSON.stringify(expectedTexture)}, failed obj: ${JSON.stringify(actual)}`
+        if (actual instanceof TextureTypes) {
+          passed = expectedTexture === actual.type
+          if (passed) {
+            message = `Expected ${actual.type} NOT to be of TextureType: ${expectedTexture}, failed obj: ${JSON.stringify(actual, null, '\t')}`
+          } else {
+            message = `Expected ${actual.type} to be of TextureType: ${expectedTexture}, failed obj: ${JSON.stringify(actual, null, '\t')}`
+          }
+        } else if (actual instanceof Board) {
+          passed = expectedTexture === actual.textures[group]
+          if (passed) {
+            message = `Expected ${actual.textures[group]} NOT to equal ${expectedTexture}\n${JSON.stringify(actual.textures, null, '\t')}`
+          } else {
+            message = `Expected ${actual.textures[group]} to equal ${expectedTexture}\n${JSON.stringify(actual.textures, null, '\t')}`
+          }
         } else {
-          message = `Expected ${actual.type} to be of TextureType: ${expectedTexture}, failed obj: ${JSON.stringify(actual)}`
+          throw new Error('toBeOfTextureType matcher can only be used on Board or TextureType class')
         }
         return {
           pass: passed, 
