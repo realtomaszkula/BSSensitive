@@ -24,9 +24,9 @@ function isCardClass(obj): boolean {
 
 
 export let customMatchers = {
-  toBeCardClassOf: (expected: CardClass) => {
+  toBeCardClassOf: (expected: () => any) => {
     return { 
-      compare: (actual: CardClass, expected: () => any) => {
+      compare: (actual: CardClass, expected: any) => {
         if(expected === undefined)
           throw new Error('toBeCardClassOf called without arguments')
         if(!isCardClass(actual))
@@ -52,15 +52,32 @@ export let customMatchers = {
       }
     }
   }, 
-  toBeTextureOf: (expected: Texture) => {
+  toBeTextureOf: (expected: () => any) => {
     return {
-      compare: (actual: {}, expected: () => any) => {
+      compare: (actual: {}, expected: Texture) => {
         let passed: boolean = !!actual[expected] 
         let message: string;
         if (passed) {
           message = `Expected ${JSON.stringify(actual)} NOT to be equal ${expected}`;
         } else {
           message = `Expected ${JSON.stringify(actual)} to be ${expected}`;
+        }
+        return {
+          pass: passed, 
+          message: message
+        }
+      }
+    }
+  },
+  toBeOfTextureType: (expected: () => any) => {
+    return {
+      compare: (actualTexture: Texture, expectedTexture) => {
+        let passed = expectedTexture === actualTexture
+        let message: string;
+        if (passed) {
+          message = `Expected ${actualTexture} NOT to be of TextureType: ${JSON.stringify(expectedTexture)}`
+        } else {
+          message = `Expected ${actualTexture} to be of TextureType: ${expectedTexture}`
         }
         return {
           pass: passed, 
