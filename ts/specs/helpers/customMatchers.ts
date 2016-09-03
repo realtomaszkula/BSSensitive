@@ -10,6 +10,8 @@ import { StraightFlush } from './../../classes/hands/StraightFlush'
 import { HighCard } from './../../classes/hands/HighCard'
 import { Card }  from './../../classes/hands/Card' 
 import { Texture }  from './../../classes/_interfaces' 
+import { TextureTypes } from './../../classes/boards/TextureTypes/_TextureTypes'
+
 
 function isCardClass(obj): boolean {
   let allowedClassNames = [ 'Pair', 'TwoPair', 'Trips', 'Straight', 'Flush', 'FullHouse', 'Quads', 'StraightFlush', 'HighCard' ]
@@ -71,13 +73,13 @@ export let customMatchers = {
   },
   toBeOfTextureType: (expected: () => any) => {
     return {
-      compare: (actualTexture: Texture, expectedTexture) => {
-        let passed = expectedTexture === actualTexture
+      compare: (actual: TextureTypes, expectedTexture: Texture) => {
+        let passed = expectedTexture === actual.type
         let message: string;
         if (passed) {
-          message = `Expected ${actualTexture} NOT to be of TextureType: ${JSON.stringify(expectedTexture)}`
+          message = `Expected ${actual.type} NOT to be of TextureType: ${JSON.stringify(expectedTexture)}, failed obj: ${JSON.stringify(actual)}`
         } else {
-          message = `Expected ${actualTexture} to be of TextureType: ${expectedTexture}`
+          message = `Expected ${actual.type} to be of TextureType: ${expectedTexture}, failed obj: ${JSON.stringify(actual)}`
         }
         return {
           pass: passed, 
