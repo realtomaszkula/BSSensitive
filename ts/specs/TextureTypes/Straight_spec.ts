@@ -58,11 +58,42 @@ describe('CardValueTextureType', function() {
       });  
     });
 
-
-
+  describe('when given two straight board', function() {   
+    describe('with gap of one between two lowest cards (ex. T87)', function() {
+      it('should set type to TwoStraight', function() {
+        values = [ CardValue.ten, CardValue.eight, CardValue.seven]
+        textureType = new StraightTextureType({ values: values}).type
+        expect(textureType).toBeOfTextureType('TwoStraight')
+      });  
+    });
+    describe('with gap of one between two highest cards (ex. T97)', function() {
+      it('should set type to TwoStraight', function() {
+        values = [CardValue.ten, CardValue.nine, CardValue.seven]
+        textureType = new StraightTextureType({ values: values}).type
+        expect(textureType).toBeOfTextureType('TwoStraight')
+      });  
+    });
   });
 
+  describe('when given three straight board', function() {   
+    describe('with no gaps between cards (ex. 456)', function() {
+      it('should set type to ThreeStraight', function() {
+        values = [ CardValue.four, CardValue.five, CardValue.six]
+        textureType = new StraightTextureType({ values: values}).type
+        expect(textureType).toBeOfTextureType('ThreeStraight')
+      });  
+    });
+  });
 
-  
+  describe('when given zero straight board', function() {   
+    describe('with no gaps between cards (ex. 459)', function() {
+      it('should set type to ThreeStraight', function() {
+        values = [ CardValue.four, CardValue.five, CardValue.nine]
+        textureType = new StraightTextureType({ values: values}).type
+        expect(textureType).toBeOfTextureType('ZeroStraight')
+      });  
+    });
+  });
+
 });
   

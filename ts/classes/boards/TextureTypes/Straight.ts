@@ -13,7 +13,7 @@ export class StraightTextureType extends TextureTypes {
   
   constructor(params: { values: number[] }) {
     super(params);
-    this._values = params.values;
+    this.values = params.values;
     this.setGaps();
     this.setTypeCheckFunctions();
     this._type = this.findType();
@@ -30,7 +30,7 @@ export class StraightTextureType extends TextureTypes {
   }
 
   private set values(values) {
-    this.values = values.sort( (a, b) =>  b - a)
+    this._values = values.sort( (a, b) =>  b - a)
   }
 
   private get values() {
@@ -55,7 +55,7 @@ export class StraightTextureType extends TextureTypes {
     let gaps = this.gaps;
     // T96, T76, T86 ... and special cases QJT, A23, AKQ
     let isQJT = values[0] === 12 && values[1] === 11 && values[2] === 10;
-    let isA23 = values[0] === 14 && values[1] === 2 && values[2] === 3;
+    let isA23 = values[0] === 14 && values[1] === 3 && values[2] === 2;
     let isAKQ = values[0] === 14 && values[1] === 13 && values[2] === 12;
     let isRegularStr8 = (gaps.first === 0 && gaps.second === 2) || (gaps.first === 2 && gaps.second === 0) || 
             (gaps.first === 1 && gaps.second === 1); 

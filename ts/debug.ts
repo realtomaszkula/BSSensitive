@@ -7,12 +7,7 @@ import { Board } from './classes/boards/board'
 import { applyMixins } from './classes/mixins/_apply'
 import { ParamsGuard } from './classes/mixins/paramsGuard'
 import { TextureReaderFlop } from './classes/boards/TextureReader/Flop'
+import { StraightTextureType } from './classes/boards/TextureTypes/Straight'
 
-let flop = [card('aceOfSpades'), card('duceOfSpades'), card('sevenOfSpades')]
-let params = { 
-          boardObject: { flop: flop}
-        }
-
-let t = new TextureReaderFlop(params).result.textures
-console.log(t)
-let x =5;
+let values = [CardValue.ace, CardValue.duce, CardValue.three]
+let textureType = new StraightTextureType({ values: values}).type
